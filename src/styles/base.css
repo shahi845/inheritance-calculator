@@ -1,0 +1,273 @@
+/* ============================================================
+   base.css — Master Design System Tokens & Typography
+   ============================================================ */
+
+:root, body.theme-dark {
+    --bg-color: #0b101d;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    --accent: #3b82f6;
+    --accent-hover: #2563eb;
+    --accent-glow: rgba(59, 130, 246, 0.2);
+    --gold: #f59e0b;
+    --gold-glow: rgba(245, 158, 11, 0.15);
+    --emerald: #10b981;
+    --purple: #8b5cf6;
+    --glass-bg: rgba(18, 26, 43, 0.75);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --card-bg: rgba(22, 32, 54, 0.65);
+    --danger: #ef4444;
+    --success: #10b981;
+    --font-heading: 'Outfit', sans-serif;
+    --font-body: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Crisp Studio Light */
+body.light-theme, body.theme-light {
+    --bg-color: #f8fafc;
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --text-muted: #94a3b8;
+    --accent: #2563eb;
+    --accent-hover: #1d4ed8;
+    --accent-glow: rgba(37, 99, 235, 0.12);
+    --gold: #d97706;
+    --emerald: #059669;
+    --purple: #7c3aed;
+    --glass-bg: rgba(255, 255, 255, 0.92);
+    --glass-border: rgba(15, 23, 42, 0.09);
+    --card-bg: rgba(241, 245, 249, 0.85);
+}
+
+/* Emerald Oasis (Islamic Slate) */
+body.theme-emerald {
+    --bg-color: #061813;
+    --text-primary: #f0fdf4;
+    --text-secondary: #86efac;
+    --text-muted: #4ade80;
+    --accent: #10b981;
+    --accent-hover: #059669;
+    --accent-glow: rgba(16, 185, 129, 0.2);
+    --gold: #f59e0b;
+    --emerald: #34d399;
+    --purple: #a78bfa;
+    --glass-bg: rgba(11, 38, 29, 0.8);
+    --glass-border: rgba(52, 211, 153, 0.15);
+    --card-bg: rgba(15, 48, 37, 0.7);
+}
+
+/* Royal Sapphire & Indigo */
+body.theme-sapphire {
+    --bg-color: #0c0f24;
+    --text-primary: #f1f5f9;
+    --text-secondary: #a5b4fc;
+    --text-muted: #818cf8;
+    --accent: #6366f1;
+    --accent-hover: #4f46e5;
+    --accent-glow: rgba(99, 102, 241, 0.2);
+    --gold: #fbbf24;
+    --emerald: #10b981;
+    --purple: #c084fc;
+    --glass-bg: rgba(20, 24, 52, 0.8);
+    --glass-border: rgba(165, 180, 252, 0.15);
+    --card-bg: rgba(26, 31, 66, 0.7);
+}
+
+/* Warm Parchment (Manuscript) */
+body.theme-parchment {
+    --bg-color: #f7f4ed;
+    --text-primary: #2d241e;
+    --text-secondary: #6e5d4f;
+    --text-muted: #a39181;
+    --accent: #b45309;
+    --accent-hover: #92400e;
+    --accent-glow: rgba(180, 83, 9, 0.12);
+    --gold: #d97706;
+    --emerald: #15803d;
+    --purple: #7e22ce;
+    --glass-bg: rgba(255, 252, 246, 0.94);
+    --glass-border: rgba(110, 93, 79, 0.14);
+    --card-bg: rgba(242, 237, 226, 0.88);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Subtle architectural grid pattern background */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 24px 24px;
+    pointer-events: none;
+    z-index: -1;
+}
+
+body.light-theme::before {
+    background-image: radial-gradient(rgba(15, 23, 42, 0.04) 1px, transparent 1px);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    letter-spacing: -0.02em;
+}
+
+h1 {
+    font-size: 2.25rem;
+    font-weight: 800;
+    margin-bottom: 0.35rem;
+    text-align: center;
+    color: var(--text-primary);
+}
+
+h2 {
+    font-size: 1.35rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+    border-bottom: 1px solid var(--glass-border);
+    padding-bottom: 0.5rem;
+}
+
+p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+::-webkit-scrollbar-track {
+    background: rgba(15, 23, 42, 0.4);
+}
+::-webkit-scrollbar-thumb {
+    background: rgba(148, 163, 184, 0.25);
+    border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent);
+}
+
+/* Focus Ring Accessibility */
+:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+footer {
+    text-align: center;
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--glass-border);
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+}
+
+footer a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+@keyframes fadeScaleIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.page-section.active-page {
+    animation: fadeScaleIn 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* ── Theme Cards Grid in Settings ──────────────────────────── */
+.theme-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 0.85rem;
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.theme-card {
+    background: var(--card-bg);
+    border: 1.5px solid var(--glass-border);
+    border-radius: 12px;
+    padding: 0.85rem 0.95rem;
+    cursor: pointer;
+    transition: all 0.18s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    position: relative;
+    text-align: left;
+}
+
+.theme-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+}
+
+.theme-card.active {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-glow);
+    background: rgba(59, 130, 246, 0.08);
+}
+
+.theme-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.theme-card-title {
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: var(--text-primary);
+}
+
+.theme-card-swatches {
+    display: flex;
+    gap: 0.25rem;
+    align-items: center;
+    margin-top: 0.2rem;
+}
+
+.swatch-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.theme-card-desc {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    line-height: 1.35;
+}
+

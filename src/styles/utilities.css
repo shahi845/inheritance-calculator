@@ -1,0 +1,161 @@
+.text-muted {
+  color: var(--text-secondary);
+}
+
+.text-accent {
+  color: var(--accent);
+}
+
+.text-small {
+  font-size: 0.85rem;
+}
+
+.text-xs {
+  font-size: 0.75rem;
+}
+
+.mt-sm {
+  margin-top: 0.5rem;
+}
+
+.mt-md {
+  margin-top: 1rem;
+}
+
+.mb-sm {
+  margin-bottom: 0.5rem;
+}
+
+.mb-md {
+  margin-bottom: 1rem;
+}
+
+.hidden {
+  display: none;
+}
+
+.center {
+  text-align: center;
+}
+
+.pb-md {
+  padding-bottom: 1rem;
+}
+
+.presets-label {
+  align-self: center;
+}
+
+/* ── Skip link (accessibility) ─────────────────────────────── */
+
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: 1rem;
+  background: var(--accent);
+  color: #000;
+  padding: 0.5rem 1rem;
+  z-index: 999;
+  border-radius: 4px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  left: 1rem;
+}
+
+/* ── Section subtitle headings ─────────────────────────────── */
+
+.section-subtitle {
+  border-bottom: 1px solid var(--glass-border);
+  padding-bottom: 0.3rem;
+  margin-top: 0.25rem;
+  font-size: 1.05rem;
+}
+
+.section-subtitle-danger { color: var(--danger); }
+.section-subtitle-accent { color: var(--accent); }
+
+/* ── Asset subcategory helpers ─────────────────────────────── */
+
+.asset-subcategory-dashed {
+  border-bottom: 1px dashed var(--glass-border);
+  padding-bottom: 0.5rem;
+}
+
+.asset-subcategory-solid {
+  border-bottom: 1px solid var(--glass-border);
+}
+
+/* ── Group content single-column override ──────────────────── */
+
+.group-content-single {
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  padding: 0.75rem;
+}
+
+/* ── Custom currency input ─────────────────────────────────── */
+
+.input-currency-custom {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid var(--glass-border);
+  color: var(--text-primary);
+  padding: 0.5rem;
+  border-radius: 6px;
+  width: 120px;
+  text-align: right;
+  font-family: inherit;
+}
+
+/* ── Munāsakhāt section ────────────────────────────────────── */
+
+.munasakhat-section {
+  margin-top: 1.5rem;
+}
+
+.munasakhat-label {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+}
+
+.munasakhat-textarea {
+  width: 100%;
+  min-height: 240px;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid var(--glass-border);
+  border-radius: 8px;
+  color: var(--text-primary);
+  padding: 0.75rem;
+  font-family: monospace;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  resize: vertical;
+  box-sizing: border-box;
+}
+
+.munasakhat-textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.munasakhat-results {
+  min-height: 2rem;
+}
+
+/* ── Mode tab Munāsakhāt variant ───────────────────────────── */
+
+.mode-tab-munasakhat {
+  border-color: rgba(139, 92, 246, 0.4);
+  color: #a78bfa;
+}
+
+.mode-tab-munasakhat.active,
+.mode-tab-munasakhat:hover {
+  background: rgba(139, 92, 246, 0.15);
+  border-color: #a78bfa;
+  color: #c4b5fd;
+}

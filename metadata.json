@@ -1,0 +1,8 @@
+{
+  "name": "Islamic Inheritance (Fara'id) Platform",
+  "description": "Multi-madhhab Islamic inheritance learning platform covering Shāfiʿī, Ḥanafī, Mālikī, Ḥanbalī and Jumhūr schools with step-by-step reasoning, sample cases, and classical references.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

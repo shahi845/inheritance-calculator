@@ -1,0 +1,441 @@
+/**
+ * nav.css — Top-level page navigation bar styles.
+ * Handles: Home | Calculator | Learning | Sample Cases | Advanced | References | Settings
+ */
+
+/* ── Top nav bar ────────────────────────────────────────────── */
+
+.top-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.35rem 0.5rem;
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    border-radius: 40px;
+    margin: 0 auto 2rem auto;
+    max-width: fit-content;
+    flex-wrap: nowrap;
+    position: sticky;
+    top: 1rem;
+    z-index: 100;
+    box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.3);
+}
+
+.top-nav-item {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.45rem 0.85rem;
+    border-radius: 30px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    font-family: var(--font-heading);
+    color: var(--text-secondary);
+    background: transparent;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: all 0.18s ease;
+    white-space: nowrap;
+    text-decoration: none;
+    flex-shrink: 0;
+}
+
+.top-nav-item .nav-icon {
+    font-size: 1rem;
+    line-height: 1;
+    flex-shrink: 0;
+}
+
+.top-nav-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-primary);
+}
+
+body.light-theme .top-nav-item:hover {
+    background: rgba(15, 23, 42, 0.05);
+}
+
+.top-nav-item.active {
+    background: rgba(59, 130, 246, 0.15);
+    color: var(--accent);
+    border-color: rgba(59, 130, 246, 0.3);
+}
+
+/* "Advanced" tab — subtle violet accent */
+.top-nav-item[data-page="advanced"].active {
+    background: rgba(139, 92, 246, 0.15);
+    color: var(--purple);
+    border-color: rgba(139, 92, 246, 0.3);
+}
+.top-nav-item[data-page="advanced"]:hover {
+    background: rgba(139, 92, 246, 0.08);
+    color: var(--purple);
+}
+
+/* "Settings" tab — muted */
+.top-nav-item[data-page="settings"].active {
+    background: rgba(100, 116, 139, 0.15);
+    color: var(--text-primary);
+    border-color: rgba(100, 116, 139, 0.3);
+}
+
+/* ── Page sections ──────────────────────────────────────────── */
+
+.page-section {
+    display: none;
+}
+
+.page-section.active-page {
+    display: block;
+}
+
+/* ── Advanced hub page ──────────────────────────────────────── */
+
+.advanced-hub-intro {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.advanced-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.25rem;
+    margin-top: 0.5rem;
+}
+
+/* ── Individual Advanced card ───────────────────────────────── */
+
+.adv-card {
+    background: rgba(30, 41, 59, 0.6);
+    border: 1px solid var(--glass-border);
+    border-radius: 14px;
+    padding: 1.4rem 1.25rem 1.1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+    cursor: default;
+    position: relative;
+    overflow: hidden;
+}
+
+/* shimmering top accent stripe */
+.adv-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--adv-color, var(--accent)) 0%, transparent 100%);
+    opacity: 0.6;
+    border-radius: 14px 14px 0 0;
+}
+
+.adv-card:hover {
+    border-color: var(--adv-color, rgba(59,130,246,0.4));
+    box-shadow: 0 8px 24px rgba(0,0,0,0.25), 0 0 0 1px var(--adv-color, rgba(59,130,246,0.15));
+    transform: translateY(-2px);
+}
+
+.adv-card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.adv-card-icon {
+    font-size: 1.75rem;
+    line-height: 1;
+    flex-shrink: 0;
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255,255,255,0.05);
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.08);
+}
+
+.adv-card-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.3;
+}
+
+.adv-card-subtitle {
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: var(--adv-color, var(--accent));
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-top: 0.1rem;
+}
+
+.adv-card-desc {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    line-height: 1.55;
+    flex-grow: 1;
+}
+
+.adv-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 0.25rem;
+}
+
+.adv-card-badge {
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 0.2rem 0.55rem;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: var(--text-secondary);
+    letter-spacing: 0.04em;
+}
+
+.adv-card-badge.badge-coming-soon {
+    background: rgba(100,116,139,0.15);
+    border-color: rgba(100,116,139,0.3);
+    color: #64748b;
+}
+
+.adv-card-badge.badge-available {
+    background: rgba(16, 185, 129, 0.1);
+    border-color: rgba(16,185,129,0.3);
+    color: var(--success);
+}
+
+.adv-open-btn {
+    padding: 0.4rem 0.95rem;
+    border-radius: 7px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    border: 1px solid var(--adv-color, var(--accent));
+    background: rgba(59,130,246,0.1);
+    color: var(--adv-color, var(--accent));
+    transition: all 0.18s ease;
+}
+
+.adv-open-btn:hover {
+    background: var(--adv-color, var(--accent));
+    color: #fff;
+}
+
+.adv-open-btn:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+    border-color: rgba(100,116,139,0.3);
+    color: #64748b;
+    background: transparent;
+}
+
+/* ── Placeholder pages (Learning, Sample Cases, References, Settings) */
+
+.placeholder-page {
+    text-align: center;
+    padding: 4rem 2rem;
+}
+
+.placeholder-page .placeholder-icon {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+}
+
+.placeholder-page h2 {
+    font-size: 1.5rem;
+    color: var(--text-primary);
+    border: none;
+    margin-bottom: 0.75rem;
+}
+
+.placeholder-page p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    max-width: 420px;
+    margin: 0 auto;
+    line-height: 1.65;
+}
+
+.placeholder-page .coming-soon-tag {
+    display: inline-block;
+    margin-top: 1.25rem;
+    padding: 0.35rem 1rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    background: rgba(59,130,246,0.1);
+    border: 1px solid rgba(59,130,246,0.25);
+    color: var(--accent);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+/* ── Home page ──────────────────────────────────────────────── */
+
+.home-hero {
+    text-align: center;
+    padding: 1.5rem 1.5rem 0.5rem;
+}
+
+.home-nav-shortcuts {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-top: 1.5rem;
+    align-items: stretch;
+}
+
+.home-shortcut-card {
+    background: rgba(30,41,59,0.5);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    padding: 1.1rem 1rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: inherit;
+    text-align: left;
+    color: var(--text-primary);
+    /* equal height across every row */
+    align-self: stretch;
+    min-height: 80px;
+}
+
+.home-shortcut-card:hover {
+    background: rgba(59,130,246,0.08);
+    border-color: rgba(59,130,246,0.3);
+    transform: translateY(-2px);
+}
+
+.home-shortcut-icon {
+    font-size: 1.5rem;
+    width: 2rem;
+    text-align: center;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+}
+
+.home-shortcut-text {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 0;
+}
+
+.home-shortcut-title {
+    font-weight: 700;
+    font-size: 0.92rem;
+    color: var(--text-primary);
+    line-height: 1.25;
+}
+
+.home-shortcut-desc {
+    font-size: 0.76rem;
+    color: var(--text-secondary);
+    margin-top: 0.2rem;
+    line-height: 1.4;
+    /* lock to 2 lines so cards stay same height */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* ── Responsive ────────────────────────────────────────────── */
+
+/* Stacked: icon above label — fits all 8 in one row at medium widths */
+@media (max-width: 900px) {
+    .top-nav {
+        flex-wrap: nowrap;          /* single row always */
+        gap: 0.15rem;
+        padding: 0.5rem 0.5rem;
+        border-radius: 40px;
+        max-width: calc(100vw - 1.5rem);
+        justify-content: space-between;
+    }
+
+    .top-nav-item {
+        flex-direction: column;     /* icon on top, label below */
+        flex: 1;
+        gap: 0.2rem;
+        padding: 0.45rem 0.3rem;
+        border-radius: 16px;
+        justify-content: center;
+        align-items: center;
+        font-size: 0;               /* hide inherited font-size */
+        min-width: 0;
+    }
+
+    .top-nav-item .nav-icon {
+        font-size: 1.2rem;
+        line-height: 1;
+    }
+
+    .top-nav-item .nav-label {
+        font-size: 0.6rem;
+        font-weight: 600;
+        letter-spacing: 0.01em;
+        line-height: 1;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 100%;
+        display: block;
+    }
+
+    .advanced-cards-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .home-nav-shortcuts {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+/* Icons-only — very small phones ≤ 480px */
+@media (max-width: 480px) {
+    .top-nav {
+        padding: 0.4rem;
+        gap: 0.1rem;
+    }
+
+    .top-nav-item {
+        padding: 0.45rem 0.25rem;
+        border-radius: 12px;
+    }
+
+    .top-nav-item .nav-icon {
+        font-size: 1.15rem;
+    }
+
+    /* Hide labels on very small phones */
+    .top-nav-item .nav-label {
+        display: none;
+    }
+
+    .advanced-cards-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .home-nav-shortcuts {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+

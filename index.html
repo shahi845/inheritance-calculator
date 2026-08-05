@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Islamic Inheritance (Fara'id) Learning Platform — Multi-Madhhab</title>
+    <meta name="description" content="Multi-madhhab Islamic inheritance learning platform covering Shāfiʿī, Ḥanafī, Mālikī, Ḥanbalī and Jumhūr schools with step-by-step reasoning, sample cases, and classical references.">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="src/styles/main.css">
+</head>
+
+<body>
+    <!-- Skip link for accessibility -->
+    <a href="#mainContent" class="skip-link">Skip to main content</a>
+
+    <div class="background-elements">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+    
+    <div class="container">
+
+        <!-- ══════════════════════════════════════════════════════════════
+             SITE HEADER
+        ══════════════════════════════════════════════════════════════ -->
+        <header>
+            <h1 id="calcTitle">Islamic Inheritance Platform <span class="calc-subtitle" id="calcSubtitle"></span></h1>
+            <p id="calcDesc">Multi-Madhhab Farāʾiḍ Calculator &amp; Educational Learning System</p>
+            <div class="disclaimer">
+                Tested models for Shāfiʿī, Ḥanafī, Mālikī, Ḥanbalī, and Jumhūr. Verify real-world cases with qualified scholars.
+            </div>
+        </header>
+
+        <!-- ══════════════════════════════════════════════════════════════
+             UNIVERSAL GLOBAL SEARCH BAR
+        ══════════════════════════════════════════════════════════════ -->
+        <div class="search-bar-container">
+            <span class="search-icon-fixed">🔍</span>
+            <input type="text" id="globalSearchInput" class="search-input" placeholder="Search heirs, rules, cases, Qur'an verses..." aria-label="Universal Search">
+            <div id="globalSearchDropdown" class="search-dropdown hidden"></div>
+        </div>
+
+        <!-- ══════════════════════════════════════════════════════════════
+             TOP NAVIGATION (8 SECTIONS)
+        ══════════════════════════════════════════════════════════════ -->
+        <nav class="top-nav" role="navigation" aria-label="Main page navigation">
+            <button class="top-nav-item active" data-page="home" id="nav-home" type="button">
+                <span class="nav-icon">🏠</span>
+                <span class="nav-label">Home</span>
+            </button>
+            <button class="top-nav-item" data-page="calculator" id="nav-calculator" type="button">
+                <span class="nav-icon">🧮</span>
+                <span class="nav-label">Calculator</span>
+            </button>
+            <button class="top-nav-item" data-page="learning" id="nav-learning" type="button">
+                <span class="nav-icon">📚</span>
+                <span class="nav-label">Learning</span>
+            </button>
+            <button class="top-nav-item" data-page="cases" id="nav-cases" type="button">
+                <span class="nav-icon">📋</span>
+                <span class="nav-label">Sample Cases</span>
+            </button>
+            <button class="top-nav-item" data-page="advanced" id="nav-advanced" type="button">
+                <span class="nav-icon">⚙️</span>
+                <span class="nav-label">Advanced</span>
+            </button>
+            <button class="top-nav-item" data-page="references" id="nav-references" type="button">
+                <span class="nav-icon">📖</span>
+                <span class="nav-label">References</span>
+            </button>
+            <button class="top-nav-item" data-page="settings" id="nav-settings" type="button">
+                <span class="nav-icon">⚙</span>
+                <span class="nav-label">Settings</span>
+            </button>
+            <button class="top-nav-item" data-page="about" id="nav-about" type="button">
+                <span class="nav-icon">ℹ️</span>
+                <span class="nav-label">About</span>
+            </button>
+        </nav>
+
+        <!-- Hidden inputs read by main.js for madhhab routing -->
+        <input type="hidden" id="madhhabSelector" value="shafii">
+        <input type="hidden" id="raddModeSelector" value="baytulMal">
+
+
+        <!-- ══════════════════════════════════════════════════════════════
+             PAGE 1: HOME
+        ══════════════════════════════════════════════════════════════ -->
+        <section class="page-section active-page" id="page-home" aria-label="Home page">
+            <div class="glass-panel home-hero">
+                <svg viewBox="0 0 400 120" xmlns="http://www.w3.org/2000/svg" style="max-width:380px;height:auto;display:block;margin:0 auto 1.25rem;">
+                    <g stroke="var(--accent)" stroke-width="1.5" fill="none">
+                        <path d="M 200 30 L 200 50" />
+                        <path d="M 100 50 L 300 50" />
+                        <path d="M 100 50 L 100 80" />
+                        <path d="M 200 50 L 200 80" />
+                        <path d="M 300 50 L 300 80" />
+                    </g>
+                    <g fill="rgba(225,225,225,1,15)" text-anchor="middle" font-size="12" font-weight="600" font-family="Inter, sans-serif">
+                        <rect x="150" y="10" width="100" height="24" rx="4" fill="rgba(225,225,225,1)" stroke="var(--glass-border)"/>
+                        <text x="200" y="27">Deceased</text>
+                        <rect x="50" y="80" width="100" height="24" rx="4" fill="rgba(16, 185, 129, 0.15)" stroke="var(--success)"/>
+                        <text x="100" y="97" fill="#10b981">Parents</text>
+                        <rect x="150" y="80" width="100" height="24" rx="4" fill="rgba(239, 68, 68, 0.15)" stroke="var(--danger)"/>
+                        <text x="200" y="97" fill="#ef4444">Spouse</text>
+                        <rect x="250" y="80" width="100" height="24" rx="4" fill="rgba(139, 92, 246, 0.15)" stroke="#8b5cf6"/>
+                        <text x="300" y="97" fill="#a78bfa">Children</text>
+                    </g>
+                </svg>
+
+                <h2 style="border:none;margin-bottom:0.5rem;">Welcome to the Islamic Inheritance Platform</h2>
+                <p style="text-align:center;max-width:560px;margin:0 auto 1.5rem;line-height:1.7;">
+                    A comprehensive, multi-madhhab Farāʾiḍ system combining accurate calculation,
+                    interactive sample cases, step-by-step divine evidence, and advanced juristic analysis.
+                </p>
+
+                <div class="home-nav-shortcuts">
+                    <button class="home-shortcut-card" data-page="calculator">
+                        <span class="home-shortcut-icon">🧮</span>
+                        <span class="home-shortcut-text">
+                            <span class="home-shortcut-title">Calculator</span>
+                            <span class="home-shortcut-desc">Enter heirs and calculate estate shares instantly</span>
+                        </span>
+                    </button>
+                    <button class="home-shortcut-card" data-page="cases">
+                        <span class="home-shortcut-icon">📋</span>
+                        <span class="home-shortcut-text">
+                            <span class="home-shortcut-title">Sample Cases</span>
+                            <span class="home-shortcut-desc">Explore curated cases and auto-fill calculator</span>
+                        </span>
+                    </button>
+                    <button class="home-shortcut-card" data-page="learning">
+                        <span class="home-shortcut-icon">📚</span>
+                        <span class="home-shortcut-text">
+                            <span class="home-shortcut-title">Learning</span>
+                            <span class="home-shortcut-desc">Master ʿAwl, Radd, Blocking and 15+ concepts</span>
+                        </span>
+                    </button>
+                    <button class="home-shortcut-card" data-page="advanced">
+                        <span class="home-shortcut-icon">⚙️</span>
+                        <span class="home-shortcut-text">
+                            <span class="home-shortcut-title">Advanced Topics</span>
+                            <span class="home-shortcut-desc">Munāsakhāt timeline, Grandfather comparison &amp; more</span>
+                        </span>
+                    </button>
+                    <button class="home-shortcut-card" data-page="references">
+                        <span class="home-shortcut-icon">📖</span>
+                        <span class="home-shortcut-text">
+                            <span class="home-shortcut-title">References</span>
+                            <span class="home-shortcut-desc">Qurʾān, Hadith, and classical Fiqh manuals</span>
+                        </span>
+                    </button>
+                    <button class="home-shortcut-card" data-page="settings">
+                        <span class="home-shortcut-icon">⚙</span>
+                        <span class="home-shortcut-text">
+                            <span class="home-shortcut-title">Settings</span>
+                            <span class="home-shortcut-desc">Theme, currency, and default preferences</span>
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ══════════════════════════════════════════════════════════════
+             PAGE 2: CALCULATOR
+        ══════════════════════════════════════════════════════════════ -->
+        <section class="page-section" id="page-calculator" aria-label="Calculator page">
+
+            <div class="mode-selector" role="tablist" aria-label="Madhhab selector">
+                <button class="mode-tab active" data-mode="shafii" id="tab-shafii" type="button" role="tab">
+                    <span class="tab-label">Shāfiʿī</span>
+                </button>
+                <button class="mode-tab" data-mode="hanafi" id="tab-hanafi" type="button" role="tab">
+                    <span class="tab-label">Ḥanafī</span>
+                </button>
+                <button class="mode-tab" data-mode="maliki" id="tab-maliki" type="button" role="tab">
+                    <span class="tab-label">Mālikī</span>
+                </button>
+                <button class="mode-tab" data-mode="hanbali" id="tab-hanbali" type="button" role="tab">
+                    <span class="tab-label">Ḥanbalī</span>
+                </button>
+                <button class="mode-tab" data-mode="jumhur" id="tab-jumhur" type="button" role="tab">
+                    <span class="tab-label">Jumhūr</span>
+                </button>
+                <button class="mode-tab" data-mode="munasakhat" id="tab-munasakhat" type="button" role="tab" style="border-color:rgba(167,139,250,0.5);">
+                    <span class="tab-label">🔗 Munāsakhāt</span>
+                </button>
+            </div>
+
+            <div id="validationAlerts" class="validation-alerts-container hidden"></div>
+            <div id="calcProgressContainer" class="hidden"></div>
+
+            <div id="mainCalculatorForm">
+            <main id="mainContent">
+
+                <section class="estate-section glass-panel">
+                    <h2>Estate Value &amp; Configuration</h2>
+
+                    <div class="input-group mb-sm">
+                        <label for="currencySelect">Currency Unit:</label>
+                        <select id="currencySelect" style="background: rgba(15, 23, 42, 0.6); border: 1px solid var(--glass-border); color: var(--text-primary); padding: 0.5rem; border-radius: 6px; width: 150px; font-family: inherit; cursor: pointer;">
+                            <option value="$">$ (USD)</option>
+                            <option value="₹">₹ (INR)</option>
+                            <option value="Rs.">Rs. (PKR)</option>
+                            <option value="SR">SR (SAR)</option>
+                            <option value="Dh">Dh (AED)</option>
+                            <option value="KD">KD (KWD)</option>
+                            <option value="QR">QR (QAR)</option>
+                            <option value="OMR">OMR (OMR)</option>
+                            <option value="BD">BD (BHD)</option>
+                            <option value="Rp">Rp (IDR)</option>
+                            <option value="RM">RM (MYR)</option>
+                            <option value="৳">৳ (BDT)</option>
+                            <option value="TL">TL (TRY)</option>
+                            <option value="EGP">EGP (EGP)</option>
+                            <option value="JOD">JOD (JOD)</option>
+                            <option value="DH">DH (MAD)</option>
+                            <option value="£">£ (GBP)</option>
+                            <option value="€">€ (EUR)</option>
+                            <option value="custom">Other / Custom</option>
+                        </select>
+                    </div>
+                    <div class="input-group hidden mb-sm" id="customCurrencyContainer">
+                        <label for="customCurrencyInput">Custom Currency Symbol:</label>
+                        <input type="text" id="customCurrencyInput" placeholder="e.g. PKR" class="input-currency-custom">
+                    </div>
+
+                    <div class="input-group" id="estateValueContainer">
+                        <label for="estateValue" id="estateValueLabel">Total Estate Amount (Optional):</label>
+                        <input type="number" id="estateValue" min="0" placeholder="e.g., 100000">
+                    </div>
+
+                    <details class="heir-group mt-md mb-sm" id="detailedEstateBreakdown">
+                        <summary>Assets &amp; Liabilities Breakdown (Optional)</summary>
+                        <div class="group-content group-content-single">
+                            <h3 class="section-subtitle section-subtitle-accent">Assets</h3>
+                            <div class="asset-subcategory asset-subcategory-dashed">
+                                <h4 class="mb-sm text-small" style="color: var(--success);">Current / Liquid Assets</h4>
+                                <div class="input-group"><label for="assetCash">Cash &amp; Bank Accounts</label><input type="number" id="assetCash" min="0" placeholder="0"></div>
+                                <div class="input-group"><label for="assetGold">Gold &amp; Silver (Value)</label><input type="number" id="assetGold" min="0" placeholder="0"></div>
+                                <div class="input-group"><label for="assetStocks">Investments &amp; Shares</label><input type="number" id="assetStocks" min="0" placeholder="0"></div>
+                            </div>
+                            <div class="asset-subcategory asset-subcategory-dashed">
+                                <h4 class="text-accent mb-sm text-small">Fixed / Physical Assets</h4>
+                                <div class="input-group"><label for="assetRealEstate">Real Estate Properties</label><input type="number" id="assetRealEstate" min="0" placeholder="0"></div>
+                                <div class="input-group"><label for="assetBusiness">Business Net Assets</label><input type="number" id="assetBusiness" min="0" placeholder="0"></div>
+                                <div class="input-group"><label for="assetPersonal">Vehicles &amp; Personal Items</label><input type="number" id="assetPersonal" min="0" placeholder="0"></div>
+                            </div>
+                            <div class="asset-subcategory asset-subcategory-solid pb-md mb-sm">
+                                <h4 class="mb-sm text-small text-muted">Future / Receivable Assets</h4>
+                                <div class="input-group"><label for="assetReceivables">Loans Owed to Deceased</label><input type="number" id="assetReceivables" min="0" placeholder="0"></div>
+                                <div class="input-group"><label for="assetClaims">Pending Claims / Gratuity</label><input type="number" id="assetClaims" min="0" placeholder="0"></div>
+                                <div class="input-group"><label for="assetUnpaidMahr">Unpaid Mahr due to Deceased</label><input type="number" id="assetUnpaidMahr" min="0" placeholder="0"></div>
+                            </div>
+
+                            <h3 class="section-subtitle section-subtitle-danger">Liabilities &amp; Bequests</h3>
+                            <div class="asset-subcategory" style="border-bottom: 1px dashed var(--glass-border); padding-bottom: 0.5rem;">
+                                <h4 class="mb-sm" style="color: var(--danger); font-size: 0.9rem;">Funeral &amp; Burial (Tajhiz)</h4>
+                                <div class="input-group"><label for="liabilityFuneral">Funeral Expenses</label><input type="number" id="liabilityFuneral" min="0" placeholder="0"></div>
+                            </div>
+                            <div class="asset-subcategory" style="border-bottom: 1px dashed var(--glass-border); padding-bottom: 0.5rem;">
+                                <h4 class="mb-sm" style="color: var(--danger); font-size: 0.9rem;">Outstanding Debts (Diyun)</h4>
+                                <div class="input-group"><label for="liabilityReligiousDebts">Debts to Allah (Zakat, Hajj)</label><input type="number" id="liabilityReligiousDebts" min="0" placeholder="0"></div>
+                                <div class="input-group"><label for="liabilityFinancialDebts">Debts to People (Loans, Mortgage)</label><input type="number" id="liabilityFinancialDebts" min="0" placeholder="0"></div>
+                            </div>
+                            <div class="asset-subcategory">
+                                <h4 class="mb-sm" style="color: #cbd5e1; font-size: 0.9rem;">Wills &amp; Bequests (Wasiyyah)</h4>
+                                <div class="input-group">
+                                    <label for="liabilityWills">Bequests to Non-Heirs (Max 1/3)</label>
+                                    <input type="number" id="liabilityWills" min="0" placeholder="0">
+                                </div>
+                            </div>
+                        </div>
+                    </details>
+
+                    <div class="debug-toggle">
+                        <input type="checkbox" id="scholarMode">
+                        <label for="scholarMode">Show Calculation Steps (Educational Mode)</label>
+                    </div>
+                    <div class="debug-toggle" style="margin-top:0.5rem;">
+                        <input type="checkbox" id="developerMode">
+                        <label for="developerMode">🔍 Developer Mode (Rule Inspector)</label>
+                    </div>
+                    <div class="debug-toggle" style="margin-top:0.5rem;">
+                        <input type="checkbox" id="learningModeToggle" >
+                        <label for="learningModeToggle">🧠 Learning Mode Quiz after calculation</label>
+                    </div>
+
+                    <!-- Maliki Settings Panel -->
+                    <div id="malikiSettingsContainer" class="hidden" style="background: rgba(251,191,36,0.05); border: 1px solid rgba(251,191,36,0.25); border-radius: 10px; padding: 1rem; margin: 0.5rem 0;">
+                        <h3 style="color: #fbbf24; font-size: 0.95rem; margin-bottom: 0.75rem;">☪ Mālikī Madhhab Settings</h3>
+                        <div style="display: grid; gap: 0.65rem;">
+                            <div class="input-group">
+                                <label for="malikiSurplusMode" style="color: var(--text-secondary); font-size: 0.85rem;">Surplus (Radd) Mode:</label>
+                                <select id="malikiSurplusMode" style="background: rgba(15,23,42,0.7); border: 1px solid rgba(251,191,36,0.3); color: var(--text-primary); padding: 0.45rem 0.6rem; border-radius: 6px; font-family: inherit; font-size: 0.85rem;">
+                                    <option value="classical_baytulmal">Classical — Surplus to Bayt al-Māl</option>
+                                    <option value="modern_no_functional_baytulmal">Modern — Radd to Blood Sharers</option>
+                                </select>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                <input type="checkbox" id="malikiDhawuArham" style="accent-color: #fbbf24; width: 15px; height: 15px;">
+                                <label for="malikiDhawuArham" style="color: var(--text-secondary); font-size: 0.85rem;">Enable Dhawū al-Arḥām fallback</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Jumhūr Settings Panel -->
+                    <div id="jumhurSettingsContainer" class="hidden" style="background: rgba(245,158,11,0.05); border: 1px solid rgba(245,158,11,0.25); border-radius: 10px; padding: 1rem; margin: 0.5rem 0;">
+                        <h3 style="color: #f59e0b; font-size: 0.95rem; margin-bottom: 0.75rem;">Jumhūr Policy Settings</h3>
+                        <div style="display:grid;gap:0.65rem;">
+                            <div class="input-group">
+                                <label for="mushtarikahPolicy" style="color:var(--text-secondary);font-size:0.85rem;">Mushtarikah Policy:</label>
+                                <select id="mushtarikahPolicy" style="background:rgba(15,23,42,0.7);border:1px solid rgba(245,158,11,0.3);color:var(--text-primary);padding:0.45rem 0.6rem;border-radius:6px;font-family:inherit;font-size:0.85rem;">
+                                    <option value="ask_if_detected">Ask if detected</option>
+                                    <option value="apply">Apply Mushtarikah</option>
+                                    <option value="reject">Reject Mushtarikah</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <label for="surplusPolicy" style="color:var(--text-secondary);font-size:0.85rem;">Surplus (Radd) Policy:</label>
+                                <select id="surplusPolicy" style="background:rgba(15,23,42,0.7);border:1px solid rgba(245,158,11,0.3);color:var(--text-primary);padding:0.45rem 0.6rem;border-radius:6px;font-family:inherit;font-size:0.85rem;">
+                                    <option value="ask_if_detected">Ask if detected</option>
+                                    <option value="baytulMal">To Bayt al-Māl</option>
+                                    <option value="returnToHeirs">Radd to Heirs</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <label for="dhawilArhamPolicy" style="color:var(--text-secondary);font-size:0.85rem;">Dhawu al-Arḥām Policy:</label>
+                                <select id="dhawilArhamPolicy" style="background:rgba(15,23,42,0.7);border:1px solid rgba(245,158,11,0.3);color:var(--text-primary);padding:0.45rem 0.6rem;border-radius:6px;font-family:inherit;font-size:0.85rem;">
+                                    <option value="ask_if_detected">Ask if detected</option>
+                                    <option value="inherit">Allow inheritance</option>
+                                    <option value="exclude">Exclude (Bayt al-Māl)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="presets-container">
+                        <span class="text-small text-muted presets-label">Load Example:</span>
+                        <button class="preset-btn" data-preset="gharawiyyatayn1">Wife + Parents</button>
+                        <button class="preset-btn" data-preset="awl1">Husband + 2 Daughters + Parents</button>
+                        <button class="preset-btn" data-preset="radd1">Mother + 1 Daughter</button>
+                        <button class="preset-btn maliki-preset hidden" data-preset="malikiMushtarikah" style="border-color: rgba(251,191,36,0.5); color: #fbbf24;">Mālikī: Mushtarikah</button>
+                        <button class="preset-btn maliki-preset hidden" data-preset="malikiGharra" style="border-color: rgba(251,191,36,0.5); color: #fbbf24;">Mālikī: al-Gharrāʾ</button>
+                    </div>
+                </section>
+
+                <div id="errorContainer" class="error-container"></div>
+                <div id="policyWarningBanner" class="hidden" style="background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.4);border-radius:10px;padding:1rem 1.25rem;margin-bottom:1.5rem;color:#fbbf24;">
+                    <strong>Policy Required:</strong> <span id="policyWarningText"></span>
+                </div>
+
+                <div class="heirs-container glass-panel">
+                    <h2>Heirs Configuration</h2>
+
+                    <details class="heir-group" open>
+                        <summary>Immediate Family</summary>
+                        <div class="group-content">
+                            <div class="input-group"><label for="husband">Husband (0 or 1)</label><input type="number" id="husband" min="0" max="1" placeholder="0"></div>
+                            <div class="input-group"><label for="wife">Wives (0 to 4)</label><input type="number" id="wife" min="0" max="4" placeholder="0"></div>
+                            <div class="input-group"><label for="father">Father (0 or 1)</label><input type="number" id="father" min="0" max="1" placeholder="0"></div>
+                            <div class="input-group"><label for="mother">Mother (0 or 1)</label><input type="number" id="mother" min="0" max="1" placeholder="0"></div>
+                            <div class="input-group"><label for="son">Sons</label><input type="number" id="son" min="0" placeholder="0"></div>
+                            <div class="input-group"><label for="daughter">Daughters</label><input type="number" id="daughter" min="0" placeholder="0"></div>
+                        </div>
+                    </details>
+
+                    <details class="heir-group">
+                        <summary>Grandparents</summary>
+                        <div class="group-content">
+                            <div class="input-group"><label for="grandfather">Paternal Grandfather (0 or 1)</label><input type="number" id="grandfather" min="0" max="1" placeholder="0"></div>
+                            <div class="input-group"><label for="paternalGrandmother">Paternal Grandmother (0 or 1)</label><input type="number" id="paternalGrandmother" min="0" max="1" placeholder="0"></div>
+                            <div class="input-group"><label for="maternalGrandmother">Maternal Grandmother (0 or 1)</label><input type="number" id="maternalGrandmother" min="0" max="1" placeholder="0"></div>
+                        </div>
+                    </details>
+
+                    <details class="heir-group">
+                        <summary>Siblings</summary>
+                        <div class="group-content">
+                            <div class="input-group"><label for="brother">Full Brothers</label><input type="number" id="brother" min="0" placeholder="0"></div>
+                            <div class="input-group"><label for="sister">Full Sisters</label><input type="number" id="sister" min="0" placeholder="0"></div>
+                            <div class="input-group"><label for="paternalBrother">Paternal Half-Brothers</label><input type="number" id="paternalBrother" min="0" placeholder="0"></div>
+                            <div class="input-group"><label for="paternalSister">Paternal Half-Sisters</label><input type="number" id="paternalSister" min="0" placeholder="0"></div>
+                            <div class="input-group"><label for="maternalBrother">Maternal Half-Brothers</label><input type="number" id="maternalBrother" min="0" placeholder="0"></div>
+                            <div class="input-group"><label for="maternalSister">Maternal Half-Sisters</label><input type="number" id="maternalSister" min="0" placeholder="0"></div>
+                        </div>
+                    </details>
+
+                    <details class="heir-group">
+                        <summary>Extended Relatives</summary>
+                        <div class="group-content">
+                            <div class="input-group"><label for="grandson">Grandsons (Son's Sons)</label><input type="number" id="grandson" min="0" placeholder="0"></div>
+                            <div class="input-group"><label for="granddaughter">Granddaughters (Son's Daughters)</label><input type="number" id="granddaughter" min="0" placeholder="0"></div>
+                            <div class="input-group"><label for="sonOfFullBrother">Sons of Full Brother</label><input type="number" id="sonOfFullBrother" min="0" placeholder="0"></div>
+                            <div class="input-group"><label for="sonOfPaternalBrother">Sons of Paternal Half-Brother</label><input type="number" id="sonOfPaternalBrother" min="0" placeholder="0"></div>
+                            <div class="input-group"><label for="uncle">Full Paternal Uncles</label><input type="number" id="uncle" min="0" placeholder="0"></div>
+                            <div class="input-group"><label for="consanguinePaternalUncle">Consanguine Paternal Uncles</label><input type="number" id="consanguinePaternalUncle" min="0" placeholder="0"></div>
+                            <div class="input-group"><label for="paternalUncleSon">Sons of Full Paternal Uncle</label><input type="number" id="paternalUncleSon" min="0" placeholder="0"></div>
+                            <div class="input-group"><label for="consanguinePaternalUncleSon">Sons of Consanguine Paternal Uncle</label><input type="number" id="consanguinePaternalUncleSon" min="0" placeholder="0"></div>
+                        </div>
+                    </details>
+
+                    <details class="heir-group">
+                        <summary>Distant Kindred (Dhawu al-Arham)</summary>
+                        <div class="group-content">
+                            <div class="input-group"><label for="daughterSon">Daughter's Son</label><input type="number" id="daughterSon" min="0" placeholder="0"></div>
+                            <div class="input-group"><label for="daughterDaughter">Daughter's Daughter</label><input type="number" id="daughterDaughter" min="0" placeholder="0"></div>
+                            <div class="input-group"><label for="sisterSon">Sister's Son</label><input type="number" id="sisterSon" min="0" placeholder="0"></div>
+                            <div class="input-group"><label for="sisterDaughter">Sister's Daughter</label><input type="number" id="sisterDaughter" min="0" placeholder="0"></div>
+                            <div class="input-group"><label for="maternalUncle">Maternal Uncle</label><input type="number" id="maternalUncle" min="0" placeholder="0"></div>
+                            <div class="input-group"><label for="maternalAunt">Maternal Aunt</label><input type="number" id="maternalAunt" min="0" placeholder="0"></div>
+                            <div class="input-group"><label for="paternalAunt">Paternal Aunt</label><input type="number" id="paternalAunt" min="0" placeholder="0"></div>
+                            <div class="input-group"><label for="maternalGrandfather">Maternal Grandfather</label><input type="number" id="maternalGrandfather" min="0" max="1" placeholder="0"></div>
+                            <div class="input-group"><label for="uterineSiblingChildren">Children of Uterine Siblings</label><input type="number" id="uterineSiblingChildren" min="0" placeholder="0"></div>
+                            <div class="input-group"><label for="otherDistantRelatives">Other Distant Blood Relatives</label><input type="number" id="otherDistantRelatives" min="0" placeholder="0"></div>
+                        </div>
+                    </details>
+                </div>
+
+                <div class="actions">
+                    <button id="calculateBtn" class="primary-btn">Calculate Shares</button>
+                    <button id="resetBtn" class="secondary-btn">Reset</button>
+                    <button id="copyBtn" class="secondary-btn hidden">Copy Summary</button>
+                    <button id="printBtn" class="secondary-btn hidden"><i class="fas fa-print"></i> Save as PDF / Print</button>
+                </div>
+
+                <section class="results-section glass-panel hidden" id="resultsSection">
+                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;">
+                        <h2>Inheritance Distribution</h2>
+                        <button class="primary-btn" id="compareAllSchoolsBtn">⚖️ Compare All 4 Madhhabs Side-by-Side</button>
+                    </div>
+
+                    <div id="madhhabComparisonContainer" class="hidden"></div>
+
+                    <!-- ✅ VERIFICATION CENTER -->
+                    <div id="verificationCenter" class="result-card hidden" style="border: 1px solid rgba(16,185,129,0.35); background: linear-gradient(135deg, rgba(16,185,129,0.05), rgba(6,182,212,0.05));">
+                        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;">
+                            <div style="display:flex;align-items:center;gap:0.6rem;">
+                                <span style="font-size:1.4rem;">🛡️</span>
+                                <h3 style="margin:0;color:#10b981;">Verification Center</h3>
+                            </div>
+                            <div id="confidenceBadge" style="font-size:1.5rem;font-weight:800;color:#10b981;">100%</div>
+                        </div>
+                        <div id="verificationChecks" style="display:grid;gap:0.5rem;"></div>
+                    </div>
+
+                    <!-- 📊 ESTATE FLOW DIAGRAM -->
+                    <div id="estateFlowDiagram" class="result-card hidden" style="border:1px solid rgba(167,139,250,0.25);">
+                        <div style="display:flex;align-items:center;gap:0.6rem;margin-bottom:1rem;">
+                            <span style="font-size:1.2rem;">💰</span>
+                            <h3 style="margin:0;">Estate Flow Diagram</h3>
+                        </div>
+                        <div id="estateFlowSteps" style="display:flex;flex-direction:column;align-items:center;gap:0;"></div>
+                    </div>
+
+                    <div class="estate-waterfall-card result-card">
+                        <h3>Step-by-Step Estate Deductions</h3>
+                        <div id="estateWaterfallSteps" class="waterfall-steps-container"></div>
+                    </div>
+
+                    <div class="shares-layout-container">
+                        <div class="shares-table-card result-card">
+                            <h3>Distribution Details</h3>
+                            <div class="table-responsive">
+                                <table id="sharesTable">
+                                    <thead>
+                                        <tr>
+                                            <th>Sr. #</th>
+                                            <th>Heir</th>
+                                            <th>Share</th>
+                                            <th>% / Amount</th>
+                                            <th>Condition</th>
+                                            <th style="text-align: center;">Reference</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="sharesTableBody"></tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="shares-chart-card result-card">
+                            <h3>Share Visualization</h3>
+                            <div class="chart-flex-container">
+                                <div class="chart-container">
+                                    <svg id="sharesDonutChart" viewBox="0 0 100 100">
+                                        <circle cx="50" cy="50" r="40" fill="transparent" stroke="rgba(255,255,255,0.05)" stroke-width="12"></circle>
+                                    </svg>
+                                    <div id="chartCenterText" class="chart-center-text">100%</div>
+                                </div>
+                                <div id="chartLegend" class="chart-legend-container"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="family-tree-card result-card">
+                        <h3>Dynamic Family Tree (Click any node to inspect rules)</h3>
+                        <div class="family-tree-wrapper">
+                            <svg id="familyTreeSvg" viewBox="0 0 800 420" width="100%" height="100%">
+                                <g stroke="rgba(255,255,255,0.08)" stroke-width="1.5" fill="none">
+                                    <path d="M 200 60 L 200 100 L 400 100 L 400 120" />
+                                    <path d="M 600 60 L 600 100 L 400 100" />
+                                    <path d="M 400 160 L 400 200 L 150 200 L 150 240" />
+                                    <path d="M 150 200 L 650 200 L 650 240" />
+                                    <path d="M 400 200 L 400 240" />
+                                    <path d="M 400 280 L 400 320 L 250 320 L 250 360" />
+                                    <path d="M 250 320 L 550 320 L 550 360" />
+                                </g>
+                                <g class="tree-node" id="node-grandfather" transform="translate(100, 20)"><rect width="200" height="40" rx="6" /><text x="100" y="25" text-anchor="middle">Pat. Grandfather</text></g>
+                                <g class="tree-node" id="node-grandmother" transform="translate(320, 20)"><rect width="160" height="40" rx="6" /><text x="80" y="25" text-anchor="middle">Grandmother(s)</text></g>
+                                <g class="tree-node" id="node-maternalGrandfather" transform="translate(500, 20)"><rect width="200" height="40" rx="6" /><text x="100" y="25" text-anchor="middle">Mat. Grandfather</text></g>
+                                <g class="tree-node" id="node-father" transform="translate(200, 120)"><rect width="160" height="40" rx="6" /><text x="80" y="25" text-anchor="middle">Father</text></g>
+                                <g class="tree-node" id="node-mother" transform="translate(440, 120)"><rect width="160" height="40" rx="6" /><text x="80" y="25" text-anchor="middle">Mother</text></g>
+                                <g class="tree-node" id="node-siblings" transform="translate(50, 240)"><rect width="200" height="40" rx="6" /><text x="100" y="25" text-anchor="middle">Brothers / Sisters</text></g>
+                                <g class="tree-node deceased-node" id="node-deceased" transform="translate(300, 240)"><rect width="200" height="40" rx="6" /><text x="100" y="25" text-anchor="middle">Deceased (Focus)</text></g>
+                                <g class="tree-node" id="node-spouse" transform="translate(550, 240)"><rect width="200" height="40" rx="6" /><text x="100" y="25" text-anchor="middle">Husband / Wife</text></g>
+                                <g class="tree-node" id="node-son" transform="translate(150, 360)"><rect width="200" height="40" rx="6" /><text x="100" y="25" text-anchor="middle">Son(s)</text></g>
+                                <g class="tree-node" id="node-daughter" transform="translate(450, 360)"><rect width="200" height="40" rx="6" /><text x="100" y="25" text-anchor="middle">Daughter(s)</text></g>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="results-cards" id="resultsCards"></div>
+                    <div id="messages" class="messages-container hidden"></div>
+
+                    <!-- 🔍 RULE INSPECTOR (Developer Mode) -->
+                    <div id="ruleInspectorPanel" class="result-card hidden" style="border:1px solid rgba(251,191,36,0.3);background:rgba(251,191,36,0.04);">
+                        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;">
+                            <div style="display:flex;align-items:center;gap:0.6rem;">
+                                <span style="font-size:1.2rem;">🔍</span>
+                                <h3 style="margin:0;color:#fbbf24;">Rule Inspector</h3>
+                            </div>
+                            <span style="font-size:0.75em;color:var(--text-secondary);padding:0.25rem 0.6rem;border:1px solid rgba(251,191,36,0.3);border-radius:12px;">Developer Mode</span>
+                        </div>
+                        <div id="ruleInspectorContent"></div>
+                    </div>
+
+                    <!-- 🧠 LEARNING MODE QUIZ -->
+                    <div id="learningModeQuiz" class="result-card hidden" style="border:1px solid rgba(99,102,241,0.3);background:rgba(99,102,241,0.04);">
+                        <div style="display:flex;align-items:center;gap:0.6rem;margin-bottom:1rem;">
+                            <span style="font-size:1.2rem;">🧠</span>
+                            <h3 style="margin:0;color:#818cf8;">Learning Mode Quiz</h3>
+                        </div>
+                        <div id="learningQuizContent"></div>
+                    </div>
+                </section>
+            </main>
+            </div>
+
+            <!-- 🔗 MUNASAKHAT PANEL (integrated into calculator) -->
+            <div id="munasakhatCalculatorPanel" class="hidden" style="padding: 0 1rem;">
+                <div class="glass-panel" style="border-color:rgba(167,139,250,0.3);">
+                    <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1rem;">
+                        <span style="font-size:1.4rem;">🔗</span>
+                        <h2 style="margin:0;color:#a78bfa;">Munāsakhāt (Sequential Deaths)</h2>
+                    </div>
+                    <p style="color:var(--text-secondary);margin-bottom:1.5rem;">
+                        Calculate connected inheritance cases across multiple consecutive death events.
+                        Add each death event as a new stage.
+                    </p>
+                    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; margin-bottom:1.5rem;">
+                        <div class="input-group" style="margin:0;">
+                            <label for="munasakhatPresetSelect">Load Example Preset:</label>
+                            <select id="munasakhatPresetSelect" class="munasakhat-preset-select" style="background:var(--card-bg);border:1px solid rgba(167,139,250,0.3);color:var(--text-primary);padding:0.45rem 0.75rem;border-radius:8px;font-family:inherit;">
+                                <option value="">-- Select Preset --</option>
+                                <option value="2stage">2-Stage: Father → Son</option>
+                                <option value="3stage">3-Stage: Father → Son + Wife</option>
+                            </select>
+                        </div>
+                        <button type="button" class="munasakhat-reset-btn secondary-btn" style="border-color: rgba(239, 68, 68, 0.4); color: #f87171; background: rgba(239, 68, 68, 0.08); padding: 0.45rem 0.9rem; border-radius: 8px; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 0.35rem; transition: all 0.18s ease;">
+                            <span style="font-size: 0.95rem;">↺</span> Reset Stages
+                        </button>
+                    </div>
+                    <div id="munasakhatDeathsContainer" style="display:flex;flex-direction:column;gap:1rem;"></div>
+                    <div id="wizardControlsContainer" style="margin-top:1.5rem;"></div>
+                    <div id="wizardResultsContainer" style="margin-top:1.5rem;"></div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ══════════════════════════════════════════════════════════════
+             PAGE 3: LEARNING
+        ══════════════════════════════════════════════════════════════ -->
+        <section class="page-section" id="page-learning" aria-label="Learning page">
+            <div class="glass-panel">
+                <h2>📚 Farāʾiḍ Learning Centre</h2>
+                <p class="mb-md">Comprehensive educational guide covering 15 core concepts, rules, and divine evidences.</p>
+
+                <div class="filter-bar mb-md">
+                    <button class="learning-filter-btn active" data-category="all">All Topics</button>
+                    <button class="learning-filter-btn" data-category="core">Core Concepts</button>
+                    <button class="learning-filter-btn" data-category="heirs">Heir Categories</button>
+                    <button class="learning-filter-btn" data-category="advanced">Advanced Rules</button>
+                    <button class="learning-filter-btn" data-category="comparative">Madhhab Differences</button>
+                </div>
+
+                <div id="learningTopicsContainer" class="learning-cards-grid"></div>
+            </div>
+        </section>
+
+
+        <!-- ══════════════════════════════════════════════════════════════
+             PAGE 4: SAMPLE CASES
+        ══════════════════════════════════════════════════════════════ -->
+        <section class="page-section" id="page-cases" aria-label="Sample cases page">
+            <div class="glass-panel">
+                <h2>📋 Sample Inheritance Cases Library</h2>
+                <p class="mb-md">Real-world inheritance scenarios across Shāfiʿī, Ḥanafī, Mālikī, and Ḥanbalī schools. Click <strong>Load into Calculator</strong> to auto-populate fields.</p>
+
+                <div class="cases-filter-controls mb-md" style="display:flex;gap:0.75rem;flex-wrap:wrap;align-items:center;">
+                    <div class="filter-bar" style="margin:0;">
+                        <button class="case-madhhab-filter active" data-madhhab="all">All Schools</button>
+                        <button class="case-madhhab-filter" data-madhhab="shafii">Shāfiʿī</button>
+                        <button class="case-madhhab-filter" data-madhhab="hanafi">Ḥanafī</button>
+                        <button class="case-madhhab-filter" data-madhhab="maliki">Mālikī</button>
+                        <button class="case-madhhab-filter" data-madhhab="hanbali">Ḥanbalī</button>
+                    </div>
+
+                    <select id="caseCategoryFilter" style="background:rgba(15,23,42,0.7);border:1px solid var(--glass-border);color:var(--text-primary);padding:0.4rem 0.6rem;border-radius:6px;font-family:inherit;font-size:0.85rem;">
+                        <option value="all">All Categories</option>
+                        <option value="basic">Basic Scenarios</option>
+                        <option value="awl">ʿAwl (Reduction)</option>
+                        <option value="radd">Radd (Redistribution)</option>
+                        <option value="blocking">Blocking (Ḥajb)</option>
+                        <option value="grandfather">Grandfather</option>
+                        <option value="special">Special / Exception Cases</option>
+                    </select>
+
+                    <input type="text" id="caseSearchInput" placeholder="🔍 Search cases..." style="background:rgba(15,23,42,0.7);border:1px solid var(--glass-border);color:var(--text-primary);padding:0.4rem 0.75rem;border-radius:6px;font-family:inherit;font-size:0.85rem;min-width:180px;">
+                </div>
+
+                <div id="sampleCasesGrid" class="sample-cases-grid"></div>
+            </div>
+        </section>
+
+
+        <!-- ══════════════════════════════════════════════════════════════
+             PAGE 5: ADVANCED
+        ══════════════════════════════════════════════════════════════ -->
+        <section class="page-section" id="page-advanced" aria-label="Advanced topics page">
+            <div class="glass-panel">
+                <h2>⚙️ Advanced Inheritance Topics</h2>
+                <p class="mb-md">Explore specialised chapters in Farāʾiḍ jurisprudence including sequential deaths, ʿAwl, Radd, and cross-madhhab comparative analysis.</p>
+
+                <div class="advanced-cards-grid">
+                    <div class="adv-card" style="--adv-color: #a78bfa;">
+                        <div class="adv-card-header"><div class="adv-card-icon">🔗</div><div><div class="adv-card-title">Munāsakhāt</div><div class="adv-card-subtitle">Sequential Deaths Wizard</div></div></div>
+                        <p class="adv-card-desc">Calculate connected inheritance cases across multiple consecutive death events with an interactive timeline.</p>
+                        <div class="adv-card-footer"><span class="adv-card-badge badge-available">Available</span><button class="adv-open-btn" data-action="munasakhat">Open Timeline →</button></div>
+                    </div>
+
+                    <div class="adv-card" style="--adv-color: #f59e0b;">
+                        <div class="adv-card-header"><div class="adv-card-icon">⚖️</div><div><div class="adv-card-title">ʿAwl Cases</div><div class="adv-card-subtitle">Proportional Reduction</div></div></div>
+                        <p class="adv-card-desc">Understand cases where prescribed shares exceed the estate and fractions are reduced proportionally.</p>
+                        <div class="adv-card-footer"><span class="adv-card-badge badge-available">Available</span><button class="adv-open-btn" data-action="awl-cases">Explore →</button></div>
+                    </div>
+
+                    <div class="adv-card" style="--adv-color: #10b981;">
+                        <div class="adv-card-header"><div class="adv-card-icon">↩️</div><div><div class="adv-card-title">Radd Cases</div><div class="adv-card-subtitle">Surplus Redistribution</div></div></div>
+                        <p class="adv-card-desc">Learn how unassigned estate surplus is returned to blood sharers when no residuary heir exists.</p>
+                        <div class="adv-card-footer"><span class="adv-card-badge badge-available">Available</span><button class="adv-open-btn" data-action="radd-cases">Explore →</button></div>
+                    </div>
+
+                    <div class="adv-card" style="--adv-color: #3b82f6;">
+                        <div class="adv-card-header"><div class="adv-card-icon">👴</div><div><div class="adv-card-title">Grandfather with Siblings</div><div class="adv-card-subtitle">Side-by-Side Comparison</div></div></div>
+                        <p class="adv-card-desc">Compare grandfather inheritance rules across Ḥanafī (blocks brothers) vs Jumhūr (Muqāsamah).</p>
+                        <div class="adv-card-footer"><span class="adv-card-badge badge-available">Available</span><button class="adv-open-btn" data-action="grandfather">Compare →</button></div>
+                    </div>
+
+                    <div class="adv-card" style="--adv-color: #ec4899;">
+                        <div class="adv-card-header"><div class="adv-card-icon">🌿</div><div><div class="adv-card-title">Dhawū al-Arḥām</div><div class="adv-card-subtitle">Distant Kindred</div></div></div>
+                        <p class="adv-card-desc">Rules governing inheritance of distant blood relatives (maternal uncles, nieces, etc.) when primary heirs are absent.</p>
+                        <div class="adv-card-footer"><span class="adv-card-badge badge-available">Available</span><button class="adv-open-btn" data-action="dhawu-al-arham">Explore →</button></div>
+                    </div>
+
+                    <div class="adv-card" style="--adv-color: #06b6d4;">
+                        <div class="adv-card-header"><div class="adv-card-icon">🔀</div><div><div class="adv-card-title">Madhhab Differences</div><div class="adv-card-subtitle">Comparative Calculator</div></div></div>
+                        <p class="adv-card-desc">Analyze cases where Shāfiʿī, Ḥanafī, Mālikī, and Ḥanbalī schools reach different outcomes.</p>
+                        <div class="adv-card-footer"><span class="adv-card-badge badge-available">Available</span><button class="adv-open-btn" data-action="madhhab-diff">Analyze →</button></div>
+                    </div>
+                </div>
+
+                <!-- Embedded Munasakat Wizard Inputs -->
+                <div class="glass-card mt-lg" id="munasakhatBuilderCard">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+                        <h3 style="margin:0;">🔗 Munāsakhāt Interactive Builder</h3>
+                        <div class="munasakhat-presets" style="display:flex; align-items:center; gap:0.6rem;">
+                            <select id="munasakhatPresetSelect" class="munasakhat-preset-select" style="background:var(--card-bg);border:1px solid var(--glass-border);color:var(--text-primary);padding:0.4rem 0.65rem;border-radius:8px;font-size:0.85rem;">
+                                <option value="">Load Textbook Example...</option>
+                                <option value="2stage">2-Stage Basic Case</option>
+                                <option value="3stage">3-Stage Complex Case</option>
+                            </select>
+                            <button type="button" class="munasakhat-reset-btn secondary-btn" style="border-color: rgba(239, 68, 68, 0.4); color: #f87171; background: rgba(239, 68, 68, 0.08); padding: 0.38rem 0.75rem; border-radius: 8px; font-size: 0.82rem; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 0.3rem; transition: all 0.18s ease;">
+                                <span style="font-size: 0.9rem;">↺</span> Reset
+                            </button>
+                        </div>
+                    </div>
+                    <p class="text-secondary text-small mb-md">Add successive deaths to compute combined multi-generational inheritance. The engine will automatically chain the estate fractions.</p>
+
+                    <div id="munasakhatDeathsContainer" style="display:flex; flex-direction:column; gap:1.5rem;">
+                        <!-- Dynamic death panels injected by JS -->
+                    </div>
+                    
+                    <div id="wizardControlsContainer" style="margin-top:1.5rem; display:flex; gap:1rem; flex-direction: column;">
+                        <!-- Wizard controls injected by JS -->
+                    </div>
+                    
+                    <div id="wizardResultsContainer" class="mt-lg"></div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ══════════════════════════════════════════════════════════════
+             PAGE 6: REFERENCES
+        ══════════════════════════════════════════════════════════════ -->
+        <section class="page-section" id="page-references" aria-label="References page">
+            <div class="glass-panel">
+                <h2>📖 Scriptural &amp; Classical References</h2>
+                <p class="mb-md">Primary Quranic verses, Hadiths, and classical Fiqh manuals underpinning all calculation rules.</p>
+
+                <div class="filter-bar mb-md">
+                    <button class="ref-filter-btn active" data-category="all">All Sources</button>
+                    <button class="ref-filter-btn" data-category="quran">Qurʾān Verses</button>
+                    <button class="ref-filter-btn" data-category="hadith">Prophetic Hadiths</button>
+                    <button class="ref-filter-btn" data-category="classical">Classical Fiqh Books</button>
+                </div>
+
+                <div id="referencesCardsContainer"></div>
+            </div>
+        </section>
+
+
+        <!-- ══════════════════════════════════════════════════════════════
+             PAGE 7: SETTINGS
+        ══════════════════════════════════════════════════════════════ -->
+        <section class="page-section" id="page-settings" aria-label="Settings page">
+            <div class="glass-panel">
+                <h2>⚙️ Application Settings</h2>
+                <p class="mb-md">Configure UI appearance and calculation defaults.</p>
+
+                <h3 style="font-size:1.05rem;margin-top:1.25rem;margin-bottom:0.5rem;color:var(--text-primary);">🎨 Select UI Visual Theme</h3>
+                <div class="theme-cards-grid" id="themeCardsGrid">
+                    <button class="theme-card active" data-theme="dark" type="button">
+                        <div class="theme-card-header">
+                            <span class="theme-card-title">🌙 Obsidian Glass</span>
+                            <span style="font-size:0.75rem;color:var(--accent);">Active</span>
+                        </div>
+                        <div class="theme-card-swatches">
+                            <span class="swatch-dot" style="background:#0b101d;"></span>
+                            <span class="swatch-dot" style="background:#18223b;"></span>
+                            <span class="swatch-dot" style="background:#3b82f6;"></span>
+                            <span class="swatch-dot" style="background:#f59e0b;"></span>
+                        </div>
+                        <span class="theme-card-desc">Deep slate glass canvas with blue highlights</span>
+                    </button>
+
+                    <button class="theme-card" data-theme="light" type="button">
+                        <div class="theme-card-header">
+                            <span class="theme-card-title">☀️ Crisp Studio Light</span>
+                        </div>
+                        <div class="theme-card-swatches">
+                            <span class="swatch-dot" style="background:#f8fafc;"></span>
+                            <span class="swatch-dot" style="background:#ffffff;"></span>
+                            <span class="swatch-dot" style="background:#2563eb;"></span>
+                            <span class="swatch-dot" style="background:#0f172a;"></span>
+                        </div>
+                        <span class="theme-card-desc">Clean high-contrast light mode for daytime</span>
+                    </button>
+
+                    <button class="theme-card" data-theme="emerald" type="button">
+                        <div class="theme-card-header">
+                            <span class="theme-card-title">🕌 Emerald Oasis</span>
+                        </div>
+                        <div class="theme-card-swatches">
+                            <span class="swatch-dot" style="background:#061813;"></span>
+                            <span class="swatch-dot" style="background:#0b261d;"></span>
+                            <span class="swatch-dot" style="background:#10b981;"></span>
+                            <span class="swatch-dot" style="background:#f59e0b;"></span>
+                        </div>
+                        <span class="theme-card-desc">Rich Islamic emerald slate with amber accents</span>
+                    </button>
+
+                    <button class="theme-card" data-theme="sapphire" type="button">
+                        <div class="theme-card-header">
+                            <span class="theme-card-title">💎 Royal Sapphire</span>
+                        </div>
+                        <div class="theme-card-swatches">
+                            <span class="swatch-dot" style="background:#0c0f24;"></span>
+                            <span class="swatch-dot" style="background:#141834;"></span>
+                            <span class="swatch-dot" style="background:#6366f1;"></span>
+                            <span class="swatch-dot" style="background:#c084fc;"></span>
+                        </div>
+                        <span class="theme-card-desc">Midnight indigo canvas with purple accents</span>
+                    </button>
+
+                    <button class="theme-card" data-theme="parchment" type="button">
+                        <div class="theme-card-header">
+                            <span class="theme-card-title">📜 Warm Parchment</span>
+                        </div>
+                        <div class="theme-card-swatches">
+                            <span class="swatch-dot" style="background:#f7f4ed;"></span>
+                            <span class="swatch-dot" style="background:#fffcf6;"></span>
+                            <span class="swatch-dot" style="background:#b45309;"></span>
+                            <span class="swatch-dot" style="background:#2d241e;"></span>
+                        </div>
+                        <span class="theme-card-desc">Warm neutral ivory with sepia manuscript styling</span>
+                    </button>
+                </div>
+
+                <div class="group-content group-content-single" style="margin-top:1.5rem;">
+                    <div class="input-group">
+                        <label for="themeSelect">Quick Theme Selector:</label>
+                        <select id="themeSelect" style="background:var(--card-bg);border:1px solid var(--glass-border);color:var(--text-primary);padding:0.5rem;border-radius:8px;width:220px;">
+                            <option value="dark">🌙 Midnight Obsidian Glass</option>
+                            <option value="light">☀️ Crisp Studio Light</option>
+                            <option value="emerald">🕌 Emerald Oasis (Islamic Slate)</option>
+                            <option value="sapphire">💎 Royal Sapphire &amp; Indigo</option>
+                            <option value="parchment">📜 Warm Parchment (Manuscript)</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="defaultMadhhabSelect">Default Calculator Madhhab:</label>
+                        <select id="defaultMadhhabSelect" style="background:var(--card-bg);border:1px solid var(--glass-border);color:var(--text-primary);padding:0.5rem;border-radius:8px;width:220px;">
+                            <option value="shafii">Shāfiʿī</option>
+                            <option value="hanafi">Ḥanafī</option>
+                            <option value="maliki">Mālikī</option>
+                            <option value="hanbali">Ḥanbalī</option>
+                            <option value="jumhur">Jumĥūr</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- LocalStorage Calculation History Panel -->
+                <div id="calculationHistoryContainer" class="mt-lg"></div>
+            </div>
+        </section>
+
+
+        <!-- ══════════════════════════════════════════════════════════════
+             PAGE 8: ABOUT
+        ══════════════════════════════════════════════════════════════ -->
+        <section class="page-section" id="page-about" aria-label="About page">
+            <div class="glass-panel">
+                <h2>ℹ️ About Islamic Inheritance Platform</h2>
+                <p class="mb-md" style="line-height:1.7;">
+                    This platform was designed as an educational tool for students, researchers, and families to learn
+                    the intricate divine laws of Islamic estate distribution (Farāʾiḍ).
+                </p>
+
+                <h3 style="margin-top:1.25rem;">Software Architecture</h3>
+                <ul style="list-style-position:inside;color:var(--text-secondary);line-height:1.8;">
+                    <li><strong>Decoupled Calculation Engine:</strong> Pure mathematical logic isolated in <code>src/core</code> and <code>src/madhahib</code>.</li>
+                    <li><strong>Educational Why Breakdown:</strong> Automatic step-by-step evidence extraction for every calculated heir share.</li>
+                    <li><strong>Multi-Madhhab Engineering:</strong> Tested implementations for Shāfiʿī, Ḥanafī, Mālikī, Ḥanbalī, and consensus Jumhūr models.</li>
+                </ul>
+
+                <div class="disclaimer mt-lg" style="display:block;">
+                    <strong>Scholar Review Disclaimer:</strong> This application is intended for educational and analytical purposes.
+                    For binding real-world estate settlements, consult a qualified Islamic scholar or local religious authority.
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ══════════════════════════════════════════════════════════════
+             FOOTER
+        ══════════════════════════════════════════════════════════════ -->
+        <footer>
+            <p>Fara'id Learning Platform v2.0 | Last Updated: 28-07-2026</p>
+            <p class="mt-sm">Developed by <a href="https://github.com/shahi845" target="_blank">Shahid</a></p>
+        </footer>
+
+    </div><!-- /.container -->
+
+    <!-- Learning Topic Detail Modal -->
+    <div id="learningTopicModal" class="modal-overlay hidden">
+        <div class="modal-content glass-panel" id="learningModalContent"></div>
+    </div>
+
+    <!-- Advanced Topic View Modal -->
+    <div id="advancedTopicModal" class="modal-overlay hidden">
+        <div class="modal-content glass-panel" id="advancedModalContent"></div>
+    </div>
+
+    <!-- Evidence Details Modal / Heir Inspector Modal -->
+    <div id="evidenceModal" class="modal-overlay hidden">
+        <div class="modal-content glass-panel">
+            <span id="closeModalBtn" class="close-modal-btn">&times;</span>
+            <h2 id="modalHeirName" style="color: var(--accent); margin-top: 0;">Heir Details</h2>
+            <div class="modal-body">
+                <div class="info-section">
+                    <h4>Quranic / Sunnah Evidence</h4>
+                    <p id="modalEvidenceCitation" style="font-style: italic; font-weight: 600; color: #cbd5e1; margin-bottom: 0.5rem;"></p>
+                    <div id="modalArabicVerse" class="arabic-verse" dir="rtl"></div>
+                    <p id="modalTranslation" class="text-muted mt-sm" style="line-height: 1.5;"></p>
+                </div>
+                <div class="info-section" style="margin-top: 1.5rem;">
+                    <h4>Shāfiʿī School Rules</h4>
+                    <ul id="modalRulesList" style="list-style-position: inside; color: var(--text-secondary); line-height: 1.6; margin-top: 0.5rem;"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="src/app/main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,11 @@
+node_modules/
+dist/
+coverage/
+.git/
+.node-portable/
+.node-portable-v22/
+.vite/
+.DS_Store
+.env
+*.zip
+npm-debug.log*

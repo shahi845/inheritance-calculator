@@ -1,0 +1,233 @@
+/**
+ * cards.css — Styles for Learning, Cases, References, and Settings UI cards.
+ */
+
+.glass-card {
+    background: var(--card-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 14px;
+    padding: 1.25rem;
+    box-shadow: 0 4px 16px -2px rgba(0, 0, 0, 0.2);
+    transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.glass-card:hover {
+    border-color: rgba(59, 130, 246, 0.35);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.3);
+}
+
+/* ── Learning Grid & Cards ─────────────────────────────────── */
+
+.learning-cards-grid, .sample-cases-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.25rem;
+    margin-top: 1rem;
+}
+
+.topic-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    cursor: pointer;
+}
+
+.topic-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.topic-icon {
+    font-size: 1.5rem;
+}
+
+.topic-category-badge {
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 0.2rem 0.55rem;
+    border-radius: 20px;
+    background: rgba(59, 130, 246, 0.12);
+    color: var(--accent);
+    text-transform: uppercase;
+}
+
+.topic-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.topic-summary {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    flex-grow: 1;
+}
+
+.view-topic-btn {
+    align-self: flex-start;
+    background: transparent;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    padding: 0.35rem 0.8rem;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.18s;
+}
+
+.view-topic-btn:hover {
+    background: var(--accent);
+    color: white;
+}
+
+/* ── Learning Filters Bar ──────────────────────────────────── */
+
+.filter-bar {
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.25rem;
+}
+
+.learning-filter-btn, .case-madhhab-filter, .ref-filter-btn {
+    background: var(--card-bg);
+    border: 1px solid var(--glass-border);
+    color: var(--text-secondary);
+    padding: 0.45rem 0.85rem;
+    border-radius: 8px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.18s ease;
+}
+
+.learning-filter-btn:hover, .case-madhhab-filter:hover, .ref-filter-btn:hover {
+    color: var(--text-primary);
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+.learning-filter-btn.active, .case-madhhab-filter.active, .ref-filter-btn.active {
+    background: rgba(59, 130, 246, 0.15);
+    color: var(--accent);
+    border-color: rgba(59, 130, 246, 0.35);
+}
+
+/* ── Sample Cases Cards ────────────────────────────────────── */
+
+.case-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+}
+
+.case-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.case-madhhab-badge {
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 0.2rem 0.55rem;
+    border-radius: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.badge-shafii { background: rgba(59, 130, 246, 0.15); color: #60a5fa; }
+.badge-hanafi { background: rgba(16, 185, 129, 0.15); color: #34d399; }
+.badge-maliki { background: rgba(245, 158, 11, 0.15); color: #fbbf24; }
+.badge-hanbali { background: rgba(239, 68, 68, 0.15); color: #f87171; }
+.badge-jumhur { background: rgba(139, 92, 246, 0.15); color: #c4b5fd; }
+
+.case-category-tag {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+.case-heirs-preview {
+    font-size: 0.85rem;
+}
+
+.heir-chips {
+    display: flex;
+    gap: 0.35rem;
+    flex-wrap: wrap;
+    margin-top: 0.3rem;
+}
+
+.heir-chip {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--glass-border);
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.78rem;
+    color: var(--text-primary);
+}
+
+body.light-theme .heir-chip {
+    background: rgba(15, 23, 42, 0.04);
+}
+
+.case-note {
+    font-size: 0.82rem;
+    color: var(--gold);
+    background: rgba(245, 158, 11, 0.08);
+    padding: 0.5rem 0.75rem;
+    border-radius: 6px;
+    border-left: 3px solid var(--gold);
+    line-height: 1.45;
+}
+
+.load-case-btn {
+    width: 100%;
+    margin-top: 0.4rem;
+    padding: 0.55rem;
+    font-size: 0.88rem;
+}
+
+/* ── Timeline Styles for Munasakat ─────────────────────────── */
+
+.timeline-steps {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+}
+
+.timeline-step {
+    background: var(--card-bg);
+    border: 1px solid var(--glass-border);
+    padding: 1rem;
+    border-radius: 10px;
+    flex: 1;
+    min-width: 160px;
+    text-align: center;
+}
+
+.step-badge {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background: var(--accent);
+    color: white;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 0.5rem auto;
+}
+
+.timeline-arrow {
+    font-size: 1.25rem;
+    color: var(--accent);
+    font-weight: 700;
+}
+

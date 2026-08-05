@@ -1,0 +1,49 @@
+/* ============================================================
+   print.css — Print / PDF Export Styles
+   ============================================================ */
+
+@media print {
+    body {
+        background: white;
+        color: black;
+    }
+
+    .background-elements,
+    .actions,
+    .estate-section,
+    .heirs-container,
+    .educational-section {
+        display: none !important;
+    }
+
+    .glass-panel {
+        background: none;
+        border: none;
+        box-shadow: none;
+    }
+
+    h1, h2, h3, p, .disclaimer, td, th, li {
+        color: black !important;
+    }
+
+    .disclaimer {
+        border: 1px solid #ccc;
+    }
+
+    .result-card {
+        border: 1px solid #ccc;
+        page-break-inside: avoid;
+    }
+
+    .messages-container {
+        page-break-before: always;
+        border: 1px solid #ccc;
+        padding: 1rem;
+    }
+
+    .message {
+        border-left-color: #333;
+        background: #f9f9f9;
+        color: black;
+    }
+}

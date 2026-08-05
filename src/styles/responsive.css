@@ -1,0 +1,490 @@
+/* ============================================================
+   responsive.css — Mobile-first breakpoints
+   Covers: Header · Search · Nav · Calculator · Cards ·
+           Results · Modals · Tables · Advanced · Home
+   ============================================================
+   Breakpoints:
+     xs  — max 400px  (small phones)
+     sm  — max 640px  (phones)
+     md  — max 768px  (large phones / small tablets)
+     lg  — max 1024px (tablets)
+   ============================================================ */
+
+/* ── Tablet ─────────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+    .container {
+        padding: 1.5rem 1rem;
+    }
+
+    .heirs-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+    }
+
+    .learning-cards-grid,
+    .sample-cases-grid,
+    .advanced-cards-grid {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    }
+}
+
+/* ── Large phones / small tablets ───────────────────────────── */
+@media (max-width: 768px) {
+
+    /* Layout */
+    .container {
+        padding: 1rem 0.875rem;
+    }
+
+    /* Header */
+    header h1 {
+        font-size: 1.5rem;
+        line-height: 1.3;
+    }
+
+    header h1 .calc-subtitle {
+        font-size: 0.75rem;
+        margin-top: 0.25rem;
+    }
+
+    header p {
+        font-size: 0.88rem;
+    }
+
+    .disclaimer {
+        font-size: 0.82rem;
+        text-align: center;
+        display: block;
+    }
+
+    /* Search */
+    .search-bar-container {
+        margin-bottom: 1rem;
+    }
+
+    /* Glass panels */
+    .glass-panel {
+        padding: 1.25rem 1rem;
+        border-radius: 14px;
+        margin-bottom: 1.25rem;
+    }
+
+    /* Mode selector tabs */
+    .mode-selector {
+        gap: 0.3rem;
+        padding: 0.4rem;
+        max-width: 100%;
+    }
+
+    .mode-tab {
+        padding: 0.45rem 0.7rem;
+        font-size: 0.82rem;
+    }
+
+    /* Heir group toggles */
+    .group-content {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+    }
+
+    details.heir-group summary {
+        padding: 0.875rem 1rem;
+        font-size: 0.92rem;
+    }
+
+    /* Input rows */
+    .input-group {
+        gap: 0.5rem;
+    }
+
+    .input-group label {
+        font-size: 0.9rem;
+    }
+
+    input[type="number"] {
+        width: 80px;
+        font-size: 1rem;
+        padding: 0.55rem 0.6rem;
+    }
+
+    /* Action buttons */
+    .actions {
+        position: sticky;
+        bottom: 0;
+        background: var(--bg-color);
+        padding: 0.875rem 0;
+        border-top: 1px solid var(--glass-border);
+        z-index: 100;
+        flex-wrap: wrap;
+        gap: 0.6rem;
+        justify-content: center;
+        /* safe area bottom for notched phones */
+        padding-bottom: calc(0.875rem + env(safe-area-inset-bottom, 0px));
+    }
+
+    button.primary-btn,
+    button.secondary-btn {
+        flex: 1 1 auto;
+        max-width: 200px;
+        padding: 0.75rem 1rem;
+        font-size: 0.92rem;
+    }
+
+    /* Heirs grid — single column */
+    .heirs-grid {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+    }
+
+    /* Results */
+    .result-card {
+        padding: 0.875rem;
+    }
+
+    .result-card h3 {
+        font-size: 1rem;
+    }
+
+    .result-card li {
+        font-size: 0.88rem;
+        padding: 0.4rem 0;
+    }
+
+    .share-reason {
+        font-size: 0.78em;
+    }
+
+    /* Learning & Case cards grids */
+    .learning-cards-grid,
+    .sample-cases-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    /* Advanced hub */
+    .advanced-cards-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    /* Home shortcuts — 2 columns on tablet */
+    .home-nav-shortcuts {
+        grid-template-columns: 1fr 1fr;
+        gap: 0.75rem;
+    }
+
+    .home-shortcut-card {
+        padding: 1rem 0.75rem;
+        gap: 0.6rem;
+    }
+
+    .home-shortcut-icon {
+        font-size: 1.4rem;
+        width: 1.8rem;
+    }
+
+    .home-shortcut-title {
+        font-size: 0.88rem;
+    }
+
+    .home-shortcut-desc {
+        font-size: 0.74rem;
+    }
+
+    /* Tables — horizontal scroll */
+    .table-responsive {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    table {
+        min-width: 480px;
+    }
+
+    th, td {
+        padding: 0.75rem 0.6rem;
+        font-size: 0.85rem;
+    }
+
+    /* Footer */
+    footer {
+        font-size: 0.8rem;
+        padding-top: 1.25rem;
+        margin-top: 2rem;
+    }
+}
+
+/* ── Phones ──────────────────────────────────────────────────── */
+@media (max-width: 640px) {
+
+    /* Header */
+    header h1 {
+        font-size: 1.25rem;
+    }
+
+    header p {
+        font-size: 0.82rem;
+    }
+
+    /* Search bar */
+    .search-input {
+        font-size: 0.88rem;
+        padding: 0.6rem 0.6rem 0.6rem 2.4rem;
+    }
+
+    /* Mode tabs — equal columns, icon+label stacked */
+    .mode-selector {
+        flex-wrap: nowrap;
+        padding: 0.3rem;
+        gap: 0.2rem;
+        max-width: 100%;
+    }
+
+    .mode-tab {
+        padding: 0.5rem 0.25rem;
+        flex: 1;
+        min-width: 0;
+    }
+
+    .mode-tab .tab-label {
+        font-size: 0.65rem;
+    }
+
+
+    /* Heir inputs — larger touch targets */
+    .input-group {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .input-group label {
+        font-size: 0.85rem;
+        flex: 1;
+        min-width: 0;
+        padding-right: 0.5rem;
+    }
+
+    input[type="number"] {
+        width: 72px;
+        font-size: 1rem;
+        padding: 0.6rem;
+        min-height: 44px; /* WCAG touch target */
+        flex-shrink: 0;
+    }
+
+    /* Action buttons — full width stack */
+    .actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    button.primary-btn,
+    button.secondary-btn {
+        max-width: 100%;
+        min-height: 48px;
+        font-size: 1rem;
+    }
+
+    /* Preset buttons — wrap */
+    .presets-container {
+        gap: 0.4rem;
+    }
+
+    .preset-btn {
+        font-size: 0.8rem;
+        padding: 0.45rem 0.7rem;
+    }
+
+    /* Filter bars */
+    .filter-bar {
+        gap: 0.4rem;
+    }
+
+    .learning-filter-btn,
+    .case-madhhab-filter,
+    .ref-filter-btn {
+        font-size: 0.8rem;
+        padding: 0.35rem 0.65rem;
+    }
+
+    /* Case cards */
+    .heir-chips {
+        gap: 0.25rem;
+    }
+
+    .heir-chip {
+        font-size: 0.72rem;
+        padding: 0.1rem 0.4rem;
+    }
+
+    /* Home shortcuts — single column on small phones */
+    .home-nav-shortcuts {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    /* Advanced hub */
+    .adv-card {
+        padding: 1.1rem 1rem 0.9rem;
+    }
+
+    .adv-card-title {
+        font-size: 0.95rem;
+    }
+
+    .adv-card-desc {
+        font-size: 0.82rem;
+    }
+
+    /* Timeline steps — stack vertically */
+    .timeline-steps {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .timeline-arrow {
+        transform: rotate(90deg);
+        text-align: center;
+        display: block;
+    }
+
+    /* Comparison table (4-madhhab) */
+    .comparison-wrapper {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    /* Placeholder pages */
+    .placeholder-page {
+        padding: 2.5rem 1rem;
+    }
+
+    .placeholder-page .placeholder-icon {
+        font-size: 2.75rem;
+    }
+
+    .placeholder-page h2 {
+        font-size: 1.25rem;
+    }
+
+    .placeholder-page p {
+        font-size: 0.88rem;
+    }
+
+    /* Modals — full screen on phone */
+    .modal-overlay {
+        padding: 0;
+        align-items: flex-end;
+    }
+
+    .modal-content {
+        width: 100%;
+        max-width: 100%;
+        border-radius: 20px 20px 0 0;
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+
+    /* Search dropdown */
+    .search-dropdown {
+        left: 0;
+        right: 0;
+        max-height: 55vh;
+    }
+
+    /* History entries */
+    .history-entry {
+        padding: 0.75rem;
+        font-size: 0.85rem;
+    }
+
+    /* Progress bar overlay */
+    .progress-overlay {
+        padding: 1.5rem;
+    }
+}
+
+/* ── Extra-small phones (≤400px) ────────────────────────────── */
+@media (max-width: 400px) {
+
+    header h1 {
+        font-size: 1.1rem;
+    }
+
+    .glass-panel {
+        padding: 1rem 0.875rem;
+        border-radius: 12px;
+    }
+
+    .top-nav-item {
+        padding: 0.4rem 0.45rem;
+    }
+
+    input[type="number"] {
+        width: 64px;
+        font-size: 0.95rem;
+    }
+
+    .mode-tab {
+        font-size: 0.74rem;
+        padding: 0.35rem 0.55rem;
+    }
+
+    th, td {
+        padding: 0.6rem 0.5rem;
+        font-size: 0.8rem;
+    }
+
+    /* Single column shortcuts on very small phones */
+    .home-nav-shortcuts {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ── Touch-device enhancements ──────────────────────────────── */
+@media (hover: none) and (pointer: coarse) {
+
+    /* Remove hover lift effects on touch — they "stick" on mobile */
+    .glass-card:hover,
+    .topic-card:hover,
+    .adv-card:hover,
+    .home-shortcut-card:hover {
+        transform: none;
+    }
+
+    /* Larger tap areas for interactive elements */
+    .view-topic-btn,
+    .load-case-btn,
+    .adv-open-btn,
+    .preset-btn,
+    .learning-filter-btn,
+    .case-madhhab-filter,
+    .ref-filter-btn {
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    details.heir-group summary {
+        min-height: 52px;
+    }
+
+    .top-nav-item {
+        min-height: 40px;
+        min-width: 40px;
+        justify-content: center;
+    }
+}
+
+/* ── Safe-area support (notched / home-bar phones) ──────────── */
+@supports (padding: env(safe-area-inset-bottom)) {
+    .actions {
+        padding-bottom: calc(0.875rem + env(safe-area-inset-bottom));
+    }
+
+    .top-nav {
+        margin-left: env(safe-area-inset-left, 0px);
+        margin-right: env(safe-area-inset-right, 0px);
+    }
+}

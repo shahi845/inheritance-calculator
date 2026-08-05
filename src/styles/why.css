@@ -1,0 +1,143 @@
+/**
+ * why.css — Educational "Why?" step-by-step reasoning styles.
+ */
+
+.why-section-card {
+    border-color: rgba(59, 130, 246, 0.25);
+    background: var(--card-bg);
+}
+
+.why-header {
+    border-bottom: 1px solid var(--glass-border);
+    padding-bottom: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.why-header h3 {
+    color: var(--accent);
+    font-size: 1.1rem;
+    margin-bottom: 0.2rem;
+    font-weight: 700;
+}
+
+.why-subtitle {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.why-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+    gap: 1rem;
+}
+
+.why-item-card {
+    background: var(--card-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    transition: all 0.18s ease;
+}
+
+.why-item-card:hover {
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+body.light-theme .why-item-card:hover {
+    border-color: rgba(15, 23, 42, 0.15);
+}
+
+.why-item-card.blocked-item {
+    border-color: rgba(239, 68, 68, 0.3);
+    background: rgba(239, 68, 68, 0.05);
+}
+
+.why-item-card.active-item {
+    border-color: rgba(16, 185, 129, 0.3);
+}
+
+.why-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px dashed var(--glass-border);
+    padding-bottom: 0.5rem;
+}
+
+.why-item-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.why-share-badge {
+    font-size: 0.78rem;
+    font-weight: 700;
+    padding: 0.2rem 0.6rem;
+    border-radius: 20px;
+    font-family: var(--font-body);
+}
+
+.badge-active {
+    background: rgba(16, 185, 129, 0.12);
+    color: var(--success);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.badge-blocked {
+    background: rgba(239, 68, 68, 0.12);
+    color: var(--danger);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.why-item-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    font-size: 0.88rem;
+}
+
+.why-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+}
+
+.why-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.why-value {
+    color: var(--text-primary);
+    line-height: 1.45;
+}
+
+.why-quote {
+    background: rgba(0, 0, 0, 0.12);
+    padding: 0.5rem 0.75rem;
+    border-left: 3px solid var(--accent);
+    border-radius: 4px;
+}
+
+body.light-theme .why-quote {
+    background: rgba(15, 23, 42, 0.04);
+}
+
+.why-quote-text {
+    font-style: italic;
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+}
+
+.why-value-rule {
+    color: var(--text-secondary);
+    line-height: 1.45;
+}
+
