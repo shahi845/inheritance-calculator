@@ -33,7 +33,13 @@ export function navigateTo(page) {
         const isActive = btn.dataset.page === page;
         btn.classList.toggle('active', isActive);
         if (isActive) {
-            btn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+            const nav = btn.closest('.top-nav');
+            if (nav && nav.scrollWidth > nav.clientWidth) {
+                const navRect = nav.getBoundingClientRect();
+                const btnRect = btn.getBoundingClientRect();
+                const offset = (btnRect.left + btnRect.width / 2) - (navRect.left + navRect.width / 2);
+                nav.scrollBy({ left: offset, behavior: 'smooth' });
+            }
         }
     });
 

@@ -99,7 +99,7 @@
                         <path d="M 200 50 L 200 80" />
                         <path d="M 300 50 L 300 80" />
                     </g>
-                    <g fill="rgba(225,225,225,1,15)" text-anchor="middle" font-size="12" font-weight="600" font-family="Inter, sans-serif">
+                    <g fill="rgba(225,225,225,0.15)" text-anchor="middle" font-size="12" font-weight="600" font-family="Inter, sans-serif">
                         <rect x="150" y="10" width="100" height="24" rx="4" fill="rgba(225,225,225,1)" stroke="var(--glass-border)"/>
                         <text x="200" y="27">Deceased</text>
                         <rect x="50" y="80" width="100" height="24" rx="4" fill="rgba(16, 185, 129, 0.15)" stroke="var(--success)"/>
@@ -682,34 +682,6 @@
                         <p class="adv-card-desc">Analyze cases where Shāfiʿī, Ḥanafī, Mālikī, and Ḥanbalī schools reach different outcomes.</p>
                         <div class="adv-card-footer"><span class="adv-card-badge badge-available">Available</span><button class="adv-open-btn" data-action="madhhab-diff">Analyze →</button></div>
                     </div>
-                </div>
-
-                <!-- Embedded Munasakat Wizard Inputs -->
-                <div class="glass-card mt-lg" id="munasakhatBuilderCard">
-                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
-                        <h3 style="margin:0;">🔗 Munāsakhāt Interactive Builder</h3>
-                        <div class="munasakhat-presets" style="display:flex; align-items:center; gap:0.6rem;">
-                            <select id="munasakhatPresetSelect" class="munasakhat-preset-select" style="background:var(--card-bg);border:1px solid var(--glass-border);color:var(--text-primary);padding:0.4rem 0.65rem;border-radius:8px;font-size:0.85rem;">
-                                <option value="">Load Textbook Example...</option>
-                                <option value="2stage">2-Stage Basic Case</option>
-                                <option value="3stage">3-Stage Complex Case</option>
-                            </select>
-                            <button type="button" class="munasakhat-reset-btn secondary-btn" style="border-color: rgba(239, 68, 68, 0.4); color: #f87171; background: rgba(239, 68, 68, 0.08); padding: 0.38rem 0.75rem; border-radius: 8px; font-size: 0.82rem; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 0.3rem; transition: all 0.18s ease;">
-                                <span style="font-size: 0.9rem;">↺</span> Reset
-                            </button>
-                        </div>
-                    </div>
-                    <p class="text-secondary text-small mb-md">Add successive deaths to compute combined multi-generational inheritance. The engine will automatically chain the estate fractions.</p>
-
-                    <div id="munasakhatDeathsContainer" style="display:flex; flex-direction:column; gap:1.5rem;">
-                        <!-- Dynamic death panels injected by JS -->
-                    </div>
-                    
-                    <div id="wizardControlsContainer" style="margin-top:1.5rem; display:flex; gap:1rem; flex-direction: column;">
-                        <!-- Wizard controls injected by JS -->
-                    </div>
-                    
-                    <div id="wizardResultsContainer" class="mt-lg"></div>
                 </div>
             </div>
         </section>
