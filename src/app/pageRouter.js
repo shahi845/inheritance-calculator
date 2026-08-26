@@ -89,29 +89,13 @@ export function initPageRouter() {
  * @param {string} action
  */
 function handleAdvancedAction(action) {
-    switch (action) {
-        case 'munasakhat':
-            // Navigate to Calculator page, then activate Munāsakhāt tab
-            navigateTo('calculator');
-            setTimeout(() => {
-                const tab = document.getElementById('tab-munasakhat');
-                if (tab) tab.click();
-            }, 100);
-            break;
-
-        case 'awl-cases':
-        case 'radd-cases':
-        case 'grandfather':
-        case 'dhawu-al-arham':
-        case 'madhhab-diff':
-        case 'mushtarikah':
-        case 'akdariyyah':
-            // Placeholder: navigate to Cases page (will be wired up when Cases panel is built)
-            navigateTo('cases');
-            break;
-
-        default:
-            console.warn('[pageRouter] Unknown advanced action:', action);
+    if (action === 'munasakhat') {
+        // Navigate to Calculator page, then activate Munāsakhāt tab
+        navigateTo('calculator');
+        setTimeout(() => {
+            const tab = document.getElementById('tab-munasakhat');
+            if (tab) tab.click();
+        }, 100);
     }
 }
 

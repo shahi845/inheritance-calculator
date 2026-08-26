@@ -22,6 +22,8 @@ function setupAdvancedCardButtons() {
 }
 
 function openAdvancedTopicView(action) {
+    if (action === 'munasakhat') return;
+
     const modal = document.getElementById('advancedTopicModal');
     const content = document.getElementById('advancedModalContent');
     if (!modal || !content) return;
@@ -44,9 +46,9 @@ function openAdvancedTopicView(action) {
 
     modal.classList.remove('hidden');
 
-    document.getElementById('closeAdvancedModal')?.addEventListener('click', () => {
-        modal.classList.add('hidden');
-    });
+    const closeModal = () => modal.classList.add('hidden');
+    document.getElementById('closeAdvancedModal')?.addEventListener('click', closeModal);
+    modal.onclick = (e) => { if (e.target === modal) closeModal(); };
 }
 
 function renderTopicOverview(container, title, text) {
