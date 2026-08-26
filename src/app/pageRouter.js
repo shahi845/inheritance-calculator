@@ -30,7 +30,11 @@ export function navigateTo(page) {
 
     // Update nav tab states
     document.querySelectorAll('.top-nav-item').forEach(btn => {
-        btn.classList.toggle('active', btn.dataset.page === page);
+        const isActive = btn.dataset.page === page;
+        btn.classList.toggle('active', isActive);
+        if (isActive) {
+            btn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+        }
     });
 
     currentPage = page;

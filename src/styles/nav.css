@@ -358,46 +358,53 @@ body.light-theme .top-nav-item:hover {
     overflow: hidden;
 }
 
-/* ── Responsive ────────────────────────────────────────────── */
+/* ── Responsive Mobile Navigation ──────────────────────────── */
 
-/* Stacked: icon above label — fits all 8 in one row at medium widths */
 @media (max-width: 900px) {
     .top-nav {
-        flex-wrap: nowrap;          /* single row always */
-        gap: 0.15rem;
-        padding: 0.5rem 0.5rem;
-        border-radius: 40px;
-        max-width: calc(100vw - 1.5rem);
-        justify-content: space-between;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        overflow-x: auto;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        gap: 0.35rem;
+        padding: 0.35rem 0.5rem;
+        border-radius: 9999px;
+        max-width: 100%;
+        width: calc(100vw - 1.5rem);
+        margin: 0 auto 1.5rem auto;
+        top: 0.5rem;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    }
+
+    .top-nav::-webkit-scrollbar {
+        display: none;
     }
 
     .top-nav-item {
-        flex-direction: column;     /* icon on top, label below */
-        flex: 1;
-        gap: 0.2rem;
-        padding: 0.45rem 0.3rem;
-        border-radius: 16px;
-        justify-content: center;
-        align-items: center;
-        font-size: 0;               /* hide inherited font-size */
-        min-width: 0;
+        flex-direction: row;
+        flex-shrink: 0;
+        gap: 0.4rem;
+        padding: 0.45rem 0.85rem;
+        border-radius: 9999px;
+        font-size: 0.82rem;
+        min-height: 38px;
     }
 
     .top-nav-item .nav-icon {
-        font-size: 1.2rem;
+        font-size: 1rem;
         line-height: 1;
     }
 
     .top-nav-item .nav-label {
-        font-size: 0.6rem;
+        font-size: 0.8rem;
         font-weight: 600;
         letter-spacing: 0.01em;
         line-height: 1;
         white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        max-width: 100%;
-        display: block;
+        display: inline-block;
     }
 
     .advanced-cards-grid {
@@ -409,25 +416,29 @@ body.light-theme .top-nav-item:hover {
     }
 }
 
-/* Icons-only — very small phones ≤ 480px */
+/* Extra small phones ≤ 480px */
 @media (max-width: 480px) {
     .top-nav {
-        padding: 0.4rem;
-        gap: 0.1rem;
+        padding: 0.3rem 0.4rem;
+        gap: 0.3rem;
+        width: 100%;
+        border-radius: 30px;
     }
 
     .top-nav-item {
-        padding: 0.45rem 0.25rem;
-        border-radius: 12px;
+        padding: 0.45rem 0.75rem;
+        font-size: 0.78rem;
+        gap: 0.35rem;
+        min-height: 40px;
     }
 
     .top-nav-item .nav-icon {
-        font-size: 1.15rem;
+        font-size: 0.95rem;
     }
 
-    /* Hide labels on very small phones */
     .top-nav-item .nav-label {
-        display: none;
+        font-size: 0.75rem;
+        display: inline-block;
     }
 
     .advanced-cards-grid {
@@ -435,7 +446,7 @@ body.light-theme .top-nav-item:hover {
     }
 
     .home-nav-shortcuts {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr;
     }
 }
 

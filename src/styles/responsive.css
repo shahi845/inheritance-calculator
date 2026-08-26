@@ -1,7 +1,7 @@
 /* ============================================================
-   responsive.css — Mobile-first breakpoints
+   responsive.css — Mobile-first breakpoints & Touch UI Engine
    Covers: Header · Search · Nav · Calculator · Cards ·
-           Results · Modals · Tables · Advanced · Home
+           Results · Modals · Tables · Advanced · Home · Munāsakhāt
    ============================================================
    Breakpoints:
      xs  — max 400px  (small phones)
@@ -9,6 +9,16 @@
      md  — max 768px  (large phones / small tablets)
      lg  — max 1024px (tablets)
    ============================================================ */
+
+/* ── Prevent horizontal document bounce ─────────────────────── */
+html, body {
+    overflow-x: hidden;
+    -webkit-tap-highlight-color: transparent;
+}
+
+button, input, select, summary {
+    touch-action: manipulation;
+}
 
 /* ── Tablet ─────────────────────────────────────────────────── */
 @media (max-width: 1024px) {
@@ -28,106 +38,152 @@
     }
 }
 
-/* ── Large phones / small tablets ───────────────────────────── */
+/* ── Large phones / small tablets (≤768px) ──────────────────── */
 @media (max-width: 768px) {
 
     /* Layout */
     .container {
-        padding: 1rem 0.875rem;
+        padding: 0.875rem 0.75rem;
     }
 
     /* Header */
+    header {
+        margin-bottom: 1.25rem;
+    }
+
     header h1 {
-        font-size: 1.5rem;
-        line-height: 1.3;
+        font-size: 1.45rem;
+        line-height: 1.25;
+        letter-spacing: -0.02em;
     }
 
     header h1 .calc-subtitle {
-        font-size: 0.75rem;
-        margin-top: 0.25rem;
+        font-size: 0.72rem;
+        margin-top: 0.2rem;
     }
 
     header p {
-        font-size: 0.88rem;
+        font-size: 0.85rem;
+        line-height: 1.45;
     }
 
     .disclaimer {
-        font-size: 0.82rem;
+        font-size: 0.8rem;
         text-align: center;
         display: block;
+        padding: 0.5rem 0.75rem;
+        border-radius: 8px;
     }
 
-    /* Search */
+    /* Search bar */
     .search-bar-container {
         margin-bottom: 1rem;
+        max-width: 100%;
+    }
+
+    .search-input {
+        font-size: 0.88rem;
+        padding: 0.65rem 1rem 0.65rem 2.5rem;
+        min-height: 44px;
     }
 
     /* Glass panels */
     .glass-panel {
-        padding: 1.25rem 1rem;
+        padding: 1.15rem 0.9rem;
         border-radius: 14px;
-        margin-bottom: 1.25rem;
+        margin-bottom: 1.15rem;
     }
 
-    /* Mode selector tabs */
+    /* Mode selector tabs — swipeable pill carousel */
     .mode-selector {
-        gap: 0.3rem;
-        padding: 0.4rem;
+        display: flex;
+        overflow-x: auto;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        gap: 0.35rem;
+        padding: 0.35rem 0.45rem;
         max-width: 100%;
+        border-radius: 14px;
+        margin: 1rem auto 1.25rem auto;
+    }
+
+    .mode-selector::-webkit-scrollbar {
+        display: none;
     }
 
     .mode-tab {
-        padding: 0.45rem 0.7rem;
+        flex-shrink: 0;
+        min-width: max-content;
+        padding: 0.5rem 0.85rem;
         font-size: 0.82rem;
+        border-radius: 10px;
+        min-height: 40px;
+    }
+
+    .mode-tab .tab-label {
+        font-size: 0.8rem;
+        font-weight: 600;
+        white-space: nowrap;
     }
 
     /* Heir group toggles */
     .group-content {
         grid-template-columns: 1fr;
-        gap: 0.75rem;
+        gap: 0.65rem;
+        padding: 0.75rem 0.6rem;
     }
 
     details.heir-group summary {
-        padding: 0.875rem 1rem;
+        padding: 0.875rem 0.9rem;
         font-size: 0.92rem;
+        min-height: 48px;
     }
 
     /* Input rows */
     .input-group {
         gap: 0.5rem;
+        padding: 0.45rem 0.65rem;
+        min-height: 48px;
     }
 
     .input-group label {
-        font-size: 0.9rem;
+        font-size: 0.88rem;
+        line-height: 1.35;
     }
 
-    input[type="number"] {
-        width: 80px;
-        font-size: 1rem;
-        padding: 0.55rem 0.6rem;
-    }
-
-    /* Action buttons */
+    /* Action buttons — sticky floating bottom dock */
     .actions {
         position: sticky;
         bottom: 0;
-        background: var(--bg-color);
-        padding: 0.875rem 0;
+        background: var(--glass-bg);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        padding: 0.75rem 0.75rem;
         border-top: 1px solid var(--glass-border);
         z-index: 100;
-        flex-wrap: wrap;
-        gap: 0.6rem;
-        justify-content: center;
-        /* safe area bottom for notched phones */
-        padding-bottom: calc(0.875rem + env(safe-area-inset-bottom, 0px));
+        display: flex;
+        flex-direction: row;
+        gap: 0.5rem;
+        justify-content: stretch;
+        margin: 1.5rem -0.75rem -0.875rem -0.75rem;
+        box-shadow: 0 -6px 20px rgba(0, 0, 0, 0.3);
+        padding-bottom: calc(0.75rem + env(safe-area-inset-bottom, 0px));
     }
 
     button.primary-btn,
     button.secondary-btn {
         flex: 1 1 auto;
-        max-width: 200px;
-        padding: 0.75rem 1rem;
-        font-size: 0.92rem;
+        min-height: 46px;
+        padding: 0.65rem 0.85rem;
+        font-size: 0.9rem;
+        border-radius: 10px;
+    }
+
+    #calculateBtn {
+        flex: 2 1 auto;
+        font-weight: 700;
+        font-size: 0.95rem;
     }
 
     /* Heirs grid — single column */
@@ -138,7 +194,8 @@
 
     /* Results */
     .result-card {
-        padding: 0.875rem;
+        padding: 1rem 0.85rem;
+        border-radius: 12px;
     }
 
     .result-card h3 {
@@ -147,54 +204,105 @@
 
     .result-card li {
         font-size: 0.88rem;
-        padding: 0.4rem 0;
+        padding: 0.45rem 0;
     }
 
     .share-reason {
-        font-size: 0.78em;
+        font-size: 0.8em;
+    }
+
+    /* Shares Layout Container: stack table and chart vertically */
+    .shares-layout-container {
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+    }
+
+    .chart-flex-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .chart-container {
+        max-width: 210px;
+        margin: 0 auto;
+    }
+
+    .chart-legend-container {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.4rem;
     }
 
     /* Learning & Case cards grids */
     .learning-cards-grid,
-    .sample-cases-grid {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-    }
-
-    /* Advanced hub */
+    .sample-cases-grid,
     .advanced-cards-grid {
         grid-template-columns: 1fr;
-        gap: 1rem;
+        gap: 0.85rem;
     }
 
-    /* Home shortcuts — 2 columns on tablet */
+    /* Filter bars — horizontal smooth scroll */
+    .filter-bar {
+        display: flex;
+        overflow-x: auto;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        gap: 0.4rem;
+        padding-bottom: 0.35rem;
+        margin-bottom: 1rem;
+        flex-wrap: nowrap;
+    }
+
+    .filter-bar::-webkit-scrollbar {
+        display: none;
+    }
+
+    .learning-filter-btn,
+    .case-madhhab-filter,
+    .ref-filter-btn {
+        flex-shrink: 0;
+        white-space: nowrap;
+        font-size: 0.82rem;
+        padding: 0.45rem 0.8rem;
+        min-height: 38px;
+    }
+
+    /* Home shortcuts */
     .home-nav-shortcuts {
-        grid-template-columns: 1fr 1fr;
-        gap: 0.75rem;
+        grid-template-columns: 1fr;
+        gap: 0.65rem;
     }
 
     .home-shortcut-card {
-        padding: 1rem 0.75rem;
-        gap: 0.6rem;
+        padding: 0.85rem 0.75rem;
+        gap: 0.65rem;
+        min-height: auto;
     }
 
     .home-shortcut-icon {
-        font-size: 1.4rem;
+        font-size: 1.35rem;
         width: 1.8rem;
     }
 
     .home-shortcut-title {
-        font-size: 0.88rem;
+        font-size: 0.9rem;
     }
 
     .home-shortcut-desc {
-        font-size: 0.74rem;
+        font-size: 0.76rem;
     }
 
-    /* Tables — horizontal scroll */
+    /* Tables — horizontal scroll with sticky first column */
     .table-responsive {
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
+        border-radius: 10px;
+        position: relative;
     }
 
     table {
@@ -202,8 +310,23 @@
     }
 
     th, td {
-        padding: 0.75rem 0.6rem;
-        font-size: 0.85rem;
+        padding: 0.7rem 0.6rem;
+        font-size: 0.84rem;
+    }
+
+    .table-responsive table th:first-child,
+    .table-responsive table td:first-child {
+        position: sticky;
+        left: 0;
+        background: var(--card-bg);
+        z-index: 2;
+        box-shadow: 2px 0 6px rgba(0, 0, 0, 0.2);
+    }
+
+    body.light-theme .table-responsive table th:first-child,
+    body.light-theme .table-responsive table td:first-child {
+        background: #ffffff;
+        box-shadow: 2px 0 6px rgba(0, 0, 0, 0.05);
     }
 
     /* Footer */
@@ -214,7 +337,7 @@
     }
 }
 
-/* ── Phones ──────────────────────────────────────────────────── */
+/* ── Phones (≤640px) ─────────────────────────────────────────── */
 @media (max-width: 640px) {
 
     /* Header */
@@ -226,86 +349,59 @@
         font-size: 0.82rem;
     }
 
-    /* Search bar */
-    .search-input {
-        font-size: 0.88rem;
-        padding: 0.6rem 0.6rem 0.6rem 2.4rem;
-    }
-
-    /* Mode tabs — equal columns, icon+label stacked */
-    .mode-selector {
-        flex-wrap: nowrap;
-        padding: 0.3rem;
-        gap: 0.2rem;
-        max-width: 100%;
-    }
-
-    .mode-tab {
-        padding: 0.5rem 0.25rem;
-        flex: 1;
-        min-width: 0;
-    }
-
-    .mode-tab .tab-label {
-        font-size: 0.65rem;
-    }
-
-
-    /* Heir inputs — larger touch targets */
+    /* Heir inputs with touch stepper */
     .input-group {
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
+        padding: 0.5rem 0.6rem;
     }
 
     .input-group label {
-        font-size: 0.85rem;
+        font-size: 0.84rem;
         flex: 1;
         min-width: 0;
         padding-right: 0.5rem;
     }
 
-    input[type="number"] {
-        width: 72px;
-        font-size: 1rem;
-        padding: 0.6rem;
-        min-height: 44px; /* WCAG touch target */
-        flex-shrink: 0;
+    .stepper-container {
+        border-radius: 8px;
     }
 
-    /* Action buttons — full width stack */
-    .actions {
-        flex-direction: column;
-        align-items: stretch;
+    .stepper-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 1.1rem;
     }
 
-    button.primary-btn,
-    button.secondary-btn {
-        max-width: 100%;
-        min-height: 48px;
-        font-size: 1rem;
+    .stepper-container input[type="number"] {
+        width: 44px;
+        height: 36px;
+        font-size: 0.95rem;
     }
 
     /* Preset buttons — wrap */
     .presets-container {
-        gap: 0.4rem;
+        gap: 0.35rem;
     }
 
     .preset-btn {
-        font-size: 0.8rem;
-        padding: 0.45rem 0.7rem;
+        font-size: 0.78rem;
+        padding: 0.4rem 0.65rem;
+        border-radius: 6px;
     }
 
-    /* Filter bars */
-    .filter-bar {
-        gap: 0.4rem;
+    /* Case controls */
+    .cases-filter-controls {
+        flex-direction: column;
+        align-items: stretch !important;
+        gap: 0.5rem;
     }
 
-    .learning-filter-btn,
-    .case-madhhab-filter,
-    .ref-filter-btn {
-        font-size: 0.8rem;
-        padding: 0.35rem 0.65rem;
+    .cases-filter-controls select,
+    .cases-filter-controls input[type="text"] {
+        width: 100%;
+        min-height: 42px;
     }
 
     /* Case cards */
@@ -315,17 +411,12 @@
 
     .heir-chip {
         font-size: 0.72rem;
-        padding: 0.1rem 0.4rem;
-    }
-
-    /* Home shortcuts — single column on small phones */
-    .home-nav-shortcuts {
-        grid-template-columns: 1fr 1fr;
+        padding: 0.15rem 0.45rem;
     }
 
     /* Advanced hub */
     .adv-card {
-        padding: 1.1rem 1rem 0.9rem;
+        padding: 1rem 0.9rem 0.85rem;
     }
 
     .adv-card-title {
@@ -340,38 +431,22 @@
     .timeline-steps {
         flex-direction: column;
         align-items: stretch;
+        gap: 0.75rem;
+    }
+
+    .timeline-step {
+        width: 100%;
+        min-width: unset;
     }
 
     .timeline-arrow {
         transform: rotate(90deg);
         text-align: center;
         display: block;
+        margin: 0.25rem 0;
     }
 
-    /* Comparison table (4-madhhab) */
-    .comparison-wrapper {
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-    }
-
-    /* Placeholder pages */
-    .placeholder-page {
-        padding: 2.5rem 1rem;
-    }
-
-    .placeholder-page .placeholder-icon {
-        font-size: 2.75rem;
-    }
-
-    .placeholder-page h2 {
-        font-size: 1.25rem;
-    }
-
-    .placeholder-page p {
-        font-size: 0.88rem;
-    }
-
-    /* Modals — full screen on phone */
+    /* Modals — Bottom Sheet presentation on mobile */
     .modal-overlay {
         padding: 0;
         align-items: flex-end;
@@ -381,8 +456,29 @@
         width: 100%;
         max-width: 100%;
         border-radius: 20px 20px 0 0;
-        max-height: 90vh;
+        max-height: 85vh;
         overflow-y: auto;
+        padding: 1.5rem 1.15rem 2rem 1.15rem;
+        position: relative;
+    }
+
+    .modal-content::before {
+        content: '';
+        position: absolute;
+        top: 8px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 36px;
+        height: 4px;
+        background: var(--text-secondary);
+        opacity: 0.35;
+        border-radius: 2px;
+    }
+
+    .close-modal-btn {
+        top: 0.85rem;
+        right: 1rem;
+        font-size: 1.6rem;
     }
 
     /* Search dropdown */
@@ -390,17 +486,45 @@
         left: 0;
         right: 0;
         max-height: 55vh;
+        border-radius: 10px;
     }
 
-    /* History entries */
-    .history-entry {
-        padding: 0.75rem;
-        font-size: 0.85rem;
+    /* Family tree SVG container: touch pan hint */
+    .family-tree-wrapper {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 0.5rem;
     }
 
-    /* Progress bar overlay */
-    .progress-overlay {
-        padding: 1.5rem;
+    .family-tree-wrapper svg {
+        min-width: 550px;
+    }
+
+    /* Munāsakhāt mobile view */
+    .munasakhat-categories {
+        display: flex;
+        overflow-x: auto;
+        gap: 0.35rem;
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 0.35rem;
+        margin-bottom: 0.65rem;
+    }
+
+    .munasakhat-cat-btn {
+        flex-shrink: 0;
+        white-space: nowrap;
+        font-size: 0.78rem;
+        padding: 0.35rem 0.65rem;
+    }
+
+    .munasakhat-heirs-grid {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+    }
+
+    .munasakhat-heir-card {
+        padding: 0.5rem 0.65rem;
     }
 }
 
@@ -412,39 +536,44 @@
     }
 
     .glass-panel {
-        padding: 1rem 0.875rem;
+        padding: 0.95rem 0.75rem;
         border-radius: 12px;
     }
 
     .top-nav-item {
-        padding: 0.4rem 0.45rem;
+        padding: 0.4rem 0.65rem;
     }
 
-    input[type="number"] {
-        width: 64px;
-        font-size: 0.95rem;
+    .stepper-btn {
+        width: 32px;
+        height: 34px;
+        font-size: 1rem;
+    }
+
+    .stepper-container input[type="number"] {
+        width: 38px;
+        height: 34px;
+        font-size: 0.88rem;
     }
 
     .mode-tab {
         font-size: 0.74rem;
-        padding: 0.35rem 0.55rem;
+        padding: 0.4rem 0.65rem;
     }
 
     th, td {
-        padding: 0.6rem 0.5rem;
-        font-size: 0.8rem;
+        padding: 0.6rem 0.45rem;
+        font-size: 0.78rem;
     }
 
-    /* Single column shortcuts on very small phones */
-    .home-nav-shortcuts {
+    .chart-legend-container {
         grid-template-columns: 1fr;
     }
 }
 
-/* ── Touch-device enhancements ──────────────────────────────── */
+/* ── Touch-device optimizations (no sticky hovers) ─────────── */
 @media (hover: none) and (pointer: coarse) {
 
-    /* Remove hover lift effects on touch — they "stick" on mobile */
     .glass-card:hover,
     .topic-card:hover,
     .adv-card:hover,
@@ -452,39 +581,39 @@
         transform: none;
     }
 
-    /* Larger tap areas for interactive elements */
+    /* Ensure comfortable tap targets for all key interactive elements */
     .view-topic-btn,
     .load-case-btn,
     .adv-open-btn,
     .preset-btn,
     .learning-filter-btn,
     .case-madhhab-filter,
-    .ref-filter-btn {
-        min-height: 44px;
-        display: flex;
+    .ref-filter-btn,
+    .munasakhat-cat-btn {
+        min-height: 42px;
+        display: inline-flex;
         align-items: center;
         justify-content: center;
     }
 
     details.heir-group summary {
-        min-height: 52px;
-    }
-
-    .top-nav-item {
-        min-height: 40px;
-        min-width: 40px;
-        justify-content: center;
+        min-height: 48px;
     }
 }
 
 /* ── Safe-area support (notched / home-bar phones) ──────────── */
 @supports (padding: env(safe-area-inset-bottom)) {
     .actions {
-        padding-bottom: calc(0.875rem + env(safe-area-inset-bottom));
+        padding-bottom: calc(0.75rem + env(safe-area-inset-bottom));
     }
 
     .top-nav {
-        margin-left: env(safe-area-inset-left, 0px);
-        margin-right: env(safe-area-inset-right, 0px);
+        margin-left: max(0.5rem, env(safe-area-inset-left, 0px));
+        margin-right: max(0.5rem, env(safe-area-inset-right, 0px));
+    }
+
+    .modal-content {
+        padding-bottom: calc(1.5rem + env(safe-area-inset-bottom, 0px));
     }
 }
+

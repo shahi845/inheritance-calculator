@@ -22,6 +22,7 @@ import { initHeirInspector } from '../features/family-tree/heirInspector.js';
 import { initCalculationHistory } from '../features/history/calculationHistory.js';
 import { showCalculationProgress } from '../features/calculator/progressIndicator.js';
 import { initMunasakhatController } from '../features/munasakhat/munasakhatController.js';
+import { initTouchSteppers } from '../features/calculator/touchSteppers.js';
 
 let currencySymbol = APP_CONFIG.defaultCurrency;
 
@@ -34,6 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 2. Initialize live components & feature sections
     initValidationAlerts();
+    initTouchSteppers();
     initEvidenceModal();
     initEstateBreakdown(() => currencySymbol);
     initLearningSection();
