@@ -21,13 +21,16 @@ import { initComparisonView } from '../features/comparison/comparisonView.js';
 import { initHeirInspector } from '../features/family-tree/heirInspector.js';
 import { initCalculationHistory } from '../features/history/calculationHistory.js';
 import { showCalculationProgress } from '../features/calculator/progressIndicator.js';
-import { initMunasakhatController } from '../features/munasakhat/munasakhatController.js';
 import { initTouchSteppers } from '../features/calculator/touchSteppers.js';
+import { initI18n } from '../i18n/i18n.js';
 
 let currencySymbol = APP_CONFIG.defaultCurrency;
 
 document.addEventListener('DOMContentLoaded', () => {
-    // 0. Initialize page navigation router
+    // 0. Initialize internationalization subsystem (first so UI renders in selected language)
+    initI18n();
+
+    // 0.1 Initialize page navigation router
     initPageRouter();
 
     // 1. Initialize core router (madhhab tabs)
@@ -47,7 +50,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initComparisonView();
     initHeirInspector();
     initCalculationHistory();
-    initMunasakhatController();
 
     // 3. Setup Currency Toggle
     const currencySelect = document.getElementById('currencySelect');

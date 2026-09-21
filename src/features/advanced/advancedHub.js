@@ -22,8 +22,6 @@ function setupAdvancedCardButtons() {
 }
 
 function openAdvancedTopicView(action) {
-    if (action === 'munasakhat') return;
-
     const modal = document.getElementById('advancedTopicModal');
     const content = document.getElementById('advancedModalContent');
     if (!modal || !content) return;

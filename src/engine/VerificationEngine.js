@@ -118,15 +118,6 @@ export function verifyCalculation(result, rawInput, options = {}) {
     });
     if (internalOk) passedCount++;
 
-    // Check 8: Munasakhat — if the result is from a munasakhat chain, verify stages > 0
-    const munasakhatPassed = !result.context?.munasakhatStages || result.context.munasakhatStages > 0;
-    checks.push({
-        id: 'munasakhat_verified',
-        label: 'Munāsakhāt verified',
-        passed: munasakhatPassed
-    });
-    if (munasakhatPassed) passedCount++;
-
     // Confidence Calculation
     const confidence = Math.round((passedCount / checks.length) * 100);
 

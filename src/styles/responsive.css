@@ -499,33 +499,6 @@ button, input, select, summary {
     .family-tree-wrapper svg {
         min-width: 550px;
     }
-
-    /* Munāsakhāt mobile view */
-    .munasakhat-categories {
-        display: flex;
-        overflow-x: auto;
-        gap: 0.35rem;
-        scrollbar-width: none;
-        -webkit-overflow-scrolling: touch;
-        padding-bottom: 0.35rem;
-        margin-bottom: 0.65rem;
-    }
-
-    .munasakhat-cat-btn {
-        flex-shrink: 0;
-        white-space: nowrap;
-        font-size: 0.78rem;
-        padding: 0.35rem 0.65rem;
-    }
-
-    .munasakhat-heirs-grid {
-        grid-template-columns: 1fr;
-        gap: 0.5rem;
-    }
-
-    .munasakhat-heir-card {
-        padding: 0.5rem 0.65rem;
-    }
 }
 
 /* ── Extra-small phones (≤400px) ────────────────────────────── */
@@ -588,8 +561,7 @@ button, input, select, summary {
     .preset-btn,
     .learning-filter-btn,
     .case-madhhab-filter,
-    .ref-filter-btn,
-    .munasakhat-cat-btn {
+    .ref-filter-btn {
         min-height: 42px;
         display: inline-flex;
         align-items: center;

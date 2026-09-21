@@ -41,11 +41,14 @@ function showPolicyWarning(message) {
     }
 }
 
+let lastUsedCurrency = '$';
+
 /**
  * Runs the inheritance calculation pipeline and updates all UI components.
  * @param {string} currencySymbol
  */
 export function runCalculation(currencySymbol) {
+    if (currencySymbol) lastUsedCurrency = currencySymbol;
     const resultsSection = document.getElementById('resultsSection');
     const errorContainer = document.getElementById('errorContainer');
     const printBtn = document.getElementById('printBtn');
@@ -183,5 +186,19 @@ export function runCalculation(currencySymbol) {
         if (printBtn) printBtn.classList.add('hidden');
         if (copyBtn) copyBtn.classList.add('hidden');
     }
+}
+
+// Automatically re-run calculation when language changes if results are currently shown
+if (typeof window !== 'undefined') {
+    window.addEventListener('faraid:languageChange', () => {
+        const resultsSection = document.getElementById('resultsSection');
+        if (resultsSection && !resultsSection.classList.contains('hidden')) {
+            try {
+                runCalculation(lastUsedCurrency);
+            } catch (e) {
+                console.error('[calculatorController] Error refreshing calculation on language switch:', e);
+            }
+        }
+    });
 }
 

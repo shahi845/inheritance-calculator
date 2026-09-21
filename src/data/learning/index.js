@@ -3,7 +3,7 @@
  *
  * Priority order:
  *  1. New modular topic files (fixedShares.js, blocking.js, awl.js, radd.js, grandfather.js, glossary.js)
- *  2. Remaining legacy topics from topics.js (residuary, grandmother, sisters, children, parents, spouses, dhawu-al-arham, munasakhat, madhhab-differences)
+ *  2. Remaining legacy topics from topics.js (residuary, grandmother, sisters, children, parents, spouses, dhawu-al-arham, madhhab-differences)
  *
  * Duplicates (same id) are removed so the modular file takes precedence.
  */

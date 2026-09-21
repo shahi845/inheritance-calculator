@@ -18,7 +18,7 @@ export function initRouter() {
     madhhabTabs.forEach(tab => {
         const mode = tab.dataset.mode;
         // Only wire up supported engines; skip tabs with no data-mode or unsupported ones
-        if (!['shafii', 'hanafi', 'maliki', 'hanbali', 'jumhur', 'munasakhat'].includes(mode)) return;
+        if (!['shafii', 'hanafi', 'maliki', 'hanbali', 'jumhur'].includes(mode)) return;
 
         tab.addEventListener('click', () => {
             madhhabTabs.forEach(t => t.classList.remove('active'));
@@ -31,24 +31,9 @@ export function initRouter() {
             if (jumhurPanel)  jumhurPanel.classList.add('hidden');
             malikiPresetBtns.forEach(b => b.classList.add('hidden'));
 
-            if (mode === 'munasakhat') {
-                if (titleEl) titleEl.textContent = '(Munāsakhāt)';
-                if (descEl)  descEl.textContent  = 'Sequential deaths before estate distribution. Add each death as a new stage and the engine handles the cascading inheritance.';
-
-                const mainForm = document.getElementById('mainCalculatorForm');
-                const munasakhatPanel = document.getElementById('munasakhatCalculatorPanel');
-                const resultsSection = document.getElementById('resultsSection');
-                if (mainForm) mainForm.classList.add('hidden');
-                if (resultsSection) resultsSection.classList.add('hidden');
-                if (munasakhatPanel) munasakhatPanel.classList.remove('hidden');
-                return;
-            }
-
-            // All non-Munāsakhāt modes: ensure calculator form is visible
+            // Ensure calculator form is visible
             const mainForm = document.getElementById('mainCalculatorForm');
-            const munasakhatPanel = document.getElementById('munasakhatCalculatorPanel');
             if (mainForm) mainForm.classList.remove('hidden');
-            if (munasakhatPanel) munasakhatPanel.classList.add('hidden');
 
             if (mode === 'maliki') {
                 if (titleEl) titleEl.textContent = "(Mālikī Madhhab — Beta)";

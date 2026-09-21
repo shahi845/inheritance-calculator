@@ -5,6 +5,7 @@
 import { escapeHtml } from '../../utils/escapeHtml.js';
 import { generateWhyReasoningHTML } from './whyReasoning.js';
 import { heirEvidences } from '../../data/evidences.js';
+import { t, translateDOM } from '../../i18n/i18n.js';
 
 function getHeirKeyFromName(name) {
     if (!name) return '';
@@ -13,9 +14,32 @@ function getHeirKeyFromName(name) {
         'Paternal Grandfather': 'grandfather', 'Maternal Grandmother': 'maternalGrandmother', 'Paternal Grandmother': 'paternalGrandmother',
         'Son': 'son', 'Sons': 'son', 'Daughter': 'daughter', 'Daughters': 'daughter',
         'Full Brother': 'brother', 'Full Sister': 'sister', 'Paternal Brother': 'paternalBrother', 'Paternal Sister': 'paternalSister',
-        'Maternal Brother': 'maternalBrother', 'Maternal Sister': 'maternalSister'
+        'Maternal Brother': 'maternalBrother', 'Maternal Sister': 'maternalSister',
+        'Grandson': 'grandson', 'Grandsons': 'grandson', 'Granddaughter': 'granddaughter', 'Granddaughters': 'granddaughter',
+        'Sons of Full Brother': 'sonOfFullBrother', 'Sons of Paternal Half-Brother': 'sonOfPaternalBrother',
+        'Full Paternal Uncles': 'uncle', 'Consanguine Paternal Uncles': 'consanguinePaternalUncle',
+        'Sons of Full Paternal Uncle': 'paternalUncleSon', 'Sons of Consanguine Paternal Uncle': 'consanguinePaternalUncleSon'
     };
     return map[name] || name.toLowerCase().replace(/[^a-z]/g, '');
+}
+
+function getTranslatedStatus(status) {
+    if (!status) return '';
+    if (status.includes('Sharer + Residuary')) return t('status_sharer_residuary', 'Sharer + Residuary');
+    if (status.includes('Sharer')) return t('status_sharer', 'Sharer (Farḍ)');
+    if (status.includes('Residuary')) return t('status_residuary', 'Residuary (ʿAṣabah)');
+    if (status.includes('Blocked')) return t('status_blocked', 'Blocked (Maḥjūb)');
+    return status;
+}
+
+function getTranslatedHeirName(name, key) {
+    const heirKey = key || getHeirKeyFromName(name);
+    const translated = t('heir_' + heirKey);
+    // Strip parenthetical hints like "(0 or 1)" if present
+    if (translated && translated !== 'heir_' + heirKey) {
+        return translated.replace(/\s*\([^)]*\)/g, '').trim();
+    }
+    return name;
 }
 
 export function displayResults(shares, messages, steps, estateValue, detailedBreakdown, heirsInput, blocked, currencySymbol = '$', activeMadhhab = 'shafii') {
@@ -154,7 +178,7 @@ export function displayResults(shares, messages, steps, estateValue, detailedBre
     html += stepsHtml;
 
     // 2. Beautiful Heir Cards
-    html += `<h3 style="margin-top: 2rem; margin-bottom: 1rem;">Final Distribution</h3>
+    html += `<h3 style="margin-top: 2rem; margin-bottom: 1rem;" data-i18n="final_distribution">${t('final_distribution', 'Final Distribution')}</h3>
              <div class="heir-cards-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem;">`;
 
     // Process all heirs (Sharers, Residuaries, Blocked)
@@ -173,6 +197,8 @@ export function displayResults(shares, messages, steps, estateValue, detailedBre
 
         // Get evidence
         const key = s.key || getHeirKeyFromName(s.name);
+        const translatedName = getTranslatedHeirName(s.name, key);
+        const translatedStatus = getTranslatedStatus(s.status);
         const evidenceInfo = heirEvidences[key] || {};
         const citation = evidenceInfo.evidence || 'Consensus (Ijmāʿ) / Primary Prophetic Sunnah';
         const reason = s.reason || (isBlocked ? 'Excluded by a closer surviving relative (Ḥajb)' : 'Standard inheritance rules');
@@ -180,15 +206,15 @@ export function displayResults(shares, messages, steps, estateValue, detailedBre
         html += `
             <div class="result-card heir-card" style="border-top: 4px solid ${statusColor};">
                 <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid var(--glass-border); padding-bottom: 0.75rem; margin-bottom: 1rem;">
-                    <h3 style="margin: 0; font-size: 1.25em;">${escapeHtml(s.name)}${countStr}</h3>
+                    <h3 style="margin: 0; font-size: 1.25em;">${escapeHtml(translatedName)}${countStr}</h3>
                     <span style="font-size: 0.85em; font-weight: 600; padding: 0.25rem 0.5rem; border-radius: 4px; background: ${isBlocked ? 'rgba(239, 68, 68, 0.1)' : 'rgba(16, 185, 129, 0.1)'}; color: ${statusColor};">
-                        ${escapeHtml(s.status)}
+                        ${escapeHtml(translatedStatus)}
                     </span>
                 </div>
                 
                 <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.5rem; text-align: center; margin-bottom: 1rem;">
                     <div style="background: var(--bg-tertiary); padding: 0.5rem; border-radius: 6px;">
-                        <div style="font-size: 0.75em; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px;">Share</div>
+                        <div style="font-size: 0.75em; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px;" data-i18n="th_share">Share</div>
                         <div style="font-size: 1.1em; font-family: monospace; font-weight: bold;">${isBlocked ? '0' : escapeHtml(fractionStr)}</div>
                     </div>
                     <div style="background: var(--bg-tertiary); padding: 0.5rem; border-radius: 6px;">
@@ -246,14 +272,17 @@ export function displayResults(shares, messages, steps, estateValue, detailedBre
             }
             
             let amountStr = isBlocked || share.totalAmount === '-' ? '-' : safeCurrency + escapeHtml(share.totalAmount.toString());
+            const key = share.key || getHeirKeyFromName(share.name);
+            const translatedName = getTranslatedHeirName(share.name, key);
+            const translatedStatus = getTranslatedStatus(share.status);
 
             tableHtml += `
                 <tr style="${rowStyle}">
                     <td style="text-align: center; color: var(--text-secondary);">${index + 1}</td>
                     <td>
-                        <strong style="color: var(--text-primary);">${escapeHtml(share.name)}</strong>
+                        <strong style="color: var(--text-primary);">${escapeHtml(translatedName)}</strong>
                         ${share.count > 1 ? `<span style="font-size: 0.85em; color: var(--text-secondary); margin-left: 0.5rem;">(x${share.count})</span>` : ''}
-                        <div style="font-size: 0.8em; color: ${statusColor}; margin-top: 2px;">${escapeHtml(share.status)}</div>
+                        <div style="font-size: 0.8em; color: ${statusColor}; margin-top: 2px;">${escapeHtml(translatedStatus)}</div>
                     </td>
                     <td style="font-family: monospace; font-size: 1.1em; text-align: center;">${isBlocked ? '0' : escapeHtml(fractionStr)}</td>
                     <td style="text-align: center;">
@@ -272,6 +301,12 @@ export function displayResults(shares, messages, steps, estateValue, detailedBre
             `;
         });
         sharesTableBody.innerHTML = tableHtml;
+    }
+
+    // Translate any dynamically inserted i18n markers in results
+    translateDOM(resultsCards);
+    if (sharesTableBody && sharesTableBody.parentElement) {
+        translateDOM(sharesTableBody.parentElement);
     }
 
     // Messages

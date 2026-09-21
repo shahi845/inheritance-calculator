@@ -6,7 +6,7 @@
  *
  * Valid category names:
  *   fixedShares | blocking | awl | radd | grandfather |
- *   dhawuAlArham | munasakhat | madhhabComparison | stress | regression
+ *   dhawuAlArham | madhhabComparison | stress | regression
  *
  * Exits with code 0 on full pass, 1 on any failure.
  */
@@ -32,7 +32,6 @@ async function loadCategory(name) {
         radd:               () => import('../categories/radd.test.js'),
         grandfather:        () => import('../categories/grandfather.test.js'),
         dhawuAlArham:       () => import('../categories/dhawuAlArham.test.js'),
-        munasakhat:         () => import('../categories/munasakhat.test.js'),
         madhhabComparison:  () => import('../categories/madhhabComparison.test.js'),
         stress:             () => import('../categories/stress.test.js'),
         regression:         () => import('../categories/regression.test.js'),
@@ -60,7 +59,7 @@ export async function runCategory(categoryName) {
 
     if (!suite) {
         console.error(`❌ Unknown category: "${categoryName}"`);
-        console.error(`Valid names: fixedShares, blocking, awl, radd, grandfather, dhawuAlArham, munasakhat, madhhabComparison, stress, regression`);
+        console.error(`Valid names: fixedShares, blocking, awl, radd, grandfather, dhawuAlArham, madhhabComparison, stress, regression`);
         return { passed: false, result: null };
     }
 

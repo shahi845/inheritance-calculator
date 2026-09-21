@@ -6,8 +6,7 @@
     "lint": "vite build",
     "preview": "vite preview",
     "test": "node src/tests/runNodeTests.js",
-    "test:munasakhat": "node src/tests/runMunasakhatTests.js",
-    "test:all": "npm run test && npm run test:munasakhat",
+    "test:all": "npm run test && npm run test:categories",
     "test:categories": "node src/tests/runner/runAllTests.js",
     "test:stress": "node src/tests/runner/runCategory.js stress"
   },

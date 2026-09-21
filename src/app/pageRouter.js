@@ -86,17 +86,10 @@ export function initPageRouter() {
 
 /**
  * Handles actions triggered from the Advanced hub cards.
- * @param {string} action
+ * @param {string} _action
  */
-function handleAdvancedAction(action) {
-    if (action === 'munasakhat') {
-        // Navigate to Calculator page, then activate Munāsakhāt tab
-        navigateTo('calculator');
-        setTimeout(() => {
-            const tab = document.getElementById('tab-munasakhat');
-            if (tab) tab.click();
-        }, 100);
-    }
+function handleAdvancedAction(_action) {
+    // Other actions handled directly by modal or respective components
 }
 
 /** Returns the currently active page ID */

@@ -232,26 +232,6 @@ export const LEARNING_TOPICS = [
         relatedTopics: ['madhhab-differences', 'hanafi-cases']
     },
     {
-        id: 'munasakhat',
-        title: 'Sequential Deaths (Munāsakhāt)',
-        category: 'advanced',
-        icon: '🔗',
-        summary: 'Connected inheritance cases where an heir dies before estate distribution.',
-        definition: 'Munāsakhāt is the methodology for solving chained inheritance cases where one or more heirs die prior to the distribution of the initial estate.',
-        purpose: 'To calculate consolidated final shares across consecutive deaths without errors or manual recalculation.',
-        explanation: 'Instead of separate calculations, the second deceased\'s inherited share from the first estate is combined and distributed among their own heirs.',
-        rules: [
-            'Solve Death #1 estate and assign fractional shares.',
-            'Determine which heir died before receiving their share.',
-            'Solve Death #2 estate for that heir\'s estate.',
-            'Multiply and consolidate fractions into a single final distribution.'
-        ],
-        examples: 'Man dies leaving Wife and Son. Before estate is split, Son dies leaving his own Grandson. Son\'s share passes to Grandson.',
-        evidence: 'Consensus of Jurists (Ijmāʿ)',
-        calculatorCase: 'shafii-001',
-        relatedTopics: ['advanced', 'calculator']
-    },
-    {
         id: 'madhhab-differences',
         title: 'Madhhab Differences in Farāʾiḍ',
         category: 'comparative',

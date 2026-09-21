@@ -10,7 +10,6 @@ export function calculateCoverage(suiteResults) {
         { key: 'radd', label: 'Radd (Redistribution)', suites: ['Radd (Redistribution)'] },
         { key: 'grandfather', label: 'Grandfather with Siblings', suites: ['Paternal Grandfather with Siblings'] },
         { key: 'dhawuAlArham', label: 'Dhawū al-Arḥām (Distant Kindred)', suites: ['Dhawū al-Arḥām (Distant Kindred)'] },
-        { key: 'munasakhat', label: 'Munāsakhāt (Inheritance-on-Inheritance)', suites: ['Munāsakhat (Inheritance-on-Inheritance)'] },
         { key: 'crossMadhhab', label: 'Cross-Madhhab Parity', suites: ['Madhhab Comparison (Cross-School Divergences)'] },
         { key: 'regression', label: 'Golden Regression', suites: ['Regression (Golden Snapshots)'] }
     ];

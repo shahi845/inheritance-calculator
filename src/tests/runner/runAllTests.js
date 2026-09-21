@@ -29,7 +29,6 @@ import { suite as awlSuite }               from '../categories/awl.test.js';
 import { suite as raddSuite }              from '../categories/radd.test.js';
 import { suite as grandfatherSuite }       from '../categories/grandfather.test.js';
 import { suite as dhawuAlArhamSuite }      from '../categories/dhawuAlArham.test.js';
-import { suite as munasakhatSuite }        from '../categories/munasakhat.test.js';
 import { suite as madhhabComparisonSuite } from '../categories/madhhabComparison.test.js';
 import { suite as stressSuite }            from '../categories/stress.test.js';
 import { suite as regressionSuite }        from '../categories/regression.test.js';
@@ -43,7 +42,6 @@ const ALL_SUITES = [
     raddSuite,
     grandfatherSuite,
     dhawuAlArhamSuite,
-    munasakhatSuite,
     madhhabComparisonSuite,
     stressSuite,
     regressionSuite,

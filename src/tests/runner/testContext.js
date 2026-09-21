@@ -123,7 +123,7 @@ export function runSuite(suite) {
     const runner = suite._customRunner || null;
 
     const results = (suite.tests || []).map(test => {
-        // If the suite provides a custom runner (e.g. munasakhat), delegate entirely
+        // If the suite provides a custom runner, delegate entirely
         if (runner) return runner(test._raw || test);
         return runTestCase(test, suite.engine || 'shafii', suite.options || {});
     });

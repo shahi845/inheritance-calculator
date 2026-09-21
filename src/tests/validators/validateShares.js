@@ -15,7 +15,7 @@ const VALID_STATUSES = new Set([
     'Sharer', 'Residuary', 'Sharer + Residuary',
     'Blocked', 'Bayt al-Māl', 'Distant Kindred',
     'Sharer + Radd', 'Dhawu al-Arham',
-    'Munasakhat', 'No Heirs',
+    'No Heirs',
 ]);
 
 /**
