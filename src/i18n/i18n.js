@@ -111,11 +111,12 @@ export function translateDOM(container = document) {
     container.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
         if (key) {
-            // Save initial text as fallback
-            if (!el.dataset.i18nFallback) {
-                el.dataset.i18nFallback = el.textContent.trim();
+            let fallback = el.getAttribute('data-i18n-fallback');
+            if (fallback === null) {
+                fallback = el.textContent.trim();
+                el.setAttribute('data-i18n-fallback', fallback);
             }
-            const translated = t(key, el.dataset.i18nFallback);
+            const translated = t(key, fallback);
             if (translated) {
                 el.textContent = translated;
             }
@@ -126,10 +127,12 @@ export function translateDOM(container = document) {
     container.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
         const key = el.getAttribute('data-i18n-placeholder');
         if (key) {
-            if (!el.dataset.i18nPlaceholderFallback) {
-                el.dataset.i18nPlaceholderFallback = el.getAttribute('placeholder') || '';
+            let fallback = el.getAttribute('data-i18n-placeholder-fallback');
+            if (fallback === null) {
+                fallback = el.getAttribute('placeholder') || '';
+                el.setAttribute('data-i18n-placeholder-fallback', fallback);
             }
-            const translated = t(key, el.dataset.i18nPlaceholderFallback);
+            const translated = t(key, fallback);
             if (translated) {
                 el.setAttribute('placeholder', translated);
             }
@@ -140,10 +143,12 @@ export function translateDOM(container = document) {
     container.querySelectorAll('[data-i18n-aria-label]').forEach(el => {
         const key = el.getAttribute('data-i18n-aria-label');
         if (key) {
-            if (!el.dataset.i18nAriaFallback) {
-                el.dataset.i18nAriaFallback = el.getAttribute('aria-label') || '';
+            let fallback = el.getAttribute('data-i18n-aria-fallback');
+            if (fallback === null) {
+                fallback = el.getAttribute('aria-label') || '';
+                el.setAttribute('data-i18n-aria-fallback', fallback);
             }
-            const translated = t(key, el.dataset.i18nAriaFallback);
+            const translated = t(key, fallback);
             if (translated) {
                 el.setAttribute('aria-label', translated);
             }
@@ -154,10 +159,12 @@ export function translateDOM(container = document) {
     container.querySelectorAll('[data-i18n-title]').forEach(el => {
         const key = el.getAttribute('data-i18n-title');
         if (key) {
-            if (!el.dataset.i18nTitleFallback) {
-                el.dataset.i18nTitleFallback = el.getAttribute('title') || '';
+            let fallback = el.getAttribute('data-i18n-title-fallback');
+            if (fallback === null) {
+                fallback = el.getAttribute('title') || '';
+                el.setAttribute('data-i18n-title-fallback', fallback);
             }
-            const translated = t(key, el.dataset.i18nTitleFallback);
+            const translated = t(key, fallback);
             if (translated) {
                 el.setAttribute('title', translated);
             }

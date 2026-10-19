@@ -5,12 +5,17 @@
 
 import { loadPreset } from '../calculator/presets.js';
 import { navigateTo } from '../../app/pageRouter.js';
+import { t } from '../../i18n/i18n.js';
 
 const STORAGE_KEY = 'faraid_calc_history';
 const MAX_HISTORY = 20;
 
 export function initCalculationHistory() {
     renderHistoryPanel();
+
+    window.addEventListener('faraid:languageChange', () => {
+        renderHistoryPanel();
+    });
 }
 
 /**
@@ -58,7 +63,7 @@ function renderHistoryPanel() {
     if (history.length === 0) {
         panel.innerHTML = `
             <div class="empty-state glass-card">
-                <p>No calculation history yet. Perform a calculation to save history automatically.</p>
+                <p>${escapeHtml(t('history_empty', 'No calculation history yet. Perform a calculation to save history automatically.'))}</p>
             </div>
         `;
         return;
@@ -67,7 +72,7 @@ function renderHistoryPanel() {
     panel.innerHTML = `
         <div class="glass-card mt-md">
             <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;">
-                <h3>📜 Calculation History</h3>
+                <h3>📜 ${escapeHtml(t('history_title', 'Calculation History'))}</h3>
                 <button class="secondary-btn text-small" id="exportHistoryBtn">💾 Export History (JSON)</button>
             </div>
 
@@ -82,10 +87,10 @@ function renderHistoryPanel() {
                             </div>
                         </div>
                         <div style="font-size:0.82rem;color:var(--text-secondary);">
-                            <strong>Heirs:</strong> ${Object.entries(item.heirs).map(([k, v]) => `${k} (x${v})`).join(', ')}
+                            <strong>${escapeHtml(t('heirs_label', 'Heirs:'))}</strong> ${Object.entries(item.heirs).map(([k, v]) => `${t('heir_' + k, k)} (x${v})`).join(', ')}
                         </div>
                         <div style="font-size:0.82rem;color:#cbd5e1;margin-top:0.2rem;">
-                            <strong>Summary:</strong> ${escapeHtml(item.summary)}
+                            <strong>${escapeHtml(t('summary_card_title', 'Summary'))}:</strong> ${escapeHtml(item.summary)}
                         </div>
                     </div>
                 `).join('')}

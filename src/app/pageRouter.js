@@ -50,7 +50,7 @@ export function navigateTo(page) {
 }
 
 /** All registered page IDs */
-const PAGE_IDS = ['home', 'calculator', 'learning', 'cases', 'advanced', 'references', 'settings', 'about'];
+const PAGE_IDS = ['home', 'calculator', 'learning', 'cases', 'advanced', 'references', 'settings', 'about', 'contact'];
 
 /**
  * Initialize the page router.

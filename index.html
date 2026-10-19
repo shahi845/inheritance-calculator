@@ -100,6 +100,10 @@
                 <span class="nav-icon">ℹ️</span>
                 <span class="nav-label" data-i18n="nav_about">About</span>
             </button>
+            <button class="top-nav-item" data-page="contact" id="nav-contact" type="button">
+                <span class="nav-icon">💬</span>
+                <span class="nav-label" data-i18n="nav_contact">Contact</span>
+            </button>
         </nav>
 
         <!-- Hidden inputs read by main.js for madhhab routing -->
@@ -181,6 +185,13 @@
                             <span class="home-shortcut-desc" data-i18n="home_settings_desc">Theme, currency, language, and preferences</span>
                         </span>
                     </button>
+                    <button class="home-shortcut-card" data-page="contact">
+                        <span class="home-shortcut-icon">💬</span>
+                        <span class="home-shortcut-text">
+                            <span class="home-shortcut-title" data-i18n="home_contact_title">Contact & Feedback</span>
+                            <span class="home-shortcut-desc" data-i18n="home_contact_desc">Report calculation discrepancies, consult scholars, or suggest fixes</span>
+                        </span>
+                    </button>
                 </div>
             </div>
         </section>
@@ -243,52 +254,52 @@
                         </select>
                     </div>
                     <div class="input-group hidden mb-sm" id="customCurrencyContainer">
-                        <label for="customCurrencyInput">Custom Currency Symbol:</label>
-                        <input type="text" id="customCurrencyInput" placeholder="e.g. PKR" class="input-currency-custom">
+                        <label for="customCurrencyInput" data-i18n="custom_currency_label">Custom Currency Symbol:</label>
+                        <input type="text" id="customCurrencyInput" data-i18n-placeholder="custom_currency_placeholder" placeholder="e.g. PKR" class="input-currency-custom">
                     </div>
 
                     <div class="input-group" id="estateValueContainer">
                         <label for="estateValue" id="estateValueLabel" data-i18n="estate_amount">Total Estate Amount (Optional):</label>
-                        <input type="number" id="estateValue" min="0" placeholder="e.g., 100000">
+                        <input type="number" id="estateValue" min="0" data-i18n-placeholder="estate_amount_placeholder" placeholder="e.g., 100000">
                     </div>
 
                     <details class="heir-group mt-md mb-sm" id="detailedEstateBreakdown">
                         <summary data-i18n="estate_breakdown">Assets &amp; Liabilities Breakdown (Optional)</summary>
                         <div class="group-content group-content-single">
-                            <h3 class="section-subtitle section-subtitle-accent">Assets</h3>
+                            <h3 class="section-subtitle section-subtitle-accent" data-i18n="assets">Assets</h3>
                             <div class="asset-subcategory asset-subcategory-dashed">
-                                <h4 class="mb-sm text-small" style="color: var(--success);">Current / Liquid Assets</h4>
-                                <div class="input-group"><label for="assetCash">Cash &amp; Bank Accounts</label><input type="number" id="assetCash" min="0" placeholder="0"></div>
-                                <div class="input-group"><label for="assetGold">Gold &amp; Silver (Value)</label><input type="number" id="assetGold" min="0" placeholder="0"></div>
-                                <div class="input-group"><label for="assetStocks">Investments &amp; Shares</label><input type="number" id="assetStocks" min="0" placeholder="0"></div>
+                                <h4 class="mb-sm text-small" style="color: var(--success);" data-i18n="current_assets">Current / Liquid Assets</h4>
+                                <div class="input-group"><label for="assetCash" data-i18n="cash_bank">Cash &amp; Bank Accounts</label><input type="number" id="assetCash" min="0" placeholder="0"></div>
+                                <div class="input-group"><label for="assetGold" data-i18n="gold_silver">Gold &amp; Silver (Value)</label><input type="number" id="assetGold" min="0" placeholder="0"></div>
+                                <div class="input-group"><label for="assetStocks" data-i18n="investments_shares">Investments &amp; Shares</label><input type="number" id="assetStocks" min="0" placeholder="0"></div>
                             </div>
                             <div class="asset-subcategory asset-subcategory-dashed">
-                                <h4 class="text-accent mb-sm text-small">Fixed / Physical Assets</h4>
-                                <div class="input-group"><label for="assetRealEstate">Real Estate Properties</label><input type="number" id="assetRealEstate" min="0" placeholder="0"></div>
-                                <div class="input-group"><label for="assetBusiness">Business Net Assets</label><input type="number" id="assetBusiness" min="0" placeholder="0"></div>
-                                <div class="input-group"><label for="assetPersonal">Vehicles &amp; Personal Items</label><input type="number" id="assetPersonal" min="0" placeholder="0"></div>
+                                <h4 class="text-accent mb-sm text-small" data-i18n="fixed_assets">Fixed / Physical Assets</h4>
+                                <div class="input-group"><label for="assetRealEstate" data-i18n="real_estate">Real Estate Properties</label><input type="number" id="assetRealEstate" min="0" placeholder="0"></div>
+                                <div class="input-group"><label for="assetBusiness" data-i18n="business_assets">Business Net Assets</label><input type="number" id="assetBusiness" min="0" placeholder="0"></div>
+                                <div class="input-group"><label for="assetPersonal" data-i18n="personal_items">Vehicles &amp; Personal Items</label><input type="number" id="assetPersonal" min="0" placeholder="0"></div>
                             </div>
                             <div class="asset-subcategory asset-subcategory-solid pb-md mb-sm">
-                                <h4 class="mb-sm text-small text-muted">Future / Receivable Assets</h4>
-                                <div class="input-group"><label for="assetReceivables">Loans Owed to Deceased</label><input type="number" id="assetReceivables" min="0" placeholder="0"></div>
-                                <div class="input-group"><label for="assetClaims">Pending Claims / Gratuity</label><input type="number" id="assetClaims" min="0" placeholder="0"></div>
-                                <div class="input-group"><label for="assetUnpaidMahr">Unpaid Mahr due to Deceased</label><input type="number" id="assetUnpaidMahr" min="0" placeholder="0"></div>
+                                <h4 class="mb-sm text-small text-muted" data-i18n="receivable_assets">Future / Receivable Assets</h4>
+                                <div class="input-group"><label for="assetReceivables" data-i18n="loans_owed">Loans Owed to Deceased</label><input type="number" id="assetReceivables" min="0" placeholder="0"></div>
+                                <div class="input-group"><label for="assetClaims" data-i18n="pending_claims">Pending Claims / Gratuity</label><input type="number" id="assetClaims" min="0" placeholder="0"></div>
+                                <div class="input-group"><label for="assetUnpaidMahr" data-i18n="unpaid_mahr">Unpaid Mahr due to Deceased</label><input type="number" id="assetUnpaidMahr" min="0" placeholder="0"></div>
                             </div>
 
-                            <h3 class="section-subtitle section-subtitle-danger">Liabilities &amp; Bequests</h3>
+                            <h3 class="section-subtitle section-subtitle-danger" data-i18n="liabilities_bequests">Liabilities &amp; Bequests</h3>
                             <div class="asset-subcategory" style="border-bottom: 1px dashed var(--glass-border); padding-bottom: 0.5rem;">
-                                <h4 class="mb-sm" style="color: var(--danger); font-size: 0.9rem;">Funeral &amp; Burial (Tajhiz)</h4>
-                                <div class="input-group"><label for="liabilityFuneral">Funeral Expenses</label><input type="number" id="liabilityFuneral" min="0" placeholder="0"></div>
+                                <h4 class="mb-sm" style="color: var(--danger); font-size: 0.9rem;" data-i18n="funeral_burial">Funeral &amp; Burial (Tajhiz)</h4>
+                                <div class="input-group"><label for="liabilityFuneral" data-i18n="funeral_expenses">Funeral Expenses</label><input type="number" id="liabilityFuneral" min="0" placeholder="0"></div>
                             </div>
                             <div class="asset-subcategory" style="border-bottom: 1px dashed var(--glass-border); padding-bottom: 0.5rem;">
-                                <h4 class="mb-sm" style="color: var(--danger); font-size: 0.9rem;">Outstanding Debts (Diyun)</h4>
-                                <div class="input-group"><label for="liabilityReligiousDebts">Debts to Allah (Zakat, Hajj)</label><input type="number" id="liabilityReligiousDebts" min="0" placeholder="0"></div>
-                                <div class="input-group"><label for="liabilityFinancialDebts">Debts to People (Loans, Mortgage)</label><input type="number" id="liabilityFinancialDebts" min="0" placeholder="0"></div>
+                                <h4 class="mb-sm" style="color: var(--danger); font-size: 0.9rem;" data-i18n="debts">Outstanding Debts (Diyun)</h4>
+                                <div class="input-group"><label for="liabilityReligiousDebts" data-i18n="debts_allah">Debts to Allah (Zakat, Hajj)</label><input type="number" id="liabilityReligiousDebts" min="0" placeholder="0"></div>
+                                <div class="input-group"><label for="liabilityFinancialDebts" data-i18n="debts_people">Debts to People (Loans, Mortgage)</label><input type="number" id="liabilityFinancialDebts" min="0" placeholder="0"></div>
                             </div>
                             <div class="asset-subcategory">
-                                <h4 class="mb-sm" style="color: #cbd5e1; font-size: 0.9rem;">Wills &amp; Bequests (Wasiyyah)</h4>
+                                <h4 class="mb-sm" style="color: #cbd5e1; font-size: 0.9rem;" data-i18n="wills_bequests">Wills &amp; Bequests (Wasiyyah)</h4>
                                 <div class="input-group">
-                                    <label for="liabilityWills">Bequests to Non-Heirs (Max 1/3)</label>
+                                    <label for="liabilityWills" data-i18n="bequests_non_heirs">Bequests to Non-Heirs (Max 1/3)</label>
                                     <input type="number" id="liabilityWills" min="0" placeholder="0">
                                 </div>
                             </div>
@@ -297,61 +308,61 @@
 
                     <div class="debug-toggle">
                         <input type="checkbox" id="scholarMode">
-                        <label for="scholarMode">Show Calculation Steps (Educational Mode)</label>
+                        <label for="scholarMode" data-i18n="show_steps">Show Calculation Steps (Educational Mode)</label>
                     </div>
                     <div class="debug-toggle" style="margin-top:0.5rem;">
                         <input type="checkbox" id="developerMode">
-                        <label for="developerMode">🔍 Developer Mode (Rule Inspector)</label>
+                        <label for="developerMode" data-i18n="dev_mode">🔍 Developer Mode (Rule Inspector)</label>
                     </div>
                     <div class="debug-toggle" style="margin-top:0.5rem;">
                         <input type="checkbox" id="learningModeToggle" >
-                        <label for="learningModeToggle">🧠 Learning Mode Quiz after calculation</label>
+                        <label for="learningModeToggle" data-i18n="learning_quiz">🧠 Learning Mode Quiz after calculation</label>
                     </div>
 
                     <!-- Maliki Settings Panel -->
                     <div id="malikiSettingsContainer" class="hidden" style="background: rgba(251,191,36,0.05); border: 1px solid rgba(251,191,36,0.25); border-radius: 10px; padding: 1rem; margin: 0.5rem 0;">
-                        <h3 style="color: #fbbf24; font-size: 0.95rem; margin-bottom: 0.75rem;">☪ Mālikī Madhhab Settings</h3>
+                        <h3 style="color: #fbbf24; font-size: 0.95rem; margin-bottom: 0.75rem;" data-i18n="maliki_settings_title">☪ Mālikī Madhhab Settings</h3>
                         <div style="display: grid; gap: 0.65rem;">
                             <div class="input-group">
-                                <label for="malikiSurplusMode" style="color: var(--text-secondary); font-size: 0.85rem;">Surplus (Radd) Mode:</label>
+                                <label for="malikiSurplusMode" style="color: var(--text-secondary); font-size: 0.85rem;" data-i18n="maliki_surplus_mode">Surplus (Radd) Mode:</label>
                                 <select id="malikiSurplusMode" style="background: rgba(15,23,42,0.7); border: 1px solid rgba(251,191,36,0.3); color: var(--text-primary); padding: 0.45rem 0.6rem; border-radius: 6px; font-family: inherit; font-size: 0.85rem;">
-                                    <option value="classical_baytulmal">Classical — Surplus to Bayt al-Māl</option>
-                                    <option value="modern_no_functional_baytulmal">Modern — Radd to Blood Sharers</option>
+                                    <option value="classical_baytulmal" data-i18n="maliki_classical_baytulmal">Classical — Surplus to Bayt al-Māl</option>
+                                    <option value="modern_no_functional_baytulmal" data-i18n="maliki_modern_radd">Modern — Radd to Blood Sharers</option>
                                 </select>
                             </div>
                             <div style="display: flex; align-items: center; gap: 0.5rem;">
                                 <input type="checkbox" id="malikiDhawuArham" style="accent-color: #fbbf24; width: 15px; height: 15px;">
-                                <label for="malikiDhawuArham" style="color: var(--text-secondary); font-size: 0.85rem;">Enable Dhawū al-Arḥām fallback</label>
+                                <label for="malikiDhawuArham" style="color: var(--text-secondary); font-size: 0.85rem;" data-i18n="maliki_dhawu_arham_enable">Enable Dhawū al-Arḥām fallback</label>
                             </div>
                         </div>
                     </div>
 
                     <!-- Jumhūr Settings Panel -->
                     <div id="jumhurSettingsContainer" class="hidden" style="background: rgba(245,158,11,0.05); border: 1px solid rgba(245,158,11,0.25); border-radius: 10px; padding: 1rem; margin: 0.5rem 0;">
-                        <h3 style="color: #f59e0b; font-size: 0.95rem; margin-bottom: 0.75rem;">Jumhūr Policy Settings</h3>
+                        <h3 style="color: #f59e0b; font-size: 0.95rem; margin-bottom: 0.75rem;" data-i18n="jumhur_settings_title">Jumhūr Policy Settings</h3>
                         <div style="display:grid;gap:0.65rem;">
                             <div class="input-group">
-                                <label for="mushtarikahPolicy" style="color:var(--text-secondary);font-size:0.85rem;">Mushtarikah Policy:</label>
+                                <label for="mushtarikahPolicy" style="color:var(--text-secondary);font-size:0.85rem;" data-i18n="jumhur_mushtarikah_policy">Mushtarikah Policy:</label>
                                 <select id="mushtarikahPolicy" style="background:rgba(15,23,42,0.7);border:1px solid rgba(245,158,11,0.3);color:var(--text-primary);padding:0.45rem 0.6rem;border-radius:6px;font-family:inherit;font-size:0.85rem;">
-                                    <option value="ask_if_detected">Ask if detected</option>
-                                    <option value="apply">Apply Mushtarikah</option>
-                                    <option value="reject">Reject Mushtarikah</option>
+                                    <option value="ask_if_detected" data-i18n="policy_ask">Ask if detected</option>
+                                    <option value="apply" data-i18n="policy_apply">Apply Mushtarikah</option>
+                                    <option value="reject" data-i18n="policy_reject">Reject Mushtarikah</option>
                                 </select>
                             </div>
                             <div class="input-group">
-                                <label for="surplusPolicy" style="color:var(--text-secondary);font-size:0.85rem;">Surplus (Radd) Policy:</label>
+                                <label for="surplusPolicy" style="color:var(--text-secondary);font-size:0.85rem;" data-i18n="jumhur_surplus_policy">Surplus (Radd) Policy:</label>
                                 <select id="surplusPolicy" style="background:rgba(15,23,42,0.7);border:1px solid rgba(245,158,11,0.3);color:var(--text-primary);padding:0.45rem 0.6rem;border-radius:6px;font-family:inherit;font-size:0.85rem;">
-                                    <option value="ask_if_detected">Ask if detected</option>
-                                    <option value="baytulMal">To Bayt al-Māl</option>
-                                    <option value="returnToHeirs">Radd to Heirs</option>
+                                    <option value="ask_if_detected" data-i18n="policy_ask">Ask if detected</option>
+                                    <option value="baytulMal" data-i18n="policy_baytulmal">To Bayt al-Māl</option>
+                                    <option value="returnToHeirs" data-i18n="policy_return">Radd to Heirs</option>
                                 </select>
                             </div>
                             <div class="input-group">
-                                <label for="dhawilArhamPolicy" style="color:var(--text-secondary);font-size:0.85rem;">Dhawu al-Arḥām Policy:</label>
+                                <label for="dhawilArhamPolicy" style="color:var(--text-secondary);font-size:0.85rem;" data-i18n="jumhur_dhawu_policy">Dhawu al-Arḥām Policy:</label>
                                 <select id="dhawilArhamPolicy" style="background:rgba(15,23,42,0.7);border:1px solid rgba(245,158,11,0.3);color:var(--text-primary);padding:0.45rem 0.6rem;border-radius:6px;font-family:inherit;font-size:0.85rem;">
-                                    <option value="ask_if_detected">Ask if detected</option>
-                                    <option value="inherit">Allow inheritance</option>
-                                    <option value="exclude">Exclude (Bayt al-Māl)</option>
+                                    <option value="ask_if_detected" data-i18n="policy_ask">Ask if detected</option>
+                                    <option value="inherit" data-i18n="policy_allow">Allow inheritance</option>
+                                    <option value="exclude" data-i18n="policy_exclude">Exclude (Bayt al-Māl)</option>
                                 </select>
                             </div>
                         </div>
@@ -359,17 +370,17 @@
 
                     <div class="presets-container">
                         <span class="text-small text-muted presets-label" data-i18n="load_example">Load Example:</span>
-                        <button class="preset-btn" data-preset="gharawiyyatayn1">Wife + Parents</button>
-                        <button class="preset-btn" data-preset="awl1">Husband + 2 Daughters + Parents</button>
-                        <button class="preset-btn" data-preset="radd1">Mother + 1 Daughter</button>
-                        <button class="preset-btn maliki-preset hidden" data-preset="malikiMushtarikah" style="border-color: rgba(251,191,36,0.5); color: #fbbf24;">Mālikī: Mushtarikah</button>
-                        <button class="preset-btn maliki-preset hidden" data-preset="malikiGharra" style="border-color: rgba(251,191,36,0.5); color: #fbbf24;">Mālikī: al-Gharrāʾ</button>
+                        <button class="preset-btn" data-preset="gharawiyyatayn1" data-i18n="preset_gharawiyyatayn1">Wife + Parents</button>
+                        <button class="preset-btn" data-preset="awl1" data-i18n="preset_awl1">Husband + 2 Daughters + Parents</button>
+                        <button class="preset-btn" data-preset="radd1" data-i18n="preset_radd1">Mother + 1 Daughter</button>
+                        <button class="preset-btn maliki-preset hidden" data-preset="malikiMushtarikah" style="border-color: rgba(251,191,36,0.5); color: #fbbf24;" data-i18n="preset_mushtarikah">Mālikī: Mushtarikah</button>
+                        <button class="preset-btn maliki-preset hidden" data-preset="malikiGharra" style="border-color: rgba(251,191,36,0.5); color: #fbbf24;" data-i18n="preset_gharra">Mālikī: al-Gharrāʾ</button>
                     </div>
                 </section>
 
                 <div id="errorContainer" class="error-container"></div>
                 <div id="policyWarningBanner" class="hidden" style="background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.4);border-radius:10px;padding:1rem 1.25rem;margin-bottom:1.5rem;color:#fbbf24;">
-                    <strong>Policy Required:</strong> <span id="policyWarningText"></span>
+                    <strong data-i18n="policy_required_title">Policy Required:</strong> <span id="policyWarningText"></span>
                 </div>
 
                 <div class="heirs-container glass-panel">
@@ -452,6 +463,21 @@
                         <button class="primary-btn" id="compareAllSchoolsBtn" data-i18n="btn_compare">⚖️ Compare All 4 Madhhabs Side-by-Side</button>
                     </div>
 
+                    <!-- ⚠️ CALCULATION FEEDBACK & DISCREPANCY BANNER -->
+                    <div class="calculation-feedback-banner" id="calcFeedbackBanner">
+                        <div class="feedback-banner-content">
+                            <span class="feedback-banner-icon">⚠️</span>
+                            <div>
+                                <strong data-i18n="calc_feedback_title">Notice anything wrong with this calculation?</strong>
+                                <p data-i18n="calc_feedback_desc">If you find any discrepancy, missing heir, or error in calculation, please contact us immediately.</p>
+                            </div>
+                        </div>
+                        <div style="display:flex;gap:0.5rem;flex-wrap:wrap;align-items:center;">
+                            <button type="button" class="feedback-report-btn" id="reportCalculationBtn" data-i18n="btn_report_calc">Report Calculation Issue / Contact</button>
+                            <button type="button" class="feedback-gmail-btn" id="quickEmailCalcBtn" style="background:#ea4335;color:#ffffff;border:none;border-radius:8px;padding:0.65rem 1rem;font-weight:700;font-size:0.85rem;cursor:pointer;display:inline-flex;align-items:center;gap:0.4rem;" data-i18n="btn_quick_gmail">📧 Send via Gmail (mshahid3845@gmail.com)</button>
+                        </div>
+                    </div>
+
                     <div id="madhhabComparisonContainer" class="hidden"></div>
 
                     <!-- ✅ VERIFICATION CENTER -->
@@ -527,16 +553,16 @@
                                     <path d="M 400 280 L 400 320 L 250 320 L 250 360" />
                                     <path d="M 250 320 L 550 320 L 550 360" />
                                 </g>
-                                <g class="tree-node" id="node-grandfather" transform="translate(100, 20)"><rect width="200" height="40" rx="6" /><text x="100" y="25" text-anchor="middle">Pat. Grandfather</text></g>
-                                <g class="tree-node" id="node-grandmother" transform="translate(320, 20)"><rect width="160" height="40" rx="6" /><text x="80" y="25" text-anchor="middle">Grandmother(s)</text></g>
-                                <g class="tree-node" id="node-maternalGrandfather" transform="translate(500, 20)"><rect width="200" height="40" rx="6" /><text x="100" y="25" text-anchor="middle">Mat. Grandfather</text></g>
-                                <g class="tree-node" id="node-father" transform="translate(200, 120)"><rect width="160" height="40" rx="6" /><text x="80" y="25" text-anchor="middle">Father</text></g>
-                                <g class="tree-node" id="node-mother" transform="translate(440, 120)"><rect width="160" height="40" rx="6" /><text x="80" y="25" text-anchor="middle">Mother</text></g>
-                                <g class="tree-node" id="node-siblings" transform="translate(50, 240)"><rect width="200" height="40" rx="6" /><text x="100" y="25" text-anchor="middle">Brothers / Sisters</text></g>
-                                <g class="tree-node deceased-node" id="node-deceased" transform="translate(300, 240)"><rect width="200" height="40" rx="6" /><text x="100" y="25" text-anchor="middle">Deceased (Focus)</text></g>
-                                <g class="tree-node" id="node-spouse" transform="translate(550, 240)"><rect width="200" height="40" rx="6" /><text x="100" y="25" text-anchor="middle">Husband / Wife</text></g>
-                                <g class="tree-node" id="node-son" transform="translate(150, 360)"><rect width="200" height="40" rx="6" /><text x="100" y="25" text-anchor="middle">Son(s)</text></g>
-                                <g class="tree-node" id="node-daughter" transform="translate(450, 360)"><rect width="200" height="40" rx="6" /><text x="100" y="25" text-anchor="middle">Daughter(s)</text></g>
+                                <g class="tree-node" id="node-grandfather" transform="translate(100, 20)"><rect width="200" height="40" rx="6" /><text x="100" y="25" text-anchor="middle" data-i18n="tree_pat_grandfather">Pat. Grandfather</text></g>
+                                <g class="tree-node" id="node-grandmother" transform="translate(320, 20)"><rect width="160" height="40" rx="6" /><text x="80" y="25" text-anchor="middle" data-i18n="tree_grandmother">Grandmother(s)</text></g>
+                                <g class="tree-node" id="node-maternalGrandfather" transform="translate(500, 20)"><rect width="200" height="40" rx="6" /><text x="100" y="25" text-anchor="middle" data-i18n="tree_mat_grandfather">Mat. Grandfather</text></g>
+                                <g class="tree-node" id="node-father" transform="translate(200, 120)"><rect width="160" height="40" rx="6" /><text x="80" y="25" text-anchor="middle" data-i18n="tree_father">Father</text></g>
+                                <g class="tree-node" id="node-mother" transform="translate(440, 120)"><rect width="160" height="40" rx="6" /><text x="80" y="25" text-anchor="middle" data-i18n="tree_mother">Mother</text></g>
+                                <g class="tree-node" id="node-siblings" transform="translate(50, 240)"><rect width="200" height="40" rx="6" /><text x="100" y="25" text-anchor="middle" data-i18n="tree_siblings">Brothers / Sisters</text></g>
+                                <g class="tree-node deceased-node" id="node-deceased" transform="translate(300, 240)"><rect width="200" height="40" rx="6" /><text x="100" y="25" text-anchor="middle" data-i18n="tree_deceased">Deceased (Focus)</text></g>
+                                <g class="tree-node" id="node-spouse" transform="translate(550, 240)"><rect width="200" height="40" rx="6" /><text x="100" y="25" text-anchor="middle" data-i18n="tree_spouse">Husband / Wife</text></g>
+                                <g class="tree-node" id="node-son" transform="translate(150, 360)"><rect width="200" height="40" rx="6" /><text x="100" y="25" text-anchor="middle" data-i18n="tree_sons">Son(s)</text></g>
+                                <g class="tree-node" id="node-daughter" transform="translate(450, 360)"><rect width="200" height="40" rx="6" /><text x="100" y="25" text-anchor="middle" data-i18n="tree_daughters">Daughter(s)</text></g>
                             </svg>
                         </div>
                     </div>
@@ -549,9 +575,9 @@
                         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;">
                             <div style="display:flex;align-items:center;gap:0.6rem;">
                                 <span style="font-size:1.2rem;">🔍</span>
-                                <h3 style="margin:0;color:#fbbf24;">Rule Inspector</h3>
+                                <h3 style="margin:0;color:#fbbf24;" data-i18n="rule_inspector_title">Rule Inspector</h3>
                             </div>
-                            <span style="font-size:0.75em;color:var(--text-secondary);padding:0.25rem 0.6rem;border:1px solid rgba(251,191,36,0.3);border-radius:12px;">Developer Mode</span>
+                            <span style="font-size:0.75em;color:var(--text-secondary);padding:0.25rem 0.6rem;border:1px solid rgba(251,191,36,0.3);border-radius:12px;" data-i18n="developer_mode_badge">Developer Mode</span>
                         </div>
                         <div id="ruleInspectorContent"></div>
                     </div>
@@ -560,7 +586,7 @@
                     <div id="learningModeQuiz" class="result-card hidden" style="border:1px solid rgba(99,102,241,0.3);background:rgba(99,102,241,0.04);">
                         <div style="display:flex;align-items:center;gap:0.6rem;margin-bottom:1rem;">
                             <span style="font-size:1.2rem;">🧠</span>
-                            <h3 style="margin:0;color:#818cf8;">Learning Mode Quiz</h3>
+                            <h3 style="margin:0;color:#818cf8;" data-i18n="learning_quiz_title">Learning Mode Quiz</h3>
                         </div>
                         <div id="learningQuizContent"></div>
                     </div>
@@ -575,15 +601,15 @@
         ══════════════════════════════════════════════════════════════ -->
         <section class="page-section" id="page-learning" aria-label="Learning page">
             <div class="glass-panel">
-                <h2>📚 Farāʾiḍ Learning Centre</h2>
-                <p class="mb-md">Comprehensive educational guide covering 15 core concepts, rules, and divine evidences.</p>
+                <h2 data-i18n="learning_centre_title">📚 Farāʾiḍ Learning Centre</h2>
+                <p class="mb-md" data-i18n="learning_centre_desc">Comprehensive educational guide covering core concepts, rules, and divine evidences.</p>
 
                 <div class="filter-bar mb-md">
-                    <button class="learning-filter-btn active" data-category="all">All Topics</button>
-                    <button class="learning-filter-btn" data-category="core">Core Concepts</button>
-                    <button class="learning-filter-btn" data-category="heirs">Heir Categories</button>
-                    <button class="learning-filter-btn" data-category="advanced">Advanced Rules</button>
-                    <button class="learning-filter-btn" data-category="comparative">Madhhab Differences</button>
+                    <button class="learning-filter-btn active" data-category="all" data-i18n="filter_all_topics">All Topics</button>
+                    <button class="learning-filter-btn" data-category="core" data-i18n="filter_core_concepts">Core Concepts</button>
+                    <button class="learning-filter-btn" data-category="heirs" data-i18n="filter_heir_categories">Heir Categories</button>
+                    <button class="learning-filter-btn" data-category="advanced" data-i18n="filter_advanced_rules">Advanced Rules</button>
+                    <button class="learning-filter-btn" data-category="comparative" data-i18n="filter_madhhab_diff">Madhhab Differences</button>
                 </div>
 
                 <div id="learningTopicsContainer" class="learning-cards-grid"></div>
@@ -596,29 +622,29 @@
         ══════════════════════════════════════════════════════════════ -->
         <section class="page-section" id="page-cases" aria-label="Sample cases page">
             <div class="glass-panel">
-                <h2>📋 Sample Inheritance Cases Library</h2>
-                <p class="mb-md">Real-world inheritance scenarios across Shāfiʿī, Ḥanafī, Mālikī, and Ḥanbalī schools. Click <strong>Load into Calculator</strong> to auto-populate fields.</p>
+                <h2 data-i18n="cases_library_title">📋 Sample Inheritance Cases Library</h2>
+                <p class="mb-md" data-i18n="cases_library_desc">Real-world inheritance scenarios across Shāfiʿī, Ḥanafī, Mālikī, and Ḥanbalī schools. Click Load into Calculator to auto-populate fields.</p>
 
                 <div class="cases-filter-controls mb-md" style="display:flex;gap:0.75rem;flex-wrap:wrap;align-items:center;">
                     <div class="filter-bar" style="margin:0;">
-                        <button class="case-madhhab-filter active" data-madhhab="all">All Schools</button>
-                        <button class="case-madhhab-filter" data-madhhab="shafii">Shāfiʿī</button>
-                        <button class="case-madhhab-filter" data-madhhab="hanafi">Ḥanafī</button>
-                        <button class="case-madhhab-filter" data-madhhab="maliki">Mālikī</button>
-                        <button class="case-madhhab-filter" data-madhhab="hanbali">Ḥanbalī</button>
+                        <button class="case-madhhab-filter active" data-madhhab="all" data-i18n="filter_all_schools">All Schools</button>
+                        <button class="case-madhhab-filter" data-madhhab="shafii" data-i18n="tab_shafii">Shāfiʿī</button>
+                        <button class="case-madhhab-filter" data-madhhab="hanafi" data-i18n="tab_hanafi">Ḥanafī</button>
+                        <button class="case-madhhab-filter" data-madhhab="maliki" data-i18n="tab_maliki">Mālikī</button>
+                        <button class="case-madhhab-filter" data-madhhab="hanbali" data-i18n="tab_hanbali">Ḥanbalī</button>
                     </div>
 
                     <select id="caseCategoryFilter" style="background:rgba(15,23,42,0.7);border:1px solid var(--glass-border);color:var(--text-primary);padding:0.4rem 0.6rem;border-radius:6px;font-family:inherit;font-size:0.85rem;">
-                        <option value="all">All Categories</option>
-                        <option value="basic">Basic Scenarios</option>
-                        <option value="awl">ʿAwl (Reduction)</option>
-                        <option value="radd">Radd (Redistribution)</option>
-                        <option value="blocking">Blocking (Ḥajb)</option>
-                        <option value="grandfather">Grandfather</option>
-                        <option value="special">Special / Exception Cases</option>
+                        <option value="all" data-i18n="filter_all_categories">All Categories</option>
+                        <option value="basic" data-i18n="filter_basic_scenarios">Basic Scenarios</option>
+                        <option value="awl" data-i18n="filter_awl_cases">ʿAwl (Reduction)</option>
+                        <option value="radd" data-i18n="filter_radd_cases">Radd (Redistribution)</option>
+                        <option value="blocking" data-i18n="filter_blocking_cases">Blocking (Ḥajb)</option>
+                        <option value="grandfather" data-i18n="filter_grandfather_cases">Grandfather</option>
+                        <option value="special" data-i18n="filter_special_cases">Special / Exception Cases</option>
                     </select>
 
-                    <input type="text" id="caseSearchInput" placeholder="🔍 Search cases..." style="background:rgba(15,23,42,0.7);border:1px solid var(--glass-border);color:var(--text-primary);padding:0.4rem 0.75rem;border-radius:6px;font-family:inherit;font-size:0.85rem;min-width:180px;">
+                    <input type="text" id="caseSearchInput" data-i18n-placeholder="search_cases_placeholder" placeholder="🔍 Search cases..." style="background:rgba(15,23,42,0.7);border:1px solid var(--glass-border);color:var(--text-primary);padding:0.4rem 0.75rem;border-radius:6px;font-family:inherit;font-size:0.85rem;min-width:180px;">
                 </div>
 
                 <div id="sampleCasesGrid" class="sample-cases-grid"></div>
@@ -631,38 +657,38 @@
         ══════════════════════════════════════════════════════════════ -->
         <section class="page-section" id="page-advanced" aria-label="Advanced topics page">
             <div class="glass-panel">
-                <h2>⚙️ Advanced Inheritance Topics</h2>
-                <p class="mb-md">Explore specialised chapters in Farāʾiḍ jurisprudence including ʿAwl, Radd, Dhawū al-Arḥām, and cross-madhhab comparative analysis.</p>
+                <h2 data-i18n="adv_hub_title">⚙️ Advanced Inheritance Topics</h2>
+                <p class="mb-md" data-i18n="adv_hub_desc">Explore specialised chapters in Farāʾiḍ jurisprudence including ʿAwl, Radd, Dhawū al-Arḥām, and cross-madhhab comparative analysis.</p>
 
                 <div class="advanced-cards-grid">
                     <div class="adv-card" style="--adv-color: #f59e0b;">
-                        <div class="adv-card-header"><div class="adv-card-icon">⚖️</div><div><div class="adv-card-title">ʿAwl Cases</div><div class="adv-card-subtitle">Proportional Reduction</div></div></div>
-                        <p class="adv-card-desc">Understand cases where prescribed shares exceed the estate and fractions are reduced proportionally.</p>
-                        <div class="adv-card-footer"><span class="adv-card-badge badge-available">Available</span><button class="adv-open-btn" data-action="awl-cases">Explore →</button></div>
+                        <div class="adv-card-header"><div class="adv-card-icon">⚖️</div><div><div class="adv-card-title" data-i18n="adv_awl_title">ʿAwl Cases</div><div class="adv-card-subtitle" data-i18n="adv_awl_sub">Proportional Reduction</div></div></div>
+                        <p class="adv-card-desc" data-i18n="adv_awl_desc">Understand cases where prescribed shares exceed the estate and fractions are reduced proportionally.</p>
+                        <div class="adv-card-footer"><span class="adv-card-badge badge-available" data-i18n="badge_available">Available</span><button class="adv-open-btn" data-action="awl-cases" data-i18n="btn_explore">Explore →</button></div>
                     </div>
 
                     <div class="adv-card" style="--adv-color: #10b981;">
-                        <div class="adv-card-header"><div class="adv-card-icon">↩️</div><div><div class="adv-card-title">Radd Cases</div><div class="adv-card-subtitle">Surplus Redistribution</div></div></div>
-                        <p class="adv-card-desc">Learn how unassigned estate surplus is returned to blood sharers when no residuary heir exists.</p>
-                        <div class="adv-card-footer"><span class="adv-card-badge badge-available">Available</span><button class="adv-open-btn" data-action="radd-cases">Explore →</button></div>
+                        <div class="adv-card-header"><div class="adv-card-icon">↩️</div><div><div class="adv-card-title" data-i18n="adv_radd_title">Radd Cases</div><div class="adv-card-subtitle" data-i18n="adv_radd_sub">Surplus Redistribution</div></div></div>
+                        <p class="adv-card-desc" data-i18n="adv_radd_desc">Learn how unassigned estate surplus is returned to blood sharers when no residuary heir exists.</p>
+                        <div class="adv-card-footer"><span class="adv-card-badge badge-available" data-i18n="badge_available">Available</span><button class="adv-open-btn" data-action="radd-cases" data-i18n="btn_explore">Explore →</button></div>
                     </div>
 
                     <div class="adv-card" style="--adv-color: #3b82f6;">
-                        <div class="adv-card-header"><div class="adv-card-icon">👴</div><div><div class="adv-card-title">Grandfather with Siblings</div><div class="adv-card-subtitle">Side-by-Side Comparison</div></div></div>
-                        <p class="adv-card-desc">Compare grandfather inheritance rules across Ḥanafī (blocks brothers) vs Jumhūr (Muqāsamah).</p>
-                        <div class="adv-card-footer"><span class="adv-card-badge badge-available">Available</span><button class="adv-open-btn" data-action="grandfather">Compare →</button></div>
+                        <div class="adv-card-header"><div class="adv-card-icon">👴</div><div><div class="adv-card-title" data-i18n="adv_gf_title">Grandfather with Siblings</div><div class="adv-card-subtitle" data-i18n="adv_gf_sub">Side-by-Side Comparison</div></div></div>
+                        <p class="adv-card-desc" data-i18n="adv_gf_desc">Compare grandfather inheritance rules across Ḥanafī (blocks brothers) vs Jumhūr (Muqāsamah).</p>
+                        <div class="adv-card-footer"><span class="adv-card-badge badge-available" data-i18n="badge_available">Available</span><button class="adv-open-btn" data-action="grandfather" data-i18n="btn_compare_arrow">Compare →</button></div>
                     </div>
 
                     <div class="adv-card" style="--adv-color: #ec4899;">
-                        <div class="adv-card-header"><div class="adv-card-icon">🌿</div><div><div class="adv-card-title">Dhawū al-Arḥām</div><div class="adv-card-subtitle">Distant Kindred</div></div></div>
-                        <p class="adv-card-desc">Rules governing inheritance of distant blood relatives (maternal uncles, nieces, etc.) when primary heirs are absent.</p>
-                        <div class="adv-card-footer"><span class="adv-card-badge badge-available">Available</span><button class="adv-open-btn" data-action="dhawu-al-arham">Explore →</button></div>
+                        <div class="adv-card-header"><div class="adv-card-icon">🌿</div><div><div class="adv-card-title" data-i18n="adv_arham_title">Dhawū al-Arḥām</div><div class="adv-card-subtitle" data-i18n="adv_arham_sub">Distant Kindred</div></div></div>
+                        <p class="adv-card-desc" data-i18n="adv_arham_desc">Rules governing inheritance of distant blood relatives (maternal uncles, nieces, etc.) when primary heirs are absent.</p>
+                        <div class="adv-card-footer"><span class="adv-card-badge badge-available" data-i18n="badge_available">Available</span><button class="adv-open-btn" data-action="dhawu-al-arham" data-i18n="btn_explore">Explore →</button></div>
                     </div>
 
                     <div class="adv-card" style="--adv-color: #06b6d4;">
-                        <div class="adv-card-header"><div class="adv-card-icon">🔀</div><div><div class="adv-card-title">Madhhab Differences</div><div class="adv-card-subtitle">Comparative Calculator</div></div></div>
-                        <p class="adv-card-desc">Analyze cases where Shāfiʿī, Ḥanafī, Mālikī, and Ḥanbalī schools reach different outcomes.</p>
-                        <div class="adv-card-footer"><span class="adv-card-badge badge-available">Available</span><button class="adv-open-btn" data-action="madhhab-diff">Analyze →</button></div>
+                        <div class="adv-card-header"><div class="adv-card-icon">🔀</div><div><div class="adv-card-title" data-i18n="adv_diff_title">Madhhab Differences</div><div class="adv-card-subtitle" data-i18n="adv_diff_sub">Comparative Calculator</div></div></div>
+                        <p class="adv-card-desc" data-i18n="adv_diff_desc">Analyze cases where Shāfiʿī, Ḥanafī, Mālikī, and Ḥanbalī schools reach different outcomes.</p>
+                        <div class="adv-card-footer"><span class="adv-card-badge badge-available" data-i18n="badge_available">Available</span><button class="adv-open-btn" data-action="madhhab-diff" data-i18n="btn_analyze">Analyze →</button></div>
                     </div>
                 </div>
             </div>
@@ -674,14 +700,14 @@
         ══════════════════════════════════════════════════════════════ -->
         <section class="page-section" id="page-references" aria-label="References page">
             <div class="glass-panel">
-                <h2>📖 Scriptural &amp; Classical References</h2>
-                <p class="mb-md">Primary Quranic verses, Hadiths, and classical Fiqh manuals underpinning all calculation rules.</p>
+                <h2 data-i18n="references_title">📖 Scriptural &amp; Classical References</h2>
+                <p class="mb-md" data-i18n="references_desc">Primary Quranic verses, Hadiths, and classical Fiqh manuals underpinning all calculation rules.</p>
 
                 <div class="filter-bar mb-md">
-                    <button class="ref-filter-btn active" data-category="all">All Sources</button>
-                    <button class="ref-filter-btn" data-category="quran">Qurʾān Verses</button>
-                    <button class="ref-filter-btn" data-category="hadith">Prophetic Hadiths</button>
-                    <button class="ref-filter-btn" data-category="classical">Classical Fiqh Books</button>
+                    <button class="ref-filter-btn active" data-category="all" data-i18n="ref_filter_all">All Sources</button>
+                    <button class="ref-filter-btn" data-category="quran" data-i18n="ref_filter_quran">Qurʾān Verses</button>
+                    <button class="ref-filter-btn" data-category="hadith" data-i18n="ref_filter_hadith">Prophetic Hadiths</button>
+                    <button class="ref-filter-btn" data-category="classical" data-i18n="ref_filter_classical">Classical Fiqh Books</button>
                 </div>
 
                 <div id="referencesCardsContainer"></div>
@@ -805,7 +831,7 @@
                 <div class="theme-cards-grid" id="themeCardsGrid">
                     <button class="theme-card active" data-theme="dark" type="button">
                         <div class="theme-card-header">
-                            <span class="theme-card-title">🌙 Obsidian Glass</span>
+                            <span class="theme-card-title" data-i18n="theme_dark_title">🌙 Obsidian Glass</span>
                             <span style="font-size:0.75rem;color:var(--accent);">Active</span>
                         </div>
                         <div class="theme-card-swatches">
@@ -814,12 +840,12 @@
                             <span class="swatch-dot" style="background:#3b82f6;"></span>
                             <span class="swatch-dot" style="background:#f59e0b;"></span>
                         </div>
-                        <span class="theme-card-desc">Deep slate glass canvas with blue highlights</span>
+                        <span class="theme-card-desc" data-i18n="theme_dark_desc">Deep slate glass canvas with blue highlights</span>
                     </button>
 
                     <button class="theme-card" data-theme="light" type="button">
                         <div class="theme-card-header">
-                            <span class="theme-card-title">☀️ Crisp Studio Light</span>
+                            <span class="theme-card-title" data-i18n="theme_light_title">☀️ Crisp Studio Light</span>
                         </div>
                         <div class="theme-card-swatches">
                             <span class="swatch-dot" style="background:#f8fafc;"></span>
@@ -827,12 +853,12 @@
                             <span class="swatch-dot" style="background:#2563eb;"></span>
                             <span class="swatch-dot" style="background:#0f172a;"></span>
                         </div>
-                        <span class="theme-card-desc">Clean high-contrast light mode for daytime</span>
+                        <span class="theme-card-desc" data-i18n="theme_light_desc">Clean high-contrast light mode for daytime</span>
                     </button>
 
                     <button class="theme-card" data-theme="emerald" type="button">
                         <div class="theme-card-header">
-                            <span class="theme-card-title">🕌 Emerald Oasis</span>
+                            <span class="theme-card-title" data-i18n="theme_emerald_title">🕌 Emerald Oasis</span>
                         </div>
                         <div class="theme-card-swatches">
                             <span class="swatch-dot" style="background:#061813;"></span>
@@ -840,12 +866,12 @@
                             <span class="swatch-dot" style="background:#10b981;"></span>
                             <span class="swatch-dot" style="background:#f59e0b;"></span>
                         </div>
-                        <span class="theme-card-desc">Rich Islamic emerald slate with amber accents</span>
+                        <span class="theme-card-desc" data-i18n="theme_emerald_desc">Rich Islamic emerald slate with amber accents</span>
                     </button>
 
                     <button class="theme-card" data-theme="sapphire" type="button">
                         <div class="theme-card-header">
-                            <span class="theme-card-title">💎 Royal Sapphire</span>
+                            <span class="theme-card-title" data-i18n="theme_sapphire_title">💎 Royal Sapphire</span>
                         </div>
                         <div class="theme-card-swatches">
                             <span class="swatch-dot" style="background:#0c0f24;"></span>
@@ -853,12 +879,12 @@
                             <span class="swatch-dot" style="background:#6366f1;"></span>
                             <span class="swatch-dot" style="background:#c084fc;"></span>
                         </div>
-                        <span class="theme-card-desc">Midnight indigo canvas with purple accents</span>
+                        <span class="theme-card-desc" data-i18n="theme_sapphire_desc">Midnight indigo canvas with purple accents</span>
                     </button>
 
                     <button class="theme-card" data-theme="parchment" type="button">
                         <div class="theme-card-header">
-                            <span class="theme-card-title">📜 Warm Parchment</span>
+                            <span class="theme-card-title" data-i18n="theme_parchment_title">📜 Warm Parchment</span>
                         </div>
                         <div class="theme-card-swatches">
                             <span class="swatch-dot" style="background:#f7f4ed;"></span>
@@ -866,30 +892,30 @@
                             <span class="swatch-dot" style="background:#b45309;"></span>
                             <span class="swatch-dot" style="background:#2d241e;"></span>
                         </div>
-                        <span class="theme-card-desc">Warm neutral ivory with sepia manuscript styling</span>
+                        <span class="theme-card-desc" data-i18n="theme_parchment_desc">Warm neutral ivory with sepia manuscript styling</span>
                     </button>
                 </div>
 
                 <div class="group-content group-content-single" style="margin-top:1.5rem;">
                     <div class="input-group">
-                        <label for="themeSelect">Quick Theme Selector:</label>
+                        <label for="themeSelect" data-i18n="quick_theme_selector">Quick Theme Selector:</label>
                         <select id="themeSelect" style="background:var(--card-bg);border:1px solid var(--glass-border);color:var(--text-primary);padding:0.5rem;border-radius:8px;width:220px;">
-                            <option value="dark">🌙 Midnight Obsidian Glass</option>
-                            <option value="light">☀️ Crisp Studio Light</option>
-                            <option value="emerald">🕌 Emerald Oasis (Islamic Slate)</option>
-                            <option value="sapphire">💎 Royal Sapphire &amp; Indigo</option>
-                            <option value="parchment">📜 Warm Parchment (Manuscript)</option>
+                            <option value="dark" data-i18n="theme_dark_title">🌙 Midnight Obsidian Glass</option>
+                            <option value="light" data-i18n="theme_light_title">☀️ Crisp Studio Light</option>
+                            <option value="emerald" data-i18n="theme_emerald_title">🕌 Emerald Oasis (Islamic Slate)</option>
+                            <option value="sapphire" data-i18n="theme_sapphire_title">💎 Royal Sapphire &amp; Indigo</option>
+                            <option value="parchment" data-i18n="theme_parchment_title">📜 Warm Parchment (Manuscript)</option>
                         </select>
                     </div>
 
                     <div class="input-group">
-                        <label for="defaultMadhhabSelect">Default Calculator Madhhab:</label>
+                        <label for="defaultMadhhabSelect" data-i18n="default_calculator_madhhab">Default Calculator Madhhab:</label>
                         <select id="defaultMadhhabSelect" style="background:var(--card-bg);border:1px solid var(--glass-border);color:var(--text-primary);padding:0.5rem;border-radius:8px;width:220px;">
-                            <option value="shafii">Shāfiʿī</option>
-                            <option value="hanafi">Ḥanafī</option>
-                            <option value="maliki">Mālikī</option>
-                            <option value="hanbali">Ḥanbalī</option>
-                            <option value="jumhur">Jumĥūr</option>
+                            <option value="shafii" data-i18n="tab_shafii">Shāfiʿī</option>
+                            <option value="hanafi" data-i18n="tab_hanafi">Ḥanafī</option>
+                            <option value="maliki" data-i18n="tab_maliki">Mālikī</option>
+                            <option value="hanbali" data-i18n="tab_hanbali">Ḥanbalī</option>
+                            <option value="jumhur" data-i18n="tab_jumhur">Jumĥūr</option>
                         </select>
                     </div>
                 </div>
@@ -905,22 +931,128 @@
         ══════════════════════════════════════════════════════════════ -->
         <section class="page-section" id="page-about" aria-label="About page">
             <div class="glass-panel">
-                <h2>ℹ️ About Islamic Inheritance Platform</h2>
-                <p class="mb-md" style="line-height:1.7;">
+                <h2 data-i18n="about_title">ℹ️ About Islamic Inheritance Platform</h2>
+                <p class="mb-md" style="line-height:1.7;" data-i18n="about_desc">
                     This platform was designed as an educational tool for students, researchers, and families to learn
                     the intricate divine laws of Islamic estate distribution (Farāʾiḍ).
                 </p>
 
-                <h3 style="margin-top:1.25rem;">Software Architecture</h3>
+                <h3 style="margin-top:1.25rem;" data-i18n="about_software_arch">Software Architecture</h3>
                 <ul style="list-style-position:inside;color:var(--text-secondary);line-height:1.8;">
-                    <li><strong>Decoupled Calculation Engine:</strong> Pure mathematical logic isolated in <code>src/core</code> and <code>src/madhahib</code>.</li>
-                    <li><strong>Educational Why Breakdown:</strong> Automatic step-by-step evidence extraction for every calculated heir share.</li>
-                    <li><strong>Multi-Madhhab Engineering:</strong> Tested implementations for Shāfiʿī, Ḥanafī, Mālikī, Ḥanbalī, and consensus Jumhūr models.</li>
+                    <li><strong data-i18n="about_engine_title">Decoupled Calculation Engine:</strong> <span data-i18n="about_engine_desc">Pure mathematical logic isolated in src/core and src/madhahib.</span></li>
+                    <li><strong data-i18n="about_why_title">Educational Why Breakdown:</strong> <span data-i18n="about_why_desc">Automatic step-by-step evidence extraction for every calculated heir share.</span></li>
+                    <li><strong data-i18n="about_multi_title">Multi-Madhhab Engineering:</strong> <span data-i18n="about_multi_desc">Tested implementations for Shāfiʿī, Ḥanafī, Mālikī, Ḥanbalī, and consensus Jumhūr models.</span></li>
                 </ul>
 
-                <div class="disclaimer mt-lg" style="display:block;">
+                <div class="disclaimer mt-lg" style="display:block;" data-i18n="scholar_disclaimer">
                     <strong>Scholar Review Disclaimer:</strong> This application is intended for educational and analytical purposes.
                     For binding real-world estate settlements, consult a qualified Islamic scholar or local religious authority.
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ══════════════════════════════════════════════════════════════
+             PAGE 9: CONTACT & DISCREPANCY REPORTING
+        ══════════════════════════════════════════════════════════════ -->
+        <section class="page-section" id="page-contact" aria-label="Contact page">
+            <div class="glass-panel">
+                <div class="section-header">
+                    <div>
+                        <h2 data-i18n="contact_title">📬 Contact &amp; Report Discrepancy</h2>
+                        <p class="section-subtitle" data-i18n="contact_lead">Notice anything wrong with this calculation? Report discrepancies, question madhhab opinions, or suggest corrections directly to our scholars and engineering team.</p>
+                    </div>
+                </div>
+
+                <div class="contact-container">
+                    <!-- Left: Form -->
+                    <div class="contact-form-card">
+                        <form id="discrepancyContactForm">
+                            <div class="contact-form-grid">
+                                <div>
+                                    <label for="contactName" style="display:block;margin-bottom:0.4rem;font-weight:600;font-size:0.9rem;" data-i18n="contact_name_label">Your Name (Optional)</label>
+                                    <input type="text" id="contactName" class="contact-input" placeholder="e.g. Abdullah" data-i18n-placeholder="contact_name_placeholder" />
+                                </div>
+                                <div>
+                                    <label for="contactEmail" style="display:block;margin-bottom:0.4rem;font-weight:600;font-size:0.9rem;" data-i18n="contact_email_label">Email Address (Optional)</label>
+                                    <input type="email" id="contactEmail" class="contact-input" placeholder="name@example.com" data-i18n-placeholder="contact_email_placeholder" />
+                                </div>
+                            </div>
+
+                            <div class="contact-form-grid">
+                                <div>
+                                    <label for="contactIssueType" style="display:block;margin-bottom:0.4rem;font-weight:600;font-size:0.9rem;" data-i18n="contact_issue_type_label">Issue Category</label>
+                                    <select id="contactIssueType" class="contact-select">
+                                        <option value="Calculation Discrepancy" data-i18n="issue_calculation_error">Calculation / Share Error</option>
+                                        <option value="Madhhab Ruling Discrepancy" data-i18n="issue_madhhab_ruling">School (Madhhab) Ruling Discrepancy</option>
+                                        <option value="Scriptural Evidence" data-i18n="issue_scriptural_evidence">Evidence / Ayah / Hadith Citation</option>
+                                        <option value="Translation / Language" data-i18n="issue_translation">Language / Translation Issue</option>
+                                        <option value="Feature Suggestion" data-i18n="issue_suggestion">General Feedback / Suggestion</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="contactMadhhabSelect" style="display:block;margin-bottom:0.4rem;font-weight:600;font-size:0.9rem;" data-i18n="contact_madhhab_label">Relevant Madhhab</label>
+                                    <select id="contactMadhhabSelect" class="contact-select">
+                                        <option value="shafii" data-i18n="tab_shafii">Shāfiʿī</option>
+                                        <option value="hanafi" data-i18n="tab_hanafi">Ḥanafī</option>
+                                        <option value="maliki" data-i18n="tab_maliki">Mālikī</option>
+                                        <option value="hanbali" data-i18n="tab_hanbali">Ḥanbalī</option>
+                                        <option value="jumhur" data-i18n="tab_jumhur">Jumhūr (Consensus)</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div style="margin-bottom:1rem;">
+                                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.4rem;">
+                                    <label for="contactHeirsSummary" style="font-weight:600;font-size:0.9rem;" data-i18n="contact_heirs_summary_label">Case Snapshot / Heirs Data</label>
+                                    <button type="button" id="contactAttachCalcBtn" class="secondary-btn" style="padding:0.35rem 0.75rem;font-size:0.8rem;" data-i18n="btn_attach_current_calc">📎 Attach Current Calculator Data</button>
+                                </div>
+                                <textarea id="contactHeirsSummary" class="contact-textarea" rows="3" placeholder="Case details or click Attach above..." style="font-family:monospace;font-size:0.85rem;"></textarea>
+                            </div>
+
+                            <div style="margin-bottom:1.25rem;">
+                                <label for="contactDetails" style="display:block;margin-bottom:0.4rem;font-weight:600;font-size:0.9rem;" data-i18n="contact_details_label">Detailed Explanation of the Discrepancy *</label>
+                                <textarea id="contactDetails" class="contact-textarea" rows="5" required placeholder="Please describe what result you obtained, what you expected according to your reference or madhhab, and citations (e.g. Al-Majmu', Radd al-Muhtar, Al-Mughni)..." data-i18n-placeholder="contact_details_placeholder"></textarea>
+                            </div>
+
+                            <div style="display:flex;gap:0.75rem;flex-wrap:wrap;align-items:center;">
+                                <button type="submit" class="primary-btn" id="contactSubmitBtn" data-i18n="btn_submit_feedback">✉️ Submit Report &amp; Send to Gmail</button>
+                                <button type="button" class="secondary-btn" id="contactEmailBtn" style="border-color:#ea4335;color:#fca5a5;" data-i18n="btn_open_email_client">📧 Send via Gmail (mshahid3845@gmail.com)</button>
+                                <button type="button" class="secondary-btn" id="contactCopyReportBtn" data-i18n="btn_copy_report">📋 Copy Report to Clipboard</button>
+                            </div>
+
+                            <div id="contactFormStatus" class="status-msg hidden"></div>
+                        </form>
+                    </div>
+
+                    <!-- Right: Direct Contact & Scholar Info -->
+                    <div class="contact-sidebar">
+                        <div class="contact-card-sidebar">
+                            <h3 style="margin-top:0;font-size:1.1rem;display:flex;align-items:center;gap:0.5rem;" data-i18n="contact_direct_title">
+                                <span>📧</span> Direct Contact
+                            </h3>
+                            <p style="font-size:0.88rem;color:var(--text-secondary);line-height:1.6;margin-bottom:0.85rem;" data-i18n="contact_lead">
+                                Notice anything wrong with this calculation? Please contact us directly for review by Islamic jurisprudence researchers.
+                            </p>
+                            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=mshahid3845@gmail.com" target="_blank" rel="noopener noreferrer" class="contact-direct-link">
+                                <span>✉️</span>
+                                <span style="font-weight:600;" data-i18n="contact_direct_email">Gmail: mshahid3845@gmail.com</span>
+                            </a>
+                            <a href="https://github.com/shahi845" target="_blank" rel="noopener noreferrer" class="contact-direct-link">
+                                <span>🐙</span>
+                                <span style="font-weight:600;" data-i18n="contact_direct_github">GitHub: @shahi845</span>
+                            </a>
+                        </div>
+
+                        <div class="contact-card-sidebar" style="border-color:rgba(245,158,11,0.3);background:linear-gradient(135deg,rgba(245,158,11,0.06),rgba(239,68,68,0.04));">
+                            <h4 style="margin:0 0 0.5rem 0;color:#fbbf24;font-size:0.95rem;display:flex;align-items:center;gap:0.4rem;">
+                                <span>⚖️</span> Scholar Verification
+                            </h4>
+                            <p style="font-size:0.84rem;color:var(--text-secondary);line-height:1.6;margin:0;" data-i18n="scholar_disclaimer">
+                                This platform is designed for educational and analytical purposes. For real-world binding probate settlements, always consult a qualified local mufti or judge.
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -930,8 +1062,8 @@
              FOOTER
         ══════════════════════════════════════════════════════════════ -->
         <footer>
-            <p>Fara'id Learning Platform v2.0 | Last Updated: 26-08-2026</p>
-            <p class="mt-sm">Developed by <a href="https://github.com/shahi845" target="_blank">Shahid</a></p>
+            <p data-i18n="footer_text">Fara'id Learning Platform v2.0 | Last Updated: 26-08-2026</p>
+            <p class="mt-sm"><span data-i18n="footer_dev">Developed by</span> <a href="https://github.com/shahi845" target="_blank">Shahid</a></p>
         </footer>
 
     </div><!-- /.container -->
@@ -950,16 +1082,16 @@
     <div id="evidenceModal" class="modal-overlay hidden">
         <div class="modal-content glass-panel">
             <span id="closeModalBtn" class="close-modal-btn">&times;</span>
-            <h2 id="modalHeirName" style="color: var(--accent); margin-top: 0;">Heir Details</h2>
+            <h2 id="modalHeirName" style="color: var(--accent); margin-top: 0;" data-i18n="modal_heir_details">Heir Details</h2>
             <div class="modal-body">
                 <div class="info-section">
-                    <h4>Quranic / Sunnah Evidence</h4>
+                    <h4 data-i18n="modal_quran_sunnah">Quranic / Sunnah Evidence</h4>
                     <p id="modalEvidenceCitation" style="font-style: italic; font-weight: 600; color: #cbd5e1; margin-bottom: 0.5rem;"></p>
                     <div id="modalArabicVerse" class="arabic-verse" dir="rtl"></div>
                     <p id="modalTranslation" class="text-muted mt-sm" style="line-height: 1.5;"></p>
                 </div>
                 <div class="info-section" style="margin-top: 1.5rem;">
-                    <h4>Shāfiʿī School Rules</h4>
+                    <h4 data-i18n="modal_school_rules">School Rules &amp; Conditions</h4>
                     <ul id="modalRulesList" style="list-style-position: inside; color: var(--text-secondary); line-height: 1.6; margin-top: 0.5rem;"></ul>
                 </div>
             </div>

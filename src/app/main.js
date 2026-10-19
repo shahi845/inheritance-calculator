@@ -22,6 +22,7 @@ import { initHeirInspector } from '../features/family-tree/heirInspector.js';
 import { initCalculationHistory } from '../features/history/calculationHistory.js';
 import { showCalculationProgress } from '../features/calculator/progressIndicator.js';
 import { initTouchSteppers } from '../features/calculator/touchSteppers.js';
+import { initContactSection } from '../features/contact/contactSection.js';
 import { initI18n } from '../i18n/i18n.js';
 
 let currencySymbol = APP_CONFIG.defaultCurrency;
@@ -50,6 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initComparisonView();
     initHeirInspector();
     initCalculationHistory();
+    initContactSection();
 
     // 3. Setup Currency Toggle
     const currencySelect = document.getElementById('currencySelect');

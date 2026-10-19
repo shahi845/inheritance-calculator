@@ -5,6 +5,9 @@
 import { ALL_LEARNING_TOPICS } from '../../data/learning/index.js';
 import { loadPreset } from '../calculator/presets.js';
 import { navigateTo } from '../../app/pageRouter.js';
+import { t } from '../../i18n/i18n.js';
+
+let currentTopicCategory = 'all';
 
 export function initLearningSection() {
     const container = document.getElementById('learningTopicsContainer');
@@ -13,6 +16,16 @@ export function initLearningSection() {
     renderTopicCards(ALL_LEARNING_TOPICS, container);
     setupCategoryFilters(container);
     setupTopicModal();
+
+    window.addEventListener('faraid:languageChange', () => {
+        const cont = document.getElementById('learningTopicsContainer');
+        if (cont) {
+            const filtered = currentTopicCategory === 'all'
+                ? ALL_LEARNING_TOPICS
+                : ALL_LEARNING_TOPICS.filter(t => t.category === currentTopicCategory);
+            renderTopicCards(filtered, cont);
+        }
+    });
 }
 
 function renderTopicCards(topics, container) {
@@ -25,7 +38,7 @@ function renderTopicCards(topics, container) {
             <h3 class="topic-title">${escapeHtml(topic.title)}</h3>
             <p class="topic-summary">${escapeHtml(topic.summary)}</p>
             <div class="topic-card-footer">
-                <button class="view-topic-btn" data-topic-id="${topic.id}">Explore Topic →</button>
+                <button class="view-topic-btn" data-topic-id="${topic.id}">${escapeHtml(t('explore_topic_btn', 'Explore Topic →'))}</button>
             </div>
         </div>
     `).join('');
@@ -45,7 +58,8 @@ function setupCategoryFilters(container) {
             filterBtns.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
 
-            const category = btn.dataset.category;
+            const category = btn.dataset.category || 'all';
+            currentTopicCategory = category;
             const filtered = category === 'all'
                 ? ALL_LEARNING_TOPICS
                 : ALL_LEARNING_TOPICS.filter(t => t.category === category);
@@ -77,42 +91,42 @@ function openTopicModal(topicId) {
 
         <div class="topic-modal-body">
             <div class="topic-section">
-                <h4>📖 Definition</h4>
+                <h4>📖 ${escapeHtml(t('topic_definition', 'Definition'))}</h4>
                 <p>${escapeHtml(topic.definition)}</p>
             </div>
 
             <div class="topic-section">
-                <h4>🎯 Purpose</h4>
+                <h4>🎯 ${escapeHtml(t('topic_purpose', 'Purpose'))}</h4>
                 <p>${escapeHtml(topic.purpose)}</p>
             </div>
 
             <div class="topic-section">
-                <h4>💡 Detailed Explanation</h4>
+                <h4>💡 ${escapeHtml(t('topic_explanation', 'Detailed Explanation'))}</h4>
                 <p>${escapeHtml(topic.explanation)}</p>
             </div>
 
             <div class="topic-section">
-                <h4>📜 Key Rules</h4>
+                <h4>📜 ${escapeHtml(t('topic_rules', 'Key Rules'))}</h4>
                 <ul>
                     ${topic.rules.map(r => `<li>${escapeHtml(r)}</li>`).join('')}
                 </ul>
             </div>
 
             <div class="topic-section">
-                <h4>📝 Worked Example</h4>
+                <h4>📝 ${escapeHtml(t('topic_example', 'Worked Example'))}</h4>
                 <div class="example-box">${escapeHtml(topic.examples)}</div>
             </div>
 
             <div class="topic-section">
-                <h4>📖 Primary Evidence Citation</h4>
+                <h4>📖 ${escapeHtml(t('topic_citation', 'Primary Evidence Citation'))}</h4>
                 <p class="evidence-text"><strong>${escapeHtml(topic.evidence)}</strong></p>
             </div>
 
             ${topic.calculatorCase ? `
                 <div class="topic-action-box">
-                    <p>Want to see this concept live in action?</p>
+                    <p>${escapeHtml(t('topic_action_prompt', 'Want to see this concept live in action?'))}</p>
                     <button class="primary-btn try-calc-btn" data-case="${topic.calculatorCase}">
-                        🧮 Load Example in Calculator
+                        🧮 ${escapeHtml(t('btn_load_calculator', 'Load Example in Calculator'))}
                     </button>
                 </div>
             ` : ''}

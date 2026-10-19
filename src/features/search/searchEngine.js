@@ -9,6 +9,7 @@ import { REFERENCES_DATA } from '../../data/references/referencesData.js';
 import { heirEvidences } from '../../data/evidences.js';
 import { navigateTo } from '../../app/pageRouter.js';
 import { loadPreset } from '../calculator/presets.js';
+import { t } from '../../i18n/i18n.js';
 
 export function initGlobalSearch() {
     const input = document.getElementById('globalSearchInput');
@@ -96,7 +97,7 @@ function renderSearchResults(results, dropdown) {
     let html = '';
 
     if (results.heirs.length > 0) {
-        html += `<div class="search-category-header">🧮 Calculator &amp; Heir Rules</div>`;
+        html += `<div class="search-category-header">🧮 ${escapeHtml(t('nav_calculator', 'Calculator'))} &amp; ${escapeHtml(t('heirs_config', 'Heir Rules'))}</div>`;
         results.heirs.slice(0, 3).forEach(h => {
             html += `
                 <div class="search-result-item" data-type="heir" data-key="${h.key}">
@@ -108,19 +109,19 @@ function renderSearchResults(results, dropdown) {
     }
 
     if (results.learning.length > 0) {
-        html += `<div class="search-category-header">📚 Learning Topics</div>`;
-        results.learning.slice(0, 3).forEach(t => {
+        html += `<div class="search-category-header">📚 ${escapeHtml(t('nav_learning', 'Learning Topics'))}</div>`;
+        results.learning.slice(0, 3).forEach(tItem => {
             html += `
-                <div class="search-result-item" data-type="learning" data-id="${t.id}">
-                    <div class="search-item-title">${t.icon} ${escapeHtml(t.title)}</div>
-                    <div class="search-item-sub">${escapeHtml(t.summary)}</div>
+                <div class="search-result-item" data-type="learning" data-id="${tItem.id}">
+                    <div class="search-item-title">${tItem.icon} ${escapeHtml(tItem.title)}</div>
+                    <div class="search-item-sub">${escapeHtml(tItem.summary)}</div>
                 </div>
             `;
         });
     }
 
     if (results.cases.length > 0) {
-        html += `<div class="search-category-header">📋 Sample Cases</div>`;
+        html += `<div class="search-category-header">📋 ${escapeHtml(t('nav_cases', 'Sample Cases'))}</div>`;
         results.cases.slice(0, 3).forEach(c => {
             html += `
                 <div class="search-result-item" data-type="case" data-id="${c.id}">
@@ -132,7 +133,7 @@ function renderSearchResults(results, dropdown) {
     }
 
     if (results.references.length > 0) {
-        html += `<div class="search-category-header">📖 Scripture &amp; Classical Books</div>`;
+        html += `<div class="search-category-header">📖 ${escapeHtml(t('nav_references', 'References'))}</div>`;
         results.references.slice(0, 3).forEach(r => {
             html += `
                 <div class="search-result-item" data-type="reference" data-id="${r.id}">
@@ -171,6 +172,10 @@ function renderSearchResults(results, dropdown) {
 }
 
 function formatHeirName(key) {
+    const tr = t('heir_' + key);
+    if (tr && tr !== 'heir_' + key) {
+        return tr.replace(/\s*\([^)]*\)/g, '').trim();
+    }
     return key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase());
 }
 

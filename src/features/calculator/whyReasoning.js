@@ -5,6 +5,16 @@
  */
 
 import { heirEvidences } from '../../data/evidences.js';
+import { t } from '../../i18n/i18n.js';
+
+function getTranslatedHeirName(name, key) {
+    const heirKey = key || name.toLowerCase().replace(/[^a-z]/g, '');
+    const translated = t('heir_' + heirKey);
+    if (translated && translated !== 'heir_' + heirKey) {
+        return translated.replace(/\s*\([^)]*\)/g, '').trim();
+    }
+    return name;
+}
 
 /**
  * Generates HTML for the "Why?" step-by-step collapsible reasoning section.
@@ -29,8 +39,8 @@ export function generateWhyReasoningHTML(shares, messages, heirsInput, madhhab =
     let html = `
         <div class="why-section-card result-card mt-lg" style="border: 1px solid var(--accent-light, rgba(99, 102, 241, 0.3));">
             <div class="why-header" style="margin-bottom: 1.25rem;">
-                <h3 style="margin-bottom: 0.25rem;">❓ Why? — Interactive Step-by-Step Rationale</h3>
-                <span class="why-subtitle" style="font-size: 0.88em; opacity: 0.85;">Click any heir below to toggle detailed juristic reasoning and divine primary evidence</span>
+                <h3 style="margin-bottom: 0.25rem;">❓ ${escapeHtml(t('why_inherit_title', 'Why did they inherit this?'))}</h3>
+                <span class="why-subtitle" style="font-size: 0.88em; opacity: 0.85;">${escapeHtml(t('view_evidence_btn', 'View Evidence & Details'))}</span>
             </div>
             <div class="why-accordion-list" style="display: flex; flex-direction: column; gap: 0.75rem;">
     `;
@@ -64,7 +74,7 @@ export function generateWhyReasoningHTML(shares, messages, heirsInput, madhhab =
                         <span style="font-size: 1.1em; color: ${isBlocked ? 'var(--danger)' : 'var(--accent)'}">
                             ${isBlocked ? '🚫' : '📜'}
                         </span>
-                        <span>${escapeHtml(share.name)}</span>
+                        <span>${escapeHtml(getTranslatedHeirName(share.name, key))}</span>
                         <span style="font-size: 0.85em; opacity: 0.75; font-weight: normal;">${countStr}</span>
                     </div>
                     <div style="display: flex; align-items: center; gap: 0.75rem;">
@@ -78,17 +88,17 @@ export function generateWhyReasoningHTML(shares, messages, heirsInput, madhhab =
                 <div class="why-item-details" style="margin-top: 1rem; pt: 0.75rem; border-top: 1px solid var(--glass-border); display: grid; grid-template-columns: 1fr; gap: 0.6rem; font-size: 0.92em;">
                     
                     <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-                        <strong style="color: var(--text-secondary); min-width: 110px;">Share:</strong>
+                        <strong style="color: var(--text-secondary); min-width: 110px;">${escapeHtml(t('th_share', 'Share'))}:</strong>
                         <span style="color: var(--accent); font-weight: 600;">${escapeHtml(shareDisplay)} ${share.totalAmount && share.totalAmount !== '-' ? `(${escapeHtml(share.totalAmount.toString())})` : ''}</span>
                     </div>
 
                     <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-                        <strong style="color: var(--text-secondary); min-width: 110px;">Why?</strong>
+                        <strong style="color: var(--text-secondary); min-width: 110px;">${escapeHtml(t('why_inherit_title', 'Why?'))}:</strong>
                         <span style="line-height: 1.5;">${escapeHtml(reason)}</span>
                     </div>
 
                     <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-                        <strong style="color: var(--text-secondary); min-width: 110px;">Evidence:</strong>
+                        <strong style="color: var(--text-secondary); min-width: 110px;">${escapeHtml(t('evidence_label', 'Evidence:'))}</strong>
                         <span style="color: #a78bfa; font-weight: 500;">📖 ${escapeHtml(citation)}</span>
                     </div>
 
@@ -105,12 +115,12 @@ export function generateWhyReasoningHTML(shares, messages, heirsInput, madhhab =
                     ` : ''}
 
                     <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-                        <strong style="color: var(--text-secondary); min-width: 110px;">Rule Applied:</strong>
+                        <strong style="color: var(--text-secondary); min-width: 110px;">${escapeHtml(t('rule_id_label', 'Rule Applied:'))}</strong>
                         <span style="line-height: 1.5;">${escapeHtml(ruleText)}</span>
                     </div>
 
                     <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-                        <strong style="color: var(--text-secondary); min-width: 110px;">Madhhab:</strong>
+                        <strong style="color: var(--text-secondary); min-width: 110px;">${escapeHtml(t('contact_madhhab_label', 'Madhhab:'))}</strong>
                         <span style="background: rgba(99, 102, 241, 0.15); color: #818cf8; padding: 0.1rem 0.5rem; border-radius: 4px; font-weight: 500; font-size: 0.88em;">${escapeHtml(activeMadhhabName)}</span>
                     </div>
                 </div>

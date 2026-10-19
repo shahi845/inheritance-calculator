@@ -8,12 +8,20 @@ import { calculateHanafiInheritance } from '../../madhahib/hanafi/index.js';
 import { calculateMalikiInheritance } from '../../madhahib/maliki/index.js';
 import { calculateHanbaliInheritance } from '../../madhahib/hanbali/index.js';
 import { readHeirsInput } from '../calculator/inputReader.js';
+import { t } from '../../i18n/i18n.js';
 
 export function initComparisonView() {
     const compareBtn = document.getElementById('compareAllSchoolsBtn');
     if (!compareBtn) return;
 
     compareBtn.addEventListener('click', runAllSchoolsComparison);
+
+    window.addEventListener('faraid:languageChange', () => {
+        const container = document.getElementById('madhhabComparisonContainer');
+        if (container && !container.classList.contains('hidden')) {
+            runAllSchoolsComparison();
+        }
+    });
 }
 
 export function runAllSchoolsComparison() {
@@ -100,11 +108,11 @@ function renderComparisonTable(container, heirsInput, shafii, hanafi, maliki, ha
                 <table class="shares-table">
                     <thead>
                         <tr>
-                            <th>Heir</th>
-                            <th>Shāfiʿī</th>
-                            <th>Ḥanafī</th>
-                            <th>Mālikī</th>
-                            <th>Ḥanbalī</th>
+                            <th>${escapeHtml(t('th_heir', 'Heir'))}</th>
+                            <th>${escapeHtml(t('tab_shafii', 'Shāfiʿī'))}</th>
+                            <th>${escapeHtml(t('tab_hanafi', 'Ḥanafī'))}</th>
+                            <th>${escapeHtml(t('tab_maliki', 'Mālikī'))}</th>
+                            <th>${escapeHtml(t('tab_hanbali', 'Ḥanbalī'))}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -120,16 +128,20 @@ function findShareText(sharesArray, key) {
     if (!sharesArray) return '0%';
     const match = sharesArray.find(s => s.key === key || s.name.toLowerCase().includes(key.toLowerCase()));
     if (!match) return '0%';
-    if (match.status && match.status.includes('Blocked')) return 'Blocked (0%)';
+    if (match.status && match.status.includes('Blocked')) return `${t('status_blocked', 'Blocked')} (0%)`;
     return match.fracText || (match.pctPerPerson ? (match.pctPerPerson * (match.count || 1)).toFixed(2) + '%' : '0%');
 }
 
 function getShareBadgeClass(shareText) {
-    if (shareText.includes('Blocked') || shareText === '0%') return 'badge-danger';
+    if (shareText.includes('Blocked') || shareText.includes(t('status_blocked', 'Blocked')) || shareText === '0%') return 'badge-danger';
     return 'badge-accent';
 }
 
 function formatKey(key) {
+    const translated = t('heir_' + key);
+    if (translated && translated !== 'heir_' + key) {
+        return translated.replace(/\s*\([^)]*\)/g, '').trim();
+    }
     return key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase());
 }
 

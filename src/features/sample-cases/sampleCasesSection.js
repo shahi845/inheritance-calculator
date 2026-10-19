@@ -6,6 +6,7 @@
 import { ALL_CASES, getFilteredCases } from '../../data/cases/index.js';
 import { loadPreset } from '../calculator/presets.js';
 import { navigateTo } from '../../app/pageRouter.js';
+import { t } from '../../i18n/i18n.js';
 
 let currentMadhhab = 'all';
 let currentCategory = 'all';
@@ -18,6 +19,13 @@ export function initSampleCasesSection() {
     renderCases(grid);
     setupFilters(grid);
     setupSearch(grid);
+
+    window.addEventListener('faraid:languageChange', () => {
+        const currentGrid = document.getElementById('sampleCasesGrid');
+        if (currentGrid) {
+            renderCases(currentGrid);
+        }
+    });
 }
 
 function renderCases(grid) {
@@ -26,7 +34,7 @@ function renderCases(grid) {
     if (cases.length === 0) {
         grid.innerHTML = `
             <div class="empty-state glass-card">
-                <p>No sample cases match your filter criteria.</p>
+                <p>${escapeHtml(t('empty_cases_msg', 'No sample cases match your filter criteria.'))}</p>
             </div>
         `;
         return;
@@ -43,24 +51,25 @@ function renderCases(grid) {
             <p class="case-desc">${escapeHtml(c.description)}</p>
 
             <div class="case-heirs-preview">
-                <strong>Heirs:</strong>
+                <strong>${escapeHtml(t('heirs_label', 'Heirs:'))}</strong>
                 <div class="heir-chips">
-                    ${Object.entries(c.heirs || {}).map(([k, v]) => `
-                        <span class="heir-chip">${escapeHtml(k)}: ${v}</span>
-                    `).join('')}
+                    ${Object.entries(c.heirs || {}).map(([k, v]) => {
+                        const trName = t('heir_' + k, k);
+                        return `<span class="heir-chip">${escapeHtml(trName)}: ${v}</span>`;
+                    }).join('')}
                 </div>
             </div>
 
             ${c.teachingNote ? `
                 <div class="case-note">
-                    💡 <strong>Teaching Note:</strong> ${escapeHtml(c.teachingNote)}
+                    💡 <strong>${escapeHtml(t('teaching_note_label', 'Teaching Note:'))}</strong> ${escapeHtml(c.teachingNote)}
                 </div>
             ` : ''}
 
             <div class="case-card-footer">
                 <span class="case-outcome-text">${escapeHtml(c.expectedOutcome || '')}</span>
                 <button class="primary-btn load-case-btn" data-case-id="${c.id}">
-                    ⚡ Load into Calculator
+                    ⚡ ${escapeHtml(t('btn_load_calculator', 'Load into Calculator →'))}
                 </button>
             </div>
         </div>

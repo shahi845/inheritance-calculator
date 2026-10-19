@@ -4,13 +4,23 @@
  */
 
 import { ALL_REFERENCES } from '../../data/references/index.js';
+import { t } from '../../i18n/i18n.js';
+
+let activeCategoryFilter = 'all';
 
 export function initReferencesSection() {
     const container = document.getElementById('referencesCardsContainer');
     if (!container) return;
 
-    renderReferences(container);
+    renderReferences(container, activeCategoryFilter);
     setupReferenceFilters(container);
+
+    window.addEventListener('faraid:languageChange', () => {
+        const cont = document.getElementById('referencesCardsContainer');
+        if (cont) {
+            renderReferences(cont, activeCategoryFilter);
+        }
+    });
 }
 
 function renderReferences(container, categoryFilter = 'all') {
@@ -41,7 +51,7 @@ function renderReferences(container, categoryFilter = 'all') {
 
                 ${ref.commentary ? `
                     <p style="color:var(--text-secondary);font-size:0.9rem;line-height:1.5;">
-                        📖 <strong>Commentary:</strong> ${escapeHtml(ref.commentary)}
+                        📖 <strong>${escapeHtml(t('ref_commentary', 'Commentary:'))}</strong> ${escapeHtml(ref.commentary)}
                     </p>
                 ` : ''}
 
@@ -49,7 +59,7 @@ function renderReferences(container, categoryFilter = 'all') {
                     <p style="color:var(--text-primary);font-size:0.95rem;line-height:1.6;">
                         ${escapeHtml(ref.description)}
                     </p>
-                    ${ref.significance ? `<p class="text-accent text-small mt-sm">🏛️ <strong>Significance:</strong> ${escapeHtml(ref.significance)}</p>` : ''}
+                    ${ref.significance ? `<p class="text-accent text-small mt-sm">🏛️ <strong>${escapeHtml(t('ref_significance', 'Significance:'))}</strong> ${escapeHtml(ref.significance)}</p>` : ''}
                 ` : ''}
             </div>
         </details>
@@ -61,8 +71,8 @@ function setupReferenceFilters(container) {
         btn.addEventListener('click', () => {
             document.querySelectorAll('.ref-filter-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
-            const category = btn.dataset.category;
-            renderReferences(container, category);
+            activeCategoryFilter = btn.dataset.category || 'all';
+            renderReferences(container, activeCategoryFilter);
         });
     });
 }

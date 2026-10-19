@@ -3,6 +3,8 @@
  * Sets SVG presentation attributes directly in JS for reliable cross-browser rendering.
  */
 
+import { t } from '../../i18n/i18n.js';
+
 const STYLES = {
     default: {
         rectFill:   'rgba(30, 41, 59, 0.7)',
@@ -140,7 +142,7 @@ export function updateFamilyTreeVisual(heirsInput, blocked, shares) {
             badge.style.cursor = 'help';
             badge.textContent = 'ℹ';
             const title = document.createElementNS('http://www.w3.org/2000/svg', 'title');
-            title.textContent = 'Blocked / Excluded — see Details table';
+            title.textContent = t('blocked_title_tooltip', 'Blocked / Excluded — see Details table');
             badge.appendChild(title);
             element.appendChild(badge);
 
