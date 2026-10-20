@@ -6,7 +6,8 @@
 import { APP_CONFIG } from './config.js';
 import { initRouter } from './router.js';
 import { initPageRouter } from './pageRouter.js';
-import { runCalculation } from '../features/calculator/calculatorController.js';
+import { runCalculation, getLastCalculationData } from '../features/calculator/calculatorController.js';
+import { generatePdfReport } from '../features/pdf/pdfReportGenerator.js';
 import { loadPreset } from '../features/calculator/presets.js';
 import { initValidationAlerts } from '../features/calculator/validationAlerts.js';
 import { initEstateBreakdown } from '../features/estate/estateBreakdown.js';
@@ -96,9 +97,17 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    document.getElementById('printBtn')?.addEventListener('click', () => {
-        window.print();
-    });
+    const handlePdfPrint = () => {
+        const data = getLastCalculationData();
+        if (data) {
+            generatePdfReport(data);
+        } else {
+            window.print();
+        }
+    };
+
+    document.getElementById('printBtn')?.addEventListener('click', handlePdfPrint);
+    document.getElementById('resultsPdfBtn')?.addEventListener('click', handlePdfPrint);
 
     resetBtn?.addEventListener('click', () => {
         // Reset all heirs

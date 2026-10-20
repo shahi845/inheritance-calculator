@@ -42,6 +42,11 @@ function showPolicyWarning(message) {
 }
 
 let lastUsedCurrency = '$';
+let lastCalculationData = null;
+
+export function getLastCalculationData() {
+    return lastCalculationData;
+}
 
 /**
  * Runs the inheritance calculation pipeline and updates all UI components.
@@ -49,6 +54,7 @@ let lastUsedCurrency = '$';
  */
 export function runCalculation(currencySymbol) {
     if (currencySymbol) lastUsedCurrency = currencySymbol;
+    const safeCurrency = lastUsedCurrency || '$';
     const resultsSection = document.getElementById('resultsSection');
     const errorContainer = document.getElementById('errorContainer');
     const printBtn = document.getElementById('printBtn');
@@ -160,6 +166,20 @@ export function runCalculation(currencySymbol) {
 
         // Save to LocalStorage History
         saveCalculationToHistory(heirsInput, formattedShares, estateValue, selectedMadhhab);
+
+        lastCalculationData = {
+            result,
+            shares: formattedShares,
+            rawShares: shares,
+            messages: combinedMessages,
+            steps,
+            blocked,
+            estateValue,
+            detailedBreakdown: activeBreakdown ? detailedBreakdown : null,
+            heirsInput,
+            currencySymbol: safeCurrency,
+            selectedMadhhab
+        };
 
         if (resultsSection) resultsSection.classList.remove('hidden');
         if (printBtn) printBtn.classList.remove('hidden');

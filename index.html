@@ -453,14 +453,16 @@
                 <div class="actions">
                     <button id="calculateBtn" class="primary-btn" data-i18n="btn_calculate">Calculate Shares</button>
                     <button id="resetBtn" class="secondary-btn" data-i18n="btn_reset">Reset</button>
-                    <button id="copyBtn" class="secondary-btn hidden" data-i18n="btn_copy">Copy Summary</button>
-                    <button id="printBtn" class="secondary-btn hidden" data-i18n="btn_print"><i class="fas fa-print"></i> Save as PDF / Print</button>
+                    <button id="printBtn" class="primary-btn hidden" data-i18n="btn_print" style="background:linear-gradient(135deg, #059669, #0d9488);border-color:#059669;box-shadow:0 4px 12px rgba(5,150,105,0.25);"><i class="fas fa-file-pdf"></i> 📄 Save as PDF / Print</button>
                 </div>
 
                 <section class="results-section glass-panel hidden" id="resultsSection">
-                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;">
-                        <h2 data-i18n="results_title">Inheritance Distribution</h2>
-                        <button class="primary-btn" id="compareAllSchoolsBtn" data-i18n="btn_compare">⚖️ Compare All 4 Madhhabs Side-by-Side</button>
+                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;flex-wrap:wrap;gap:0.75rem;">
+                        <h2 data-i18n="results_title" style="margin:0;">Inheritance Distribution</h2>
+                        <div style="display:flex;gap:0.5rem;flex-wrap:wrap;align-items:center;">
+                            <button class="primary-btn" id="compareAllSchoolsBtn" data-i18n="btn_compare">⚖️ Compare All 4 Madhhabs Side-by-Side</button>
+                            <button type="button" class="secondary-btn" id="resultsPdfBtn" data-i18n="btn_print" style="border-color:#059669;color:#34d399;display:inline-flex;align-items:center;gap:0.4rem;">📄 Save as PDF / Print</button>
+                        </div>
                     </div>
 
                     <!-- ⚠️ CALCULATION FEEDBACK & DISCREPANCY BANNER -->
@@ -473,8 +475,7 @@
                             </div>
                         </div>
                         <div style="display:flex;gap:0.5rem;flex-wrap:wrap;align-items:center;">
-                            <button type="button" class="feedback-report-btn" id="reportCalculationBtn" data-i18n="btn_report_calc">Report Calculation Issue / Contact</button>
-                            <button type="button" class="feedback-gmail-btn" id="quickEmailCalcBtn" style="background:#ea4335;color:#ffffff;border:none;border-radius:8px;padding:0.65rem 1rem;font-weight:700;font-size:0.85rem;cursor:pointer;display:inline-flex;align-items:center;gap:0.4rem;" data-i18n="btn_quick_gmail">📧 Send via Gmail (mshahid3845@gmail.com)</button>
+                            <button type="button" class="feedback-report-btn" id="reportCalculationBtn" data-i18n="btn_report_calc" style="background:#ea4335;color:#ffffff;border:none;border-radius:8px;padding:0.65rem 1.15rem;font-weight:700;font-size:0.88rem;cursor:pointer;display:inline-flex;align-items:center;gap:0.4rem;">📧 Report Issue / Send via Gmail (mshahid3845@gmail.com)</button>
                         </div>
                     </div>
 
@@ -1016,9 +1017,7 @@
                             </div>
 
                             <div style="display:flex;gap:0.75rem;flex-wrap:wrap;align-items:center;">
-                                <button type="submit" class="primary-btn" id="contactSubmitBtn" data-i18n="btn_submit_feedback">✉️ Submit Report &amp; Send to Gmail</button>
-                                <button type="button" class="secondary-btn" id="contactEmailBtn" style="border-color:#ea4335;color:#fca5a5;" data-i18n="btn_open_email_client">📧 Send via Gmail (mshahid3845@gmail.com)</button>
-                                <button type="button" class="secondary-btn" id="contactCopyReportBtn" data-i18n="btn_copy_report">📋 Copy Report to Clipboard</button>
+                                <button type="submit" class="primary-btn" id="contactSubmitBtn" data-i18n="btn_submit_feedback" style="width:100%;justify-content:center;padding:0.85rem 1.25rem;font-size:1rem;background:#ea4335;border-color:#ea4335;color:#ffffff;display:flex;align-items:center;gap:0.5rem;font-weight:700;border-radius:8px;cursor:pointer;">✉️ Submit &amp; Send via Gmail (mshahid3845@gmail.com)</button>
                             </div>
 
                             <div id="contactFormStatus" class="status-msg hidden"></div>

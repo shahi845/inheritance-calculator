@@ -1,49 +1,105 @@
 /* ============================================================
    print.css — Print / PDF Export Styles
+   Provides clean, high-contrast formatting when printed or saved to PDF.
    ============================================================ */
 
 @media print {
-    body {
-        background: white;
-        color: black;
+    *, *::before, *::after {
+        background: transparent !important;
+        color: #0f172a !important;
+        box-shadow: none !important;
+        text-shadow: none !important;
     }
 
+    body {
+        background: #ffffff !important;
+        color: #0f172a !important;
+        font-size: 10pt;
+        line-height: 1.4;
+    }
+
+    /* Hide non-printable navigation, tools, interactive buttons */
+    header,
+    nav,
+    footer,
+    .top-nav,
     .background-elements,
     .actions,
     .estate-section,
     .heirs-container,
-    .educational-section {
+    .educational-section,
+    .calculation-feedback-banner,
+    .preset-container,
+    .quick-theme-selector,
+    .modal-overlay,
+    button,
+    input,
+    select {
         display: none !important;
     }
 
-    .glass-panel {
-        background: none;
-        border: none;
-        box-shadow: none;
+    /* Ensure results section displays prominently */
+    #page-calculator,
+    #resultsSection {
+        display: block !important;
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
     }
 
-    h1, h2, h3, p, .disclaimer, td, th, li {
-        color: black !important;
+    .glass-panel {
+        background: none !important;
+        border: none !important;
+        box-shadow: none !important;
+        padding: 0 !important;
+    }
+
+    h1, h2, h3, h4 {
+        color: #0f172a !important;
+        page-break-after: avoid;
+    }
+
+    .result-card,
+    .step-block {
+        border: 1px solid #cbd5e1 !important;
+        background: #ffffff !important;
+        page-break-inside: avoid;
+        margin-bottom: 0.75rem !important;
+        border-radius: 6px !important;
+    }
+
+    table {
+        width: 100% !important;
+        border-collapse: collapse !important;
+        page-break-inside: auto;
+    }
+
+    tr {
+        page-break-inside: avoid;
+        page-break-after: auto;
+    }
+
+    thead {
+        display: table-header-group;
+    }
+
+    th, td {
+        border: 1px solid #cbd5e1 !important;
+        padding: 5pt 7pt !important;
+        color: #0f172a !important;
+        font-size: 9pt !important;
+    }
+
+    th {
+        background-color: #f1f5f9 !important;
+        font-weight: bold !important;
     }
 
     .disclaimer {
-        border: 1px solid #ccc;
-    }
-
-    .result-card {
-        border: 1px solid #ccc;
+        border: 1px solid #94a3b8 !important;
+        background: #f8fafc !important;
+        padding: 8pt !important;
+        margin-top: 1rem !important;
         page-break-inside: avoid;
-    }
-
-    .messages-container {
-        page-break-before: always;
-        border: 1px solid #ccc;
-        padding: 1rem;
-    }
-
-    .message {
-        border-left-color: #333;
-        background: #f9f9f9;
-        color: black;
     }
 }
